@@ -1,0 +1,7 @@
+{
+  "name": "Billcentric",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,27 @@
+
+<ion-content padding class="transparent-header">
+  <img class="logo" src="assets/img/logo/logobillcentric.png" />
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-input formControlName="email" type="text" placeholder="Correo"></ion-input>
+    </ion-item>
+    <div class="error-messages">
+      <ng-container *ngFor="let error of error_messages.email">
+        <div class="error-messages" *ngIf="loginForm.get('email').hasError(error.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+          {{error.message}}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+    </ion-item>
+    <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.password">
+          <div class="error-messages" *ngIf="loginForm.get('password').hasError(error.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            {{error.message}}
+          </div>
+        </ng-container>
+      </div>
+    <ion-button (click)="login()" [disabled]="!loginForm.valid" shape="round" size="default" color="danger" expand="block">Iniciar sesion</ion-button>
+  </form>
+</ion-content>
