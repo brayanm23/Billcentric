@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Detalle del Partner
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        {{ unico.name_partner}}
+      </ion-card-title>
+      <p>Dirección: {{ unico.adress_partner}}</p>
+      <p>Teléfono: {{ unico.phone_partner}}</p>
+      <p>Email: {{ unico.email_partner}}</p>
+      <p>Estatus: {{ unico.nameOf_status}}</p>
+      <p>Porcentaje de Cobro: {{ unico.feeRate_partner}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

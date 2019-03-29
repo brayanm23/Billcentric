@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthorizationRequest } from '../providers/utils/authorizationRequest';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { UserService } from '../providers/user/user.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginPage implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     public authService: AuthService,
-    public userService: UserService
+    public userService: UserService,
+    public storage: Storage
   ) {
     this.loginForm = this.formBuilder.group({
       password: new FormControl('', Validators.compose([
@@ -64,15 +66,14 @@ export class LoginPage implements OnInit {
             authorizationRequest.client_id = '2';
 
             this.authService.login(authorizationRequest).subscribe(authorizationResponse => {
-                // console.log(authorizationResponse);
                 sessionStorage.setItem('token', authorizationResponse.access_token);
                 // sessionStorage.setItem('token', authorizationResponse.access_token);  viejo
                 // console.log(authorizationResponse);
                 this.userService.getById(authorizationResponse.user_id).subscribe(user => {
-                    localStorage.setItem('currentData', JSON.stringify({user: user, token: authorizationResponse.access_token}));
+                    localStorage.setItem('accessToken', JSON.stringify({user: user, token: authorizationResponse.access_token}));
+                    // localStorage.setItem('currentData', JSON.stringify({user: user, token: authorizationResponse.access_token}));
                     this.router.navigate(['/home']);
-                    // this.navCtrl.setRoot(HomePage);
-                    // window.location.href = window.location.href + '../home' ;
+                    this.storage.set('isLoggedin', 'true');
                 });
             }, error => {
                 console.log('esto es un error');

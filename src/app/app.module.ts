@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { IonicStorageModule } from '@ionic/storage';
 
 // Http import
 import { HttpModule } from '@angular/http';
@@ -26,7 +27,8 @@ import { AuthService } from './providers/auth-service/auth-service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule,
+      IonicStorageModule.forRoot(),
+      AppRoutingModule,
       HttpModule,
       HttpClientModule
   ],

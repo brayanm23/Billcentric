@@ -3,7 +3,14 @@
   color: red;
   text-align: left;
 }
-
+.logo {
+  //width: 50%;
+  //height: auto;
+  //max-width: 12em;
+  padding-top: 150px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
 /*page-login-one {
     // Fullscreen centered image background
     ion-content {
@@ -18,13 +25,7 @@
       flex-direction: column;
       overflow: hidden;
     }
-    .logo {
-      width: 50%;<!-- -->
-      height: auto;
-      max-width: 12em;
-      margin: 0 auto;
-      padding-bottom: 50px;
-    }
+
     .no-border {
       border-bottom: 0 !important;
       box-shadow: none !important;

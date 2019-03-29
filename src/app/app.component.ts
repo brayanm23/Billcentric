@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +16,13 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
+      title: 'Login',
+      url: '/login',
       icon: 'list'
     },
     {
-      title: 'Login',
-      url: '/login',
+      title: 'Partner',
+      url: '/partner',
       icon: 'list'
     }
   ];
@@ -30,6 +30,7 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
+    public storage: Storage,
     private statusBar: StatusBar
   ) {
     this.initializeApp();
@@ -38,7 +39,18 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
-    });
+
+        /*this.storage.get('isLoggedin').then((val) => {
+            // Si se ha iniciado la sesion
+            if (val)
+                this.rootPage = HomePage;
+            // Si no se ha iniciado sesion
+            else
+                this.rootPage = MenuPage;
+        });*/ });
   }
+
+
 }
