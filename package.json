@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^7.2.11",
     "@angular/common": "^7.2.2",
     "@angular/core": "^7.2.2",
     "@angular/forms": "^7.2.2",
@@ -25,6 +26,8 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.0.0",
     "@ionic/storage": "^2.2.0",
+    "angular2-notifications": "^2.0.0",
+    "chart.js": "^2.8.0",
     "cordova-android": "7.1.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.3",

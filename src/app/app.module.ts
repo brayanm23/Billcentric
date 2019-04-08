@@ -6,11 +6,9 @@ import { IonicStorageModule } from '@ionic/storage';
 // Http import
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,6 +18,7 @@ import { AccessTokenResponse } from './providers/utils/accessTokenResponse';
 import { AccessTokenRequest } from './providers/utils/accessTokenRequest';
 import { AuthorizationRequest } from './providers/utils/authorizationRequest';
 import { AuthService } from './providers/auth-service/auth-service';
+import { AlertService } from './providers/utils/alertas';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +38,7 @@ import { AuthService } from './providers/auth-service/auth-service';
       AuthService,
       AccessTokenResponse,
       AccessTokenRequest,
+      AlertService,
       AuthorizationRequest,
       BaseModel,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

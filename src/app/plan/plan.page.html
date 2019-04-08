@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/service/:id"></ion-back-button>
+      </ion-buttons>
+    <ion-title>plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-searchbar placeholder="Buscar"
+                   [(ngModel)]="queryText"
+                   (ionInput)="filterPlan($event)"
+                   clearInput>
+    </ion-searchbar>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of plans">
+      <ion-item>
+        <ion-icon name="arrow-back" slot="end"></ion-icon>
+        {{item.name_plan}}
+      </ion-item>
+
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="readDetailPlan(item)"><ion-icon name="today"></ion-icon>Detalle</ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

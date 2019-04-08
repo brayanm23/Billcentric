@@ -3,26 +3,44 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage} from '@ionic/storage';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  styleUrls: ['./app.style.scss']
 })
 export class AppComponent {
   public appPages = [
     {
-      title: 'Home',
+      title: 'Inicio',
       url: '/home',
       icon: 'home'
     },
+    /*{
+          title: 'Reportes',
+          children: [
+              {
+                  title: 'Por Compañias',
+                  url: '/partner',
+                  icon: 'list'
+              },
+              {
+                  title: 'Por Facturas cobradas',
+                  url: '/reports',
+                  icon: 'list'
+              },
+          ]
+    },*/
     {
-      title: 'Login',
-      url: '/login',
+      title: 'Compañias',
+      url: '/partner',
       icon: 'list'
     },
     {
-      title: 'Partner',
-      url: '/partner',
+      title: 'Reportes',
+      url: '/reports',
       icon: 'list'
     }
   ];
@@ -31,7 +49,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     public storage: Storage,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -41,15 +60,14 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
-
-        /*this.storage.get('isLoggedin').then((val) => {
-            // Si se ha iniciado la sesion
-            if (val)
-                this.rootPage = HomePage;
-            // Si no se ha iniciado sesion
-            else
-                this.rootPage = MenuPage;
-        });*/ });
+      });
+  }
+  logout() {
+      this.router.navigate(['/login']);
+      // this.nav.setRoot(LoginPage); // Close this application
+      localStorage.removeItem('currentData');
+      localStorage.clear();
+      sessionStorage.clear();
   }
 
 

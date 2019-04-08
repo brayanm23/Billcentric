@@ -10,14 +10,18 @@
 </ion-header>
 
 <ion-content padding>
-        <ion-searchbar placeholder="Search">
-        </ion-searchbar>
+    <ion-searchbar placeholder="Buscar"
+                   [(ngModel)]="queryText"
+                   (ionInput)="filterPartner($event)"
+                   clearInput>
+    </ion-searchbar>
 
     <ion-list>
 
         <ion-item-sliding *ngFor="let item of list">
             <ion-item>
-            {{item.name_partner}}
+                <ion-icon name="arrow-back" slot="end"></ion-icon>
+                {{item.name_partner}}
             </ion-item>
 
             <ion-item-options>

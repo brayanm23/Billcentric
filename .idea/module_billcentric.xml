@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_billcentric" default="compile.module.billcentric">
+  <dirname property="module.billcentric.basedir" file="${ant.file.module_billcentric}"/>
+  
+  <property name="module.jdk.home.billcentric" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.billcentric" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.billcentric" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.billcentric" value="-encoding UTF-8 -source 9 -target 9 ${compiler.args}"/>
+  
+  <property name="billcentric.output.dir" value="undefined"/>
+  <property name="billcentric.testoutput.dir" value="undefined"/>
+  
+  <path id="billcentric.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="billcentric.module.production.classpath"/>
+  
+  <path id="billcentric.runtime.production.module.classpath"/>
+  
+  <path id="billcentric.module.classpath"/>
+  
+  <path id="billcentric.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.billcentric">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.billcentric">
+    <patternset refid="excluded.from.module.billcentric"/>
+  </patternset>
+  
+  
+  <target name="compile.module.billcentric" depends="compile.module.billcentric.production,compile.module.billcentric.tests" description="Compile module Billcentric"/>
+  
+  <target name="compile.module.billcentric.production" depends="register.custom.compilers" description="Compile module Billcentric; production classes"/>
+  
+  <target name="compile.module.billcentric.tests" depends="register.custom.compilers,compile.module.billcentric.production" description="compile module Billcentric; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.billcentric" description="cleanup module">
+    <delete dir="${billcentric.output.dir}"/>
+    <delete dir="${billcentric.testoutput.dir}"/>
+  </target>
+</project>

@@ -16,7 +16,7 @@ export class ServicesService extends BaseService {
     constructor(
         private http: Http,
         private partnerService: PartnerService
-    ){
+    ) {
         super();
     }
 
@@ -25,5 +25,15 @@ export class ServicesService extends BaseService {
         return this.http.get(ServicesService.BASE_URL + '/partner/' + id, requestOptions)
             .map(BaseService.extractData)
             .catch(BaseService.handleError);
+    }
+
+    getById(id: number): Observable<Service> {
+        return this.http.get(ServicesService.BASE_URL + '/' + id, {headers: BaseService.createAuthorizationHeader()})
+            .map(BaseService.extractData)
+            .catch(BaseService.handleError);
+    }
+
+    findPartner(id:number): Observable<Partner> {
+        return this.partnerService.getPartnerById(id);
     }
 }

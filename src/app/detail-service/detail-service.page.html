@@ -1,9 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detail-service</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/service/:id"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle Servicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        {{ servicio?.name_service }}
+      </ion-card-title>
+      <p>Nombre del Partner: {{ partner?.name_partner }}</p>
+      <p>Estatus: {{ servicio?.status_service }}</p>
+    </ion-card-content>
+  </ion-card>
+    <ion-card>
+            <ion-item>
+                <ion-label position="floating">Fecha Inicio</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Fecha Fin</ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
+            </ion-item>
+            <ion-button (click)="reportes()" shape="round" size="small" color="danger" expand="full">Generar Reporte</ion-button>
+                <ion-card-content>
+                    <canvas #barCanvas></canvas>
+                </ion-card-content>
+    </ion-card>
 </ion-content>

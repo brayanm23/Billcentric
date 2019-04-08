@@ -5,6 +5,7 @@ import { AuthorizationRequest } from '../providers/utils/authorizationRequest';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { UserService } from '../providers/user/user.service';
 import { Storage } from '@ionic/storage';
+import { AlertService } from '../providers/utils/alertas';
 
 @Component({
   selector: 'app-login',
@@ -23,15 +24,14 @@ export class LoginPage implements OnInit {
     'password': [
       { type: 'required', message: 'Contraseña es requerida.'}
     ],
-
   };
 
-  constructor(
-    public formBuilder: FormBuilder,
-    private router: Router,
-    public authService: AuthService,
-    public userService: UserService,
-    public storage: Storage
+  constructor(public formBuilder: FormBuilder,
+              private router: Router,
+              public authService: AuthService,
+              public userService: UserService,
+              public alertas: AlertService,
+              public storage: Storage
   ) {
     this.loginForm = this.formBuilder.group({
       password: new FormControl('', Validators.compose([
@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
 
     login(): void {
 
-        // this.alertas.presentLoadingDefault();
+        this.alertas.showAutoHideLoader(); // presentLoadingDefault(); // this.presentLoadingDefault();
         console.log('email', this.loginForm.value.email);
         console.log('password', this.loginForm.value.password);
 
@@ -71,15 +71,13 @@ export class LoginPage implements OnInit {
                 // console.log(authorizationResponse);
                 this.userService.getById(authorizationResponse.user_id).subscribe(user => {
                     localStorage.setItem('accessToken', JSON.stringify({user: user, token: authorizationResponse.access_token}));
-                    // localStorage.setItem('currentData', JSON.stringify({user: user, token: authorizationResponse.access_token}));
+                    localStorage.setItem('currentData', JSON.stringify({user: user, token: authorizationResponse.access_token}));
                     this.router.navigate(['/home']);
                     this.storage.set('isLoggedin', 'true');
                 });
             }, error => {
                 console.log('esto es un error');
-                // this.alertas.presentAlert('Error','Email o Password es incorrectos, intente nuevamente');
             });
         }
     }
-
 }

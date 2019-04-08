@@ -91,6 +91,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../providers/auth-service/auth-service */ "./src/app/providers/auth-service/auth-service.ts");
 /* harmony import */ var _providers_user_user_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../providers/user/user.service */ "./src/app/providers/user/user.service.ts");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../providers/utils/alertas */ "./src/app/providers/utils/alertas.ts");
+
 
 
 
@@ -100,11 +102,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(formBuilder, router, authService, userService, storage) {
+    function LoginPage(formBuilder, router, authService, userService, alertas, storage) {
         this.formBuilder = formBuilder;
         this.router = router;
         this.authService = authService;
         this.userService = userService;
+        this.alertas = alertas;
         this.storage = storage;
         this.error_messages = {
             'email': [
@@ -133,7 +136,7 @@ var LoginPage = /** @class */ (function () {
     LoginPage.prototype.ngOnInit = function () { };
     LoginPage.prototype.login = function () {
         var _this = this;
-        // this.alertas.presentLoadingDefault();
+        this.alertas.showAutoHideLoader(); // presentLoadingDefault(); // this.presentLoadingDefault();
         console.log('email', this.loginForm.value.email);
         console.log('password', this.loginForm.value.password);
         if (this.isValid('email') && this.isValid('password')) {
@@ -148,13 +151,12 @@ var LoginPage = /** @class */ (function () {
                 // console.log(authorizationResponse);
                 _this.userService.getById(authorizationResponse.user_id).subscribe(function (user) {
                     localStorage.setItem('accessToken', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
-                    // localStorage.setItem('currentData', JSON.stringify({user: user, token: authorizationResponse.access_token}));
+                    localStorage.setItem('currentData', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
                     _this.router.navigate(['/home']);
                     _this.storage.set('isLoggedin', 'true');
                 });
             }, function (error) {
                 console.log('esto es un error');
-                // this.alertas.presentAlert('Error','Email o Password es incorrectos, intente nuevamente');
             });
         }
     };
@@ -168,6 +170,7 @@ var LoginPage = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
             _providers_user_user_service__WEBPACK_IMPORTED_MODULE_6__["UserService"],
+            _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_8__["AlertService"],
             _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"]])
     ], LoginPage);
     return LoginPage;

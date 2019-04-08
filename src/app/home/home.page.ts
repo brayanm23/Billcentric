@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Storage} from '@ionic/storage';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+    constructor(
+        private router: Router
+    ) { }
+    logout() {
+        this.router.navigate(['/login']);
+        // this.nav.setRoot(LoginPage); // Close this application
+        localStorage.removeItem('currentData');
+        localStorage.clear();
+        sessionStorage.clear();
+    }
 }

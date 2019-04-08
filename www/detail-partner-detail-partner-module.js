@@ -58,7 +58,7 @@ var DetailPartnerPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\" (click)=\"back()\">\n      <ion-icon name=\"arrow-round-back\"></ion-icon>\n    </ion-buttons>\n    <ion-title>\n      Detalle del Partner\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ unico.name_partner}}\n      </ion-card-title>\n      <p>Dirección: {{ unico.adress_partner}}</p>\n      <p>Teléfono: {{ unico.phone_partner}}</p>\n      <p>Email: {{ unico.email_partner}}</p>\n      <p>Estatus: {{ unico.nameOf_status}}</p>\n      <p>Porcentaje de Cobro: {{ unico.feeRate_partner}}</p>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/partner\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Detalle del Partner\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ unico.name_partner}}\n      </ion-card-title>\n      <p>Dirección: {{ unico.adress_partner}}</p>\n      <p>Teléfono: {{ unico.phone_partner}}</p>\n      <p>Ciudad:</p>\n      <p>País:</p>\n      <p>Porcentaje de Cobro: {{ unico.feeRate_partner}}</p>\n      <p>Estatus:</p>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n"
 
 /***/ }),
 
@@ -126,6 +126,64 @@ var DetailPartnerPage = /** @class */ (function () {
     ], DetailPartnerPage);
     return DetailPartnerPage;
 }());
+
+
+
+/***/ }),
+
+/***/ "./src/app/partner/partner.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/partner/partner.service.ts ***!
+  \********************************************/
+/*! exports provided: PartnerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PartnerService", function() { return PartnerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/base.service */ "./src/app/services/base.service.ts");
+
+
+
+
+
+var PartnerService = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](PartnerService, _super);
+    function PartnerService(http, httpc) {
+        var _this = _super.call(this) || this;
+        _this.http = http;
+        _this.httpc = httpc;
+        return _this;
+    }
+    PartnerService_1 = PartnerService;
+    PartnerService.prototype.getPartnersByUserId = function (requestOptions) {
+        if (requestOptions === void 0) { requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_3__["RequestOptions"](); }
+        requestOptions.headers = PartnerService_1.createAuthorizationHeader();
+        return this.http
+            .get(PartnerService_1.BASE_URL + '/partner/user', requestOptions)
+            .map(PartnerService_1.extractData)
+            .catch(PartnerService_1.handleError);
+    };
+    PartnerService.prototype.getPartnerById = function (id) {
+        return this.http.get(PartnerService_1.BASE_URL + '/partner/' + id, { headers: PartnerService_1.createAuthorizationHeader() })
+            .map(PartnerService_1.extractData)
+            .catch(PartnerService_1.handleError);
+    };
+    var PartnerService_1;
+    PartnerService.BASE_URL = _services_base_service__WEBPACK_IMPORTED_MODULE_4__["BaseService"].HOST;
+    PartnerService = PartnerService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_3__["Http"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], PartnerService);
+    return PartnerService;
+}(_services_base_service__WEBPACK_IMPORTED_MODULE_4__["BaseService"]));
 
 
 

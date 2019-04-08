@@ -58,7 +58,7 @@ var PartnerPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>\n            Partner\n        </ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n        <ion-searchbar placeholder=\"Search\">\n        </ion-searchbar>\n\n    <ion-list>\n\n        <ion-item-sliding *ngFor=\"let item of list\">\n            <ion-item>\n            {{item.name_partner}}\n            </ion-item>\n\n            <ion-item-options>\n                <!--button danger (click)=\"removeItem(item)\"><icon trash></icon> Delete</button-->\n                <ion-item-option color=\"danger\" (click)=\"readDetailPartner(item)\"><ion-icon name=\"today\"></ion-icon>Detalle</ion-item-option>\n                <ion-item-option color=\"medium\" (click)=\"readListService(item)\"><ion-icon name=\"list\"></ion-icon>Servicios</ion-item-option>\n\n\n            </ion-item-options>\n\n        </ion-item-sliding>\n\n    </ion-list>\n</ion-content>"
+module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n            <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title>\n            Partner\n        </ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-searchbar placeholder=\"Buscar\"\n                   [(ngModel)]=\"queryText\"\n                   (ionInput)=\"filterPartner($event)\"\n                   clearInput>\n    </ion-searchbar>\n\n    <ion-list>\n\n        <ion-item-sliding *ngFor=\"let item of list\">\n            <ion-item>\n                <ion-icon name=\"arrow-back\" slot=\"end\"></ion-icon>\n                {{item.name_partner}}\n            </ion-item>\n\n            <ion-item-options>\n                <!--button danger (click)=\"removeItem(item)\"><icon trash></icon> Delete</button-->\n                <ion-item-option color=\"danger\" (click)=\"readDetailPartner(item)\"><ion-icon name=\"today\"></ion-icon>Detalle</ion-item-option>\n                <ion-item-option color=\"medium\" (click)=\"readListService(item)\"><ion-icon name=\"list\"></ion-icon>Servicios</ion-item-option>\n\n\n            </ion-item-options>\n\n        </ion-item-sliding>\n\n    </ion-list>\n</ion-content>"
 
 /***/ }),
 
@@ -87,6 +87,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _partner_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partner.service */ "./src/app/partner/partner.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -95,10 +98,24 @@ var PartnerPage = /** @class */ (function () {
     function PartnerPage(partnerS, router) {
         this.partnerS = partnerS;
         this.router = router;
+        this.list = [];
         this.queryText = '';
         this.readListPartner();
+        this.list = this.readListPartner();
     }
     PartnerPage.prototype.ngOnInit = function () {
+    };
+    PartnerPage.prototype.filterPartner = function (lis) {
+        var val = lis.target.value;
+        if (val && val.trim() !== '') {
+            this.list = lodash__WEBPACK_IMPORTED_MODULE_4__["values"](this.list);
+            this.list = this.list.filter(function (item) {
+                return (item.name_partner.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.list = this.readListPartner();
+        }
     };
     PartnerPage.prototype.readListPartner = function () {
         var _this = this;
@@ -111,7 +128,6 @@ var PartnerPage = /** @class */ (function () {
     };
     PartnerPage.prototype.readListService = function (item) {
         this.router.navigate(['/service', item.id]);
-        // let link = ['/inventario/detalle',item.id];
     };
     PartnerPage.prototype.readDetailPartner = function (item) {
         this.router.navigate(['/detail-partner', item.id]);
@@ -127,6 +143,64 @@ var PartnerPage = /** @class */ (function () {
     ], PartnerPage);
     return PartnerPage;
 }());
+
+
+
+/***/ }),
+
+/***/ "./src/app/partner/partner.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/partner/partner.service.ts ***!
+  \********************************************/
+/*! exports provided: PartnerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PartnerService", function() { return PartnerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/base.service */ "./src/app/services/base.service.ts");
+
+
+
+
+
+var PartnerService = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](PartnerService, _super);
+    function PartnerService(http, httpc) {
+        var _this = _super.call(this) || this;
+        _this.http = http;
+        _this.httpc = httpc;
+        return _this;
+    }
+    PartnerService_1 = PartnerService;
+    PartnerService.prototype.getPartnersByUserId = function (requestOptions) {
+        if (requestOptions === void 0) { requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_3__["RequestOptions"](); }
+        requestOptions.headers = PartnerService_1.createAuthorizationHeader();
+        return this.http
+            .get(PartnerService_1.BASE_URL + '/partner/user', requestOptions)
+            .map(PartnerService_1.extractData)
+            .catch(PartnerService_1.handleError);
+    };
+    PartnerService.prototype.getPartnerById = function (id) {
+        return this.http.get(PartnerService_1.BASE_URL + '/partner/' + id, { headers: PartnerService_1.createAuthorizationHeader() })
+            .map(PartnerService_1.extractData)
+            .catch(PartnerService_1.handleError);
+    };
+    var PartnerService_1;
+    PartnerService.BASE_URL = _services_base_service__WEBPACK_IMPORTED_MODULE_4__["BaseService"].HOST;
+    PartnerService = PartnerService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_3__["Http"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], PartnerService);
+    return PartnerService;
+}(_services_base_service__WEBPACK_IMPORTED_MODULE_4__["BaseService"]));
 
 
 

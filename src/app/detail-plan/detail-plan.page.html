@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/plan/:id"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del Plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        {{ plan?.name_plan}}
+      </ion-card-title>
+      <p>Costo: {{ plan?.feeCost_plan }}</p>
+      <p>Costo de Inscripción del Plan: {{ plan?.enrollmentCost_plan }}</p>
+      <p>Costo por Congelamiento Plan: {{ plan?.freezeCostPlan }}</p>
+      <p>Impuesto: {{ plan?.taxRate_plan }}</p>
+      <p>Estatus: {{ plan?.status_plan }}</p>
+      <p>ID Plan Partner: {{ plan?.idPlan_partner }}</p>
+      <p>Compañia: {{ partner?.name_partner }}</p>
+      <p>Servicio: {{ service?.name_service }}</p>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Fecha Inicio</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Fecha Fin</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
+    </ion-item>
+    <ion-button (click)="reportes()" shape="round" size="small" color="danger" expand="full">Generar Reporte</ion-button>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

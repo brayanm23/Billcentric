@@ -16,23 +16,20 @@ export class DetailPartnerPage implements OnInit {
               private route: ActivatedRoute,
               private router: Router) { }
 
-  ngOnInit() {
-      const id = this.route.snapshot.params['id'];
-      if (!id) {
-          console.log('no exite un id');
-          return;
-      }
-          this.partnerS.getPartnerById(id)
-              .subscribe(
-                  param => {
-                      this.unico = param,
-                        console.log(this.unico); },
-                  error1 => { console.log('no se que es esto'); }
-              );
-  }
+    ngOnInit() {
+        const id = this.route.snapshot.params['id'];
 
-    back() {
-        this.router.navigate(['/partner']);
+        this.partnerS.getPartnerById(id)
+            .subscribe(
+                param => {
+                    this.unico = param;
+                    if (this.unico.status_partner === 1) {
+                        this.unico.status_partner = 'Activo'; }
+                    if (this.unico.status_partner === 2) {
+                        this.unico.status_partner = 'Inactivo'; }
+                    console.log(this.unico);
+                },
+        error1 => { console.log('no se que es esto'); });
     }
-
 }
+
