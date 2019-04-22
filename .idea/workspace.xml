@@ -2,139 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc5bec79-b174-4d77-9186-a8673f9b7643" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/models/customer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/models/customer_has_plan.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/providers/utils/pager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/reports/report.filter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/browser.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/browser.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/browser/testing.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/browser/testing.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser-testing.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser-testing.umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser-testing.umd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser-testing.umd.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser-testing.umd.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser-testing.umd.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser.umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser.umd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser.umd.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser.umd.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations-browser.umd.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations.umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations.umd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations.umd.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations.umd.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/bundles/animations.umd.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/esm2015/src/version.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/esm2015/src/version.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/esm5/src/version.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/esm5/src/version.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/fesm2015/animations.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/fesm2015/animations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/fesm2015/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/fesm2015/browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/fesm2015/browser/testing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/fesm2015/browser/testing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/fesm5/animations.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/fesm5/animations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/fesm5/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/fesm5/browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/fesm5/browser/testing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/fesm5/browser/testing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@angular/animations/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@angular/animations/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/common.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/common.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~partner-partner-module~plan-plan-module~service-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~partner-partner-module~plan-plan-module~service-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~partner-partner-module~plan-plan-module~service-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/default~partner-partner-module~plan-plan-module~service-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-partner-detail-partner-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-partner-detail-partner-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-partner-detail-partner-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-partner-detail-partner-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-plan-detail-plan-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-plan-detail-plan-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-plan-detail-plan-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-plan-detail-plan-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-service-detail-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-service-detail-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-service-detail-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/detail-service-detail-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/partner-partner-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/partner-partner-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/partner-partner-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/partner-partner-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/plan-plan-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/plan-plan-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/plan-plan-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/plan-plan-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/reports-reports-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/reports-reports-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/reports-reports-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/reports-reports-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/runtime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/runtime.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/service-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/service-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/service-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/service-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/styles.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/vendor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/assets/debug/www/vendor.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/packageDebug/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/packageDebug/debug/dex-renamer-state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/packageDebug/debug/file-input-save-data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/build/intermediates/incremental/packageDebug/debug/file-input-save-data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/common.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/common.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~partner-partner-module~plan-plan-module~service-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~partner-partner-module~plan-plan-module~service-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~partner-partner-module~plan-plan-module~service-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/default~partner-partner-module~plan-plan-module~service-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-partner-detail-partner-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-partner-detail-partner-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-partner-detail-partner-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-partner-detail-partner-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-plan-detail-plan-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-plan-detail-plan-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-plan-detail-plan-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-plan-detail-plan-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-service-detail-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-service-detail-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-service-detail-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/detail-service-detail-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/partner-partner-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/partner-partner-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/partner-partner-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/partner-partner-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/plan-plan-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/plan-plan-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/plan-plan-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/plan-plan-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/reports-reports-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/runtime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/runtime.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/service-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/service-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/service-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/service-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/styles.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/vendor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/vendor.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/detail-plan/detail-plan.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/detail-plan/detail-plan.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/detail-plan/detail-plan.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/detail-plan/detail-plan.page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/partner/partner.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/partner/partner.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/reports/reports.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reports/reports.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/reports/reports.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reports/reports.page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/reports/reports.page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reports/reports.page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/reports/reports.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reports/reports.page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/base.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/base.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/global.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/common.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/common.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/default~detail-plan-detail-plan-module~detail-service-detail-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/default~partner-partner-module~plan-plan-module~service-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/default~partner-partner-module~plan-plan-module~service-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/default~partner-partner-module~plan-plan-module~service-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/default~partner-partner-module~plan-plan-module~service-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/detail-partner-detail-partner-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/detail-partner-detail-partner-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/detail-partner-detail-partner-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/detail-partner-detail-partner-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/detail-plan-detail-plan-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/detail-plan-detail-plan-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/detail-plan-detail-plan-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/detail-plan-detail-plan-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/detail-service-detail-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/detail-service-detail-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/detail-service-detail-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/detail-service-detail-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/partner-partner-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/partner-partner-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/partner-partner-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/partner-partner-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/plan-plan-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/plan-plan-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/plan-plan-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/plan-plan-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/reports-reports-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/reports-reports-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/reports-reports-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/reports-reports-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/runtime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/runtime.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/service-service-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/service-service-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/service-service-module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/service-service-module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/styles.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/vendor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/www/vendor.js.map" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -292,7 +160,7 @@
       <path value="$PROJECT_DIR$/plugins/cordova-sqlite-storage/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="75" />
     <option name="y" value="-4" />
     <option name="width" value="890" />
@@ -473,12 +341,12 @@
       <workItem from="1555387903413" duration="10070000" />
       <workItem from="1555431814628" duration="6028000" />
       <workItem from="1555480115102" duration="2602000" />
-      <workItem from="1555960848358" duration="572000" />
+      <workItem from="1555960848358" duration="790000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214221000" />
+    <option name="totallyTimeSpent" value="214439000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
@@ -493,7 +361,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917318" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4996016" visible="true" weight="0.29329172" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4996016" visible="true" weight="0.23088923" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22310758" />
