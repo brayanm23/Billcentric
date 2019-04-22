@@ -32428,6 +32428,9 @@ var ServicesService = /** @class */ (function (_super) {
             .map(_services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"].extractData)
             .catch(_services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"].handleError);
     };
+    ServicesService.prototype.findPartner = function (id) {
+        return this.partnerService.getPartnerById(id);
+    };
     var ServicesService_1;
     ServicesService.BASE_URL = _services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"].HOST + '/service';
     ServicesService = ServicesService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

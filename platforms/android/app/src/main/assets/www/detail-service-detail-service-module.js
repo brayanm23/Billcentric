@@ -58,7 +58,7 @@ var DetailServicePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/service\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Detalle Servicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ item.name_service}}\n      </ion-card-title>\n      <p>Nombre del Partner: {{ item.adress_partner}}</p>\n      <p>Estatus: {{ item.nameOf_status}}</p>\n    </ion-card-content>\n  </ion-card>\n    <ion-card>\n            <ion-item>\n                <ion-label position=\"floating\">Fecha Inicio</ion-label>\n                <ion-datetime displayFormat=\"MM/DD/YYYY\" min=\"1994-03-14\" max=\"2012-12-09\"></ion-datetime>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Fecha Fin</ion-label>\n                <ion-datetime displayFormat=\"DD/MM/YYYY\" min=\"1994-03-14\" max=\"2012-12-09\"></ion-datetime>\n            </ion-item>\n            <ion-button (click)=\"reportes()\" shape=\"round\" size=\"small\" color=\"danger\" expand=\"full\">Generar Reporte</ion-button>\n                <ion-card-content>\n                    <canvas #barCanvas></canvas>\n                </ion-card-content>\n    </ion-card>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/service/:id\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Detalle Servicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ servicio?.name_service }}\n      </ion-card-title>\n      <p>Nombre del Partner: {{ partner?.name_partner }}</p>\n      <p>Estatus: {{ servicio?.status_service }}</p>\n    </ion-card-content>\n  </ion-card>\n    <ion-card>\n            <ion-item>\n                <ion-label position=\"floating\">Fecha Inicio</ion-label>\n                <ion-datetime displayFormat=\"MM/DD/YYYY\" min=\"1994-03-14\" max=\"2012-12-09\"></ion-datetime>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Fecha Fin</ion-label>\n                <ion-datetime displayFormat=\"DD/MM/YYYY\" min=\"1994-03-14\" max=\"2012-12-09\"></ion-datetime>\n            </ion-item>\n            <ion-button (click)=\"reportes()\" shape=\"round\" size=\"small\" color=\"danger\" expand=\"full\">Generar Reporte</ion-button>\n                <ion-card-content>\n                    <canvas #barCanvas></canvas>\n                </ion-card-content>\n    </ion-card>\n</ion-content>\n"
 
 /***/ }),
 
@@ -100,8 +100,28 @@ var DetailServicePage = /** @class */ (function () {
         this.router = router;
         this.services = services;
         this.item = [];
+        var id = this.route.snapshot.params['id'];
     }
-    DetailServicePage.prototype.ngOnInit = function () { };
+    DetailServicePage.prototype.ngOnInit = function () {
+        var _this = this;
+        var id = this.route.snapshot.params['id'];
+        this.services.getById(id)
+            .subscribe(function (servicio) {
+            _this.servicio = servicio;
+            if (_this.servicio.status_service === 1) {
+                _this.servicio.status_service = 'Activo';
+            }
+            if (_this.servicio.status_service === 2) {
+                _this.servicio.status_service = 'Inactivo';
+            }
+            _this.services.findPartner(servicio['partner'])
+                .subscribe(function (partner) {
+                _this.partner = partner;
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     DetailServicePage.prototype.getChart = function (context, chartType, data, options) {
         return new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](context, {
             data: data,

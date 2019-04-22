@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { MatTableModule, MatCheckboxModule, MatPaginatorModule, MatSortModule,
+         MatExpansionModule, MatSelectModule } from '@angular/material';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -18,6 +20,12 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatExpansionModule,
+    MatSelectModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],

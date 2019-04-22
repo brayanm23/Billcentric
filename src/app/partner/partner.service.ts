@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Http, RequestOptions} from "@angular/http";
+import {Http, RequestOptions} from '@angular/http';
 import { BaseService } from '../services/base.service';
 import { Partner } from '../models/partner';
 import { Service } from '../models/service';

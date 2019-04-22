@@ -3,7 +3,12 @@ import { Service } from '../models/service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ServicesService} from '../service/services.service';
 import { PlanService } from '../plan/plan.service';
+import { ReportFilter } from '../reports/report.filter';
+import { ReportService } from '../reports/report.service';
+import { Pager } from '../providers/utils/pager';
+import { TableService } from '../providers/utils/pager';
 import { Chart } from 'chart.js';
+
 
 
 @Component({
@@ -19,11 +24,16 @@ export class DetailPlanPage implements OnInit {
     service: any;
     frecuency: any;
     private plan: any;
+    filter = new ReportFilter(this.tableService.filter);
+    filterDateDesde = null;
+    filterDateHasta = null;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 public services: ServicesService,
-                public planService: PlanService) { }
+                public planService: PlanService,
+                private tableService: TableService<any>,
+                private reportService: ReportService) { }
 
     ngOnInit() {
         const id = this.route.snapshot.params['id'];
@@ -101,5 +111,18 @@ export class DetailPlanPage implements OnInit {
 
         return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
 
+    }
+
+    reset() {
+        this.filter = new ReportFilter();
+        this.reportes().destroy();
+        // this.dataSource = new MatTableDataSource<any>([]);
+        // this.list();
+    }
+
+    search() {
+        this.tableService.pager.pageIndex = 0;
+       //  this.tableService.filter = new ReportFilter(this.filter);
+        // this.list();
     }
 }

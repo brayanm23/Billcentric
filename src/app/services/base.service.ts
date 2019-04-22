@@ -1,4 +1,4 @@
-import { Headers, Response } from '@angular/http';
+import { Headers, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 export class BaseService {
 
@@ -84,5 +84,29 @@ export class BaseService {
             }
         }
         return Observable.throw('Consulte con el administrador del sistema');
+    }
+
+    public buildRequestOptionsFinder(sort?: string, collection?: string, filter?: {}, pager?:
+        {pageIndex: number, pageSize: number}): RequestOptions {
+        const params: URLSearchParams = new URLSearchParams();
+
+        if (sort !== undefined) {
+            params.set('sort', sort);
+        }
+        if (collection !== undefined) {
+            params.set('collection', collection);
+        }
+        for (const pos in filter) {
+            params.set(filter[pos]['param'], filter[pos]['value'].toString());
+        }
+        if (pager !== undefined) {
+            params.set('index', pager.pageIndex.toString());
+            params.set('size', pager.pageSize.toString());
+        }
+
+        const requestOptions = new RequestOptions();
+        requestOptions.search = params;
+
+        return requestOptions;
     }
 }

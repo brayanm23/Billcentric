@@ -837,6 +837,14 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./customer-has-plans/customer-has-plans.module": [
+		"./src/app/customer-has-plans/customer-has-plans.module.ts",
+		"customer-has-plans-customer-has-plans-module"
+	],
+	"./customer/customer.module": [
+		"./src/app/customer/customer.module.ts",
+		"customer-customer-module"
+	],
 	"./detail-partner/detail-partner.module": [
 		"./src/app/detail-partner/detail-partner.module.ts",
 		"common",
@@ -858,13 +866,13 @@ var map = {
 		"./src/app/home/home.module.ts",
 		"home-home-module"
 	],
-	"./list/list.module": [
-		"./src/app/list/list.module.ts",
-		"list-list-module"
-	],
 	"./login/login.module": [
 		"./src/app/login/login.module.ts",
 		"login-login-module"
+	],
+	"./menu/menu.module": [
+		"./src/app/menu/menu.module.ts",
+		"menu-menu-module"
 	],
 	"./partner/partner.module": [
 		"./src/app/partner/partner.module.ts",
@@ -880,6 +888,7 @@ var map = {
 	],
 	"./reports/reports.module": [
 		"./src/app/reports/reports.module.ts",
+		"common",
 		"reports-reports-module"
 	],
 	"./service/service.module": [
@@ -928,14 +937,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    },
+    /*{
+      path: '',
+      redirectTo: 'login',
+      pathMatch: 'full'
+    },*/
     { path: 'home', loadChildren: './home/home.module#HomePageModule'
-    },
-    { path: 'list', loadChildren: './list/list.module#ListPageModule'
     },
     { path: 'login', loadChildren: './login/login.module#LoginPageModule'
     },
@@ -955,9 +962,17 @@ var routes = [
     },
     { path: 'plan', loadChildren: './plan/plan.module#PlanPageModule'
     },
-    { path: 'plan/:id', loadChildren: './plan/plan.module#PlanPageModule' },
-    { path: 'reports', loadChildren: './reports/reports.module#ReportsPageModule' },
-    { path: 'detail-plan', loadChildren: './detail-plan/detail-plan.module#DetailPlanPageModule' }
+    { path: 'plan/:id', loadChildren: './plan/plan.module#PlanPageModule'
+    },
+    { path: 'reports', loadChildren: './reports/reports.module#ReportsPageModule'
+    },
+    { path: 'detail-plan', loadChildren: './detail-plan/detail-plan.module#DetailPlanPageModule'
+    },
+    { path: 'detail-plan/:id', loadChildren: './detail-plan/detail-plan.module#DetailPlanPageModule'
+    },
+    { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
+    { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule' },
+    { path: 'customer-has-plans', loadChildren: './customer-has-plans/customer-has-plans.module#CustomerHasPlansPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1023,6 +1038,21 @@ var AppComponent = /** @class */ (function () {
                 url: '/home',
                 icon: 'home'
             },
+            /*{
+                  title: 'Reportes',
+                  children: [
+                      {
+                          title: 'Por Compañias',
+                          url: '/partner',
+                          icon: 'list'
+                      },
+                      {
+                          title: 'Por Facturas cobradas',
+                          url: '/reports',
+                          icon: 'list'
+                      },
+                  ]
+            },*/
             {
                 title: 'Compañias',
                 url: '/partner',
@@ -1042,6 +1072,15 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.statusBar.styleBlackTranslucent();
             _this.splashScreen.hide();
+            _this.storage.get('isLoggedin').then(function (val) {
+                // Si se ha iniciado la sesion
+                if (val) {
+                    _this.router.navigate(['/login']);
+                }
+                else {
+                    _this.router.navigate(['/home']);
+                }
+            });
         });
     };
     AppComponent.prototype.logout = function () {
@@ -1092,12 +1131,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _providers_utils_BaseModel__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./providers/utils/BaseModel */ "./src/app/providers/utils/BaseModel.ts");
-/* harmony import */ var _providers_utils_accessTokenResponse__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./providers/utils/accessTokenResponse */ "./src/app/providers/utils/accessTokenResponse.ts");
-/* harmony import */ var _providers_utils_accessTokenRequest__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./providers/utils/accessTokenRequest */ "./src/app/providers/utils/accessTokenRequest.ts");
-/* harmony import */ var _providers_utils_authorizationRequest__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./providers/utils/authorizationRequest */ "./src/app/providers/utils/authorizationRequest.ts");
-/* harmony import */ var _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./providers/auth-service/auth-service */ "./src/app/providers/auth-service/auth-service.ts");
-/* harmony import */ var _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./providers/utils/alertas */ "./src/app/providers/utils/alertas.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
+/* harmony import */ var _providers_utils_BaseModel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./providers/utils/BaseModel */ "./src/app/providers/utils/BaseModel.ts");
+/* harmony import */ var _providers_utils_pager__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./providers/utils/pager */ "./src/app/providers/utils/pager.ts");
+/* harmony import */ var _providers_utils_accessTokenResponse__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./providers/utils/accessTokenResponse */ "./src/app/providers/utils/accessTokenResponse.ts");
+/* harmony import */ var _providers_utils_accessTokenRequest__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./providers/utils/accessTokenRequest */ "./src/app/providers/utils/accessTokenRequest.ts");
+/* harmony import */ var _providers_utils_authorizationRequest__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./providers/utils/authorizationRequest */ "./src/app/providers/utils/authorizationRequest.ts");
+/* harmony import */ var _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./providers/auth-service/auth-service */ "./src/app/providers/auth-service/auth-service.ts");
+/* harmony import */ var _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./providers/utils/alertas */ "./src/app/providers/utils/alertas.ts");
 
 
 
@@ -1111,7 +1154,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 // Providers
+
 
 
 
@@ -1131,18 +1178,23 @@ var AppModule = /** @class */ (function () {
                 _ionic_storage__WEBPACK_IMPORTED_MODULE_4__["IonicStorageModule"].forRoot(),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_5__["HttpModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"],
+                _angular_material_select__WEBPACK_IMPORTED_MODULE_14__["MatSelectModule"]
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_9__["StatusBar"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_8__["SplashScreen"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_5__["HttpModule"],
-                _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_16__["AuthService"],
-                _providers_utils_accessTokenResponse__WEBPACK_IMPORTED_MODULE_13__["AccessTokenResponse"],
-                _providers_utils_accessTokenRequest__WEBPACK_IMPORTED_MODULE_14__["AccessTokenRequest"],
-                _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_17__["AlertService"],
-                _providers_utils_authorizationRequest__WEBPACK_IMPORTED_MODULE_15__["AuthorizationRequest"],
-                _providers_utils_BaseModel__WEBPACK_IMPORTED_MODULE_12__["BaseModel"],
+                _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_20__["AuthService"],
+                _providers_utils_accessTokenResponse__WEBPACK_IMPORTED_MODULE_17__["AccessTokenResponse"],
+                _providers_utils_accessTokenRequest__WEBPACK_IMPORTED_MODULE_18__["AccessTokenRequest"],
+                _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_21__["AlertService"],
+                _providers_utils_authorizationRequest__WEBPACK_IMPORTED_MODULE_19__["AuthorizationRequest"],
+                _providers_utils_BaseModel__WEBPACK_IMPORTED_MODULE_15__["BaseModel"],
+                _providers_utils_pager__WEBPACK_IMPORTED_MODULE_16__["TableService"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"] }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
@@ -1345,7 +1397,7 @@ var AlertService = /** @class */ (function () {
         this.loadingController.create({
             spinner: 'lines',
             message: 'Autenticando',
-            duration: 10000
+            duration: 1000
         }).then(function (res) {
             res.present();
         });
@@ -1387,6 +1439,61 @@ var AuthorizationRequest = /** @class */ (function () {
     function AuthorizationRequest() {
     }
     return AuthorizationRequest;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/providers/utils/pager.ts":
+/*!******************************************!*\
+  !*** ./src/app/providers/utils/pager.ts ***!
+  \******************************************/
+/*! exports provided: TableService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TableService", function() { return TableService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
+
+
+
+var TableService = /** @class */ (function () {
+    function TableService() {
+        this.pager = { pageIndex: 0, pageSize: 20 };
+        this.selection = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_2__["SelectionModel"](true, []);
+    }
+    TableService.prototype.sortData = function (sort) {
+        if (sort.direction === 'asc') {
+            this.sort = sort.active;
+        }
+        else if (sort.direction === 'desc') {
+            this.sort = '-' + sort.active;
+        }
+        else {
+            this.sort = undefined;
+        }
+    };
+    TableService.prototype.isAllSelected = function (numRows) {
+        var numSelected = this.selection.selected.length;
+        // const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+    };
+    TableService.prototype.masterToggle = function (data) {
+        var _this = this;
+        this.isAllSelected(data.length) ?
+            this.selection.clear() :
+            // this.dataSource.data.forEach(row => this.selection.select(row));
+            data.forEach(function (row) { return _this.selection.select(row); });
+    };
+    TableService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], TableService);
+    return TableService;
 }());
 
 
@@ -1478,6 +1585,25 @@ var BaseService = /** @class */ (function () {
             }
         }
         return rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"].throw('Consulte con el administrador del sistema');
+    };
+    BaseService.prototype.buildRequestOptionsFinder = function (sort, collection, filter, pager) {
+        var params = new _angular_http__WEBPACK_IMPORTED_MODULE_0__["URLSearchParams"]();
+        if (sort !== undefined) {
+            params.set('sort', sort);
+        }
+        if (collection !== undefined) {
+            params.set('collection', collection);
+        }
+        for (var pos in filter) {
+            params.set(filter[pos]['param'], filter[pos]['value'].toString());
+        }
+        if (pager !== undefined) {
+            params.set('index', pager.pageIndex.toString());
+            params.set('size', pager.pageSize.toString());
+        }
+        var requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_0__["RequestOptions"]();
+        requestOptions.search = params;
+        return requestOptions;
     };
     BaseService.HOST = 'https://dev.hecbill.hecticus.com';
     return BaseService;

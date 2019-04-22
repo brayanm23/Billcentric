@@ -35,7 +35,9 @@ const routes: Routes = [
   },
   { path: 'detail-plan/:id', loadChildren: './detail-plan/detail-plan.module#DetailPlanPageModule'
   },
-  { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' }
+  { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
+  { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule' },
+  { path: 'customer-has-plans', loadChildren: './customer-has-plans/customer-has-plans.module#CustomerHasPlansPageModule' }
 ];
 
 @NgModule({

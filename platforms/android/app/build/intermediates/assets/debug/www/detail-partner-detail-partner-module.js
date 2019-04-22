@@ -58,7 +58,7 @@ var DetailPartnerPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/partner\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Detalle del Partner\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ unico.name_partner}}\n      </ion-card-title>\n      <p>Dirección: {{ unico.adress_partner}}</p>\n      <p>Teléfono: {{ unico.phone_partner}}</p>\n      <p>Ciudad:</p>\n      <p>País:</p>\n      <p>Porcentaje de Cobro: {{ unico.feeRate_partner}}</p>\n      <p>Estatus:</p>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/partner\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Detalle del Partner\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ unico?.name_partner}}\n      </ion-card-title>\n      <p>Dirección: {{ unico?.adress_partner}}</p>\n      <p>Teléfono: {{ unico?.phone_partner}}</p>\n      <p>Ciudad: {{ unico?.city?.name_city}}</p>\n      <p>País: {{ unico?.city?.country?.name_country}}</p>\n      <p>Porcentaje de Cobro: {{ unico?.feeRate_partner}}</p>\n      <p>Estatus: {{ unico?.status_partner}}</p>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n"
 
 /***/ }),
 
@@ -101,18 +101,17 @@ var DetailPartnerPage = /** @class */ (function () {
     DetailPartnerPage.prototype.ngOnInit = function () {
         var _this = this;
         var id = this.route.snapshot.params['id'];
-        if (!id) {
-            console.log('no exite un id');
-            return;
-        }
         this.partnerS.getPartnerById(id)
             .subscribe(function (param) {
-            _this.unico = param,
-                console.log(_this.unico);
+            _this.unico = param;
+            if (_this.unico.status_partner === 1) {
+                _this.unico.status_partner = 'Activo';
+            }
+            if (_this.unico.status_partner === 2) {
+                _this.unico.status_partner = 'Inactivo';
+            }
+            console.log(_this.unico);
         }, function (error1) { console.log('no se que es esto'); });
-    };
-    DetailPartnerPage.prototype.back = function () {
-        this.router.navigate(['/partner']);
     };
     DetailPartnerPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

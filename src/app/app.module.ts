@@ -11,9 +11,14 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
+
 
 // Providers
 import { BaseModel } from './providers/utils/BaseModel';
+import { TableService } from './providers/utils/pager';
 import { AccessTokenResponse } from './providers/utils/accessTokenResponse';
 import { AccessTokenRequest } from './providers/utils/accessTokenRequest';
 import { AuthorizationRequest } from './providers/utils/authorizationRequest';
@@ -29,7 +34,11 @@ import { AlertService } from './providers/utils/alertas';
       IonicStorageModule.forRoot(),
       AppRoutingModule,
       HttpModule,
-      HttpClientModule
+      HttpClientModule,
+      BrowserAnimationsModule,
+      MatButtonModule,
+      MatCheckboxModule,
+      MatSelectModule
   ],
   providers: [
     StatusBar,
@@ -41,6 +50,7 @@ import { AlertService } from './providers/utils/alertas';
       AlertService,
       AuthorizationRequest,
       BaseModel,
+      TableService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
