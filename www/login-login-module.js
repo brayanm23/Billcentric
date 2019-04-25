@@ -152,7 +152,7 @@ var LoginPage = /** @class */ (function () {
                 _this.userService.getById(authorizationResponse.user_id).subscribe(function (user) {
                     localStorage.setItem('accessToken', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
                     localStorage.setItem('currentData', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
-                    _this.router.navigate(['/home']);
+                    _this.router.navigate(['/menu']);
                     _this.storage.set('isLoggedin', 'true');
                 });
             }, function (error) {

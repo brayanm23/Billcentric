@@ -58,7 +58,7 @@ var DetailServicePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/service/:id\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Detalle Servicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ servicio?.name_service }}\n      </ion-card-title>\n      <p>Nombre del Partner: {{ partner?.name_partner }}</p>\n      <p>Estatus: {{ servicio?.status_service }}</p>\n    </ion-card-content>\n  </ion-card>\n    <ion-card>\n            <ion-item>\n                <ion-label position=\"floating\">Fecha Inicio</ion-label>\n                <ion-datetime displayFormat=\"MM/DD/YYYY\" min=\"1994-03-14\" max=\"2012-12-09\"></ion-datetime>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Fecha Fin</ion-label>\n                <ion-datetime displayFormat=\"DD/MM/YYYY\" min=\"1994-03-14\" max=\"2012-12-09\"></ion-datetime>\n            </ion-item>\n            <ion-button (click)=\"reportes()\" shape=\"round\" size=\"small\" color=\"danger\" expand=\"full\">Generar Reporte</ion-button>\n                <ion-card-content>\n                    <canvas #barCanvas></canvas>\n                </ion-card-content>\n    </ion-card>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/menu/service/:id\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Detalle Servicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ servicio?.name_service }}\n      </ion-card-title>\n      <p>Nombre del Partner: {{ partner?.name_partner }}</p>\n      <p>Estatus: {{ servicio?.status_service }}</p>\n    </ion-card-content>\n  </ion-card>\n    <ion-card>\n        <div padding-top=\"10px\">\n            <div *ngIf=\"tableService.filter\" class=\"filter-panel-header fieldset-wrap\">\n                <div class=\"field-row\">\n\n                    <div class=\"field-row-item\" *ngIf=\"tableService.filter.since_date\">\n                        <span class=\"label\">Desde</span>\n                        <span>{{tableService.filter.since_date}}</span>\n                    </div>\n\n                    <div class=\"field-row-item\" *ngIf=\"tableService.filter.until_date\">\n                        <span class=\"label\">Hasta</span>\n                        <span>{{tableService.filter.until_date}}</span>\n                    </div>\n\n                </div>\n            </div>\n\n\n            <form>\n                <fieldset class=\"fieldset\">\n\n                    <div class=\"field-row\">\n                        <div>\n                            <div class=\"field-row-item\">\n                                <label class=\"label\" for=\"name_plan\">Desde</label>\n                                <input type=\"date\" name=\"since_date\" placeholder=\"None\"  [(ngModel)]=\"filter.since_date\">\n                            </div>\n\n                            <div class=\"field-row-item\">\n                                <label class=\"label\" for=\"name_plan\">Hasta</label>\n                                <input type=\"date\" name=\"until_date\" placeholder=\"None\"  [(ngModel)]=\"filter.until_date\">\n                            </div>\n                        </div>\n                    </div>\n\n                </fieldset>\n                <div class=\"options\">\n                    <button class=\"btn-text gray\" type=\"button\" (click)=\"reset()\">\n                        <span >Limpiar</span>\n                    </button>\n                    <button class=\"btn-text blue\" type=\"button\" (click)=\"reportes()\">\n                        <span>Reporte</span>\n                    </button>\n\n                </div>\n            </form>\n        </div>\n        <br>\n        <ion-card-content>\n            <canvas #barCanvas width=\"400\" height=\"400\"></canvas>\n        </ion-card-content>\n    </ion-card>\n</ion-content>\n"
 
 /***/ }),
 
@@ -89,17 +89,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_services_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/services.service */ "./src/app/service/services.service.ts");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _reports_report_filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reports/report.filter */ "./src/app/reports/report.filter.ts");
+/* harmony import */ var _reports_report_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../reports/report.service */ "./src/app/reports/report.service.ts");
+/* harmony import */ var _providers_utils_pager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../providers/utils/pager */ "./src/app/providers/utils/pager.ts");
+
+
+
 
 
 
 
 
 var DetailServicePage = /** @class */ (function () {
-    function DetailServicePage(route, router, services) {
+    function DetailServicePage(route, router, services, tableService, reportService) {
         this.route = route;
         this.router = router;
         this.services = services;
-        this.item = [];
+        this.tableService = tableService;
+        this.reportService = reportService;
+        this.filter = new _reports_report_filter__WEBPACK_IMPORTED_MODULE_5__["ReportFilter"](this.tableService.filter);
+        this.filterDateDesde = null;
+        this.filterDateHasta = null;
         var id = this.route.snapshot.params['id'];
     }
     DetailServicePage.prototype.ngOnInit = function () {
@@ -165,6 +175,17 @@ var DetailServicePage = /** @class */ (function () {
         };
         return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
     };
+    DetailServicePage.prototype.reset = function () {
+        this.filter = new _reports_report_filter__WEBPACK_IMPORTED_MODULE_5__["ReportFilter"]();
+        this.reportes().destroy();
+        // this.dataSource = new MatTableDataSource<any>([]);
+        // this.list();
+    };
+    DetailServicePage.prototype.search = function () {
+        this.tableService.pager.pageIndex = 0;
+        //  this.tableService.filter = new ReportFilter(this.filter);
+        // this.list();
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('barCanvas'),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -177,7 +198,9 @@ var DetailServicePage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-            _service_services_service__WEBPACK_IMPORTED_MODULE_3__["ServicesService"]])
+            _service_services_service__WEBPACK_IMPORTED_MODULE_3__["ServicesService"],
+            _providers_utils_pager__WEBPACK_IMPORTED_MODULE_7__["TableService"],
+            _reports_report_service__WEBPACK_IMPORTED_MODULE_6__["ReportService"]])
     ], DetailServicePage);
     return DetailServicePage;
 }());

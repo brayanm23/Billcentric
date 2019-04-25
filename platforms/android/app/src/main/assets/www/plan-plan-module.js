@@ -58,7 +58,7 @@ var PlanPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n          <ion-back-button defaultHref=\"/service/:id\"></ion-back-button>\n      </ion-buttons>\n    <ion-title>plan</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-searchbar placeholder=\"Buscar\"\n                   [(ngModel)]=\"queryText\"\n                   (ionInput)=\"filterPlan($event)\"\n                   clearInput>\n    </ion-searchbar>\n  <ion-list>\n    <ion-item-sliding *ngFor=\"let item of plans\">\n      <ion-item>\n        <ion-icon name=\"arrow-back\" slot=\"end\"></ion-icon>\n        {{item.name_plan}}\n      </ion-item>\n\n      <ion-item-options>\n        <ion-item-option color=\"danger\" (click)=\"readDetailPlan(item)\"><ion-icon name=\"today\"></ion-icon>Detalle</ion-item-option>\n      </ion-item-options>\n\n    </ion-item-sliding>\n\n  </ion-list>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n          <ion-back-button defaultHref=\"/menu/service/:id\"></ion-back-button>\n      </ion-buttons>\n    <ion-title>plan</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-searchbar placeholder=\"Buscar\"\n                   [(ngModel)]=\"queryText\"\n                   (ionInput)=\"filterPlan($event)\"\n                   clearInput>\n    </ion-searchbar>\n  <ion-list>\n    <ion-item-sliding *ngFor=\"let item of plans\">\n      <ion-item>\n        <ion-icon name=\"arrow-back\" slot=\"end\"></ion-icon>\n        {{item.name_plan}}\n      </ion-item>\n\n      <ion-item-options>\n        <ion-item-option color=\"danger\" (click)=\"readDetailPlan(item)\"><ion-icon name=\"today\"></ion-icon>Detalle</ion-item-option>\n      </ion-item-options>\n\n    </ion-item-sliding>\n\n  </ion-list>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -133,7 +133,7 @@ var PlanPage = /** @class */ (function () {
         }, function (error) { console.log('error en la lista de planes'); });
     };
     PlanPage.prototype.readDetailPlan = function (item) {
-        this.router.navigate(['/detail-plan', item.id]);
+        this.router.navigate(['/menu/detail-plan', item.id]);
     };
     PlanPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

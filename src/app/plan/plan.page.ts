@@ -53,7 +53,7 @@ export class PlanPage implements OnInit {
     }
 
     readDetailPlan(item) {
-        this.router.navigate(['/detail-plan', item.id]);
+        this.router.navigate(['/menu/detail-plan', item.id]);
     }
 
 }

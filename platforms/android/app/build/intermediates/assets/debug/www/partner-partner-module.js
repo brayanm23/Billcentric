@@ -127,10 +127,10 @@ var PartnerPage = /** @class */ (function () {
         });
     };
     PartnerPage.prototype.readListService = function (item) {
-        this.router.navigate(['/service', item.id]);
+        this.router.navigate(['/menu/service', item.id]);
     };
     PartnerPage.prototype.readDetailPartner = function (item) {
-        this.router.navigate(['/detail-partner', item.id]);
+        this.router.navigate(['/menu/detail-partner', item.id]);
     };
     PartnerPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

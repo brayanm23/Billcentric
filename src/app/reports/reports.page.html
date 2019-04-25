@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/menu"></ion-back-button>
     </ion-buttons>
     <ion-title>Facturas Cobradas</ion-title>
   </ion-toolbar>
@@ -89,8 +89,16 @@
     </div>
         <!--/mat-expansion-panel>
     </mat-accordion-->
-
-
+    <div>
+    <ion-list>
+    <ion-item *ngFor="let item of items">
+        <p>Compañia {{ item.compania }}</p>
+        <p>Servicio {{ item.servicio }}</p>
+        <p>Plan {{ item.plan }}</p>
+        <p>Total {{ item.total }}</p>
+    </ion-item>
+    </ion-list>
+    </div>
 
 </ion-content>
 

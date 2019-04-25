@@ -7,9 +7,11 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  { path: 'home',    loadChildren: './home/home.module#HomePageModule'
-  },
   { path: 'login',   loadChildren: './login/login.module#LoginPageModule'
+  },
+    { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule'
+    },
+  /*{ path: 'home',    loadChildren: './home/home.module#HomePageModule'
   },
   { path: 'partner', loadChildren: './partner/partner.module#PartnerPageModule'
   },
@@ -35,9 +37,11 @@ const routes: Routes = [
   },
   { path: 'detail-plan/:id', loadChildren: './detail-plan/detail-plan.module#DetailPlanPageModule'
   },
-  { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
-  { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule' },
-  { path: 'customer-has-plans', loadChildren: './customer-has-plans/customer-has-plans.module#CustomerHasPlansPageModule' }
+  { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule'
+  },
+  { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule'
+  },
+  { path: 'customer-has-plans', loadChildren: './customer-has-plans/customer-has-plans.module#CustomerHasPlansPageModule' }*/
 ];
 
 @NgModule({

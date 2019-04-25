@@ -45,10 +45,10 @@ export class PartnerPage implements OnInit {
     }
 
     readListService(item: Partner) {
-        this.router.navigate(['/service', item.id]);
+        this.router.navigate(['/menu/service', item.id]);
     }
 
     readDetailPartner(item: Partner) {
-        this.router.navigate(['/detail-partner', item.id]);
+        this.router.navigate(['/menu/detail-partner', item.id]);
     }
 }

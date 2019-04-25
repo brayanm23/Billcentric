@@ -837,34 +837,57 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./customer-has-plans/customer-has-plans.module": [
+	"../customer-has-plans/customer-has-plans.module": [
 		"./src/app/customer-has-plans/customer-has-plans.module.ts",
 		"customer-has-plans-customer-has-plans-module"
 	],
-	"./customer/customer.module": [
+	"../customer/customer.module": [
 		"./src/app/customer/customer.module.ts",
 		"customer-customer-module"
 	],
-	"./detail-partner/detail-partner.module": [
+	"../detail-partner/detail-partner.module": [
 		"./src/app/detail-partner/detail-partner.module.ts",
 		"common",
 		"detail-partner-detail-partner-module"
 	],
-	"./detail-plan/detail-plan.module": [
+	"../detail-plan/detail-plan.module": [
 		"./src/app/detail-plan/detail-plan.module.ts",
 		"default~detail-plan-detail-plan-module~detail-service-detail-service-module",
 		"common",
 		"detail-plan-detail-plan-module"
 	],
-	"./detail-service/detail-service.module": [
+	"../detail-service/detail-service.module": [
 		"./src/app/detail-service/detail-service.module.ts",
 		"default~detail-plan-detail-plan-module~detail-service-detail-service-module",
 		"common",
 		"detail-service-detail-service-module"
 	],
-	"./home/home.module": [
+	"../home/home.module": [
 		"./src/app/home/home.module.ts",
 		"home-home-module"
+	],
+	"../partner/partner.module": [
+		"./src/app/partner/partner.module.ts",
+		"default~partner-partner-module~plan-plan-module~service-service-module",
+		"common",
+		"partner-partner-module"
+	],
+	"../plan/plan.module": [
+		"./src/app/plan/plan.module.ts",
+		"default~partner-partner-module~plan-plan-module~service-service-module",
+		"common",
+		"plan-plan-module"
+	],
+	"../reports/reports.module": [
+		"./src/app/reports/reports.module.ts",
+		"common",
+		"reports-reports-module"
+	],
+	"../service/service.module": [
+		"./src/app/service/service.module.ts",
+		"default~partner-partner-module~plan-plan-module~service-service-module",
+		"common",
+		"service-service-module"
 	],
 	"./login/login.module": [
 		"./src/app/login/login.module.ts",
@@ -873,29 +896,6 @@ var map = {
 	"./menu/menu.module": [
 		"./src/app/menu/menu.module.ts",
 		"menu-menu-module"
-	],
-	"./partner/partner.module": [
-		"./src/app/partner/partner.module.ts",
-		"default~partner-partner-module~plan-plan-module~service-service-module",
-		"common",
-		"partner-partner-module"
-	],
-	"./plan/plan.module": [
-		"./src/app/plan/plan.module.ts",
-		"default~partner-partner-module~plan-plan-module~service-service-module",
-		"common",
-		"plan-plan-module"
-	],
-	"./reports/reports.module": [
-		"./src/app/reports/reports.module.ts",
-		"common",
-		"reports-reports-module"
-	],
-	"./service/service.module": [
-		"./src/app/service/service.module.ts",
-		"default~partner-partner-module~plan-plan-module~service-service-module",
-		"common",
-		"service-service-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -937,42 +937,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    /*{
-      path: '',
-      redirectTo: 'login',
-      pathMatch: 'full'
-    },*/
-    { path: 'home', loadChildren: './home/home.module#HomePageModule'
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
     },
     { path: 'login', loadChildren: './login/login.module#LoginPageModule'
     },
-    { path: 'partner', loadChildren: './partner/partner.module#PartnerPageModule'
+    { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule'
     },
-    { path: 'service', loadChildren: './service/service.module#ServicePageModule'
-    },
-    { path: 'service/:id', loadChildren: './service/service.module#ServicePageModule'
-    },
-    { path: 'detail-partner', loadChildren: './detail-partner/detail-partner.module#DetailPartnerPageModule'
-    },
-    { path: 'detail-partner/:id', loadChildren: './detail-partner/detail-partner.module#DetailPartnerPageModule'
-    },
-    { path: 'detail-service', loadChildren: './detail-service/detail-service.module#DetailServicePageModule'
-    },
-    { path: 'detail-service/:id', loadChildren: './detail-service/detail-service.module#DetailServicePageModule'
-    },
-    { path: 'plan', loadChildren: './plan/plan.module#PlanPageModule'
-    },
-    { path: 'plan/:id', loadChildren: './plan/plan.module#PlanPageModule'
-    },
-    { path: 'reports', loadChildren: './reports/reports.module#ReportsPageModule'
-    },
-    { path: 'detail-plan', loadChildren: './detail-plan/detail-plan.module#DetailPlanPageModule'
-    },
-    { path: 'detail-plan/:id', loadChildren: './detail-plan/detail-plan.module#DetailPlanPageModule'
-    },
-    { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
-    { path: 'customer', loadChildren: './customer/customer.module#CustomerPageModule' },
-    { path: 'customer-has-plans', loadChildren: './customer-has-plans/customer-has-plans.module#CustomerHasPlansPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -997,7 +970,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-content>\n        <ion-header class=\"menu-header\">\n          <!--material-design-background\n          <p class=\"name\">Paula Bolliger</p>\n          <p class=\"e-mail\">pbolliger@email.com</p>-->\n        </ion-header>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n\n<!--ion-app>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-content>\n        <ion-header class=\"menu-header\">\n          <!--material-design-background\n          <p class=\"name\">Paula Bolliger</p>\n          <p class=\"e-mail\">pbolliger@email.com</p>\n        </ion-header>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app-->\n"
 
 /***/ }),
 
@@ -1026,44 +999,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
+    /*public appPages = [
+      {
+        title: 'Inicio',
+        url: '/home',
+        icon: 'home'
+      },
+      {
+        title: 'Compañias',
+        url: '/partner',
+        icon: 'list'
+      },
+      {
+        title: 'Reportes',
+        url: '/reports',
+        icon: 'list'
+      }
+    ];*/
     function AppComponent(platform, splashScreen, storage, statusBar, router) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.storage = storage;
         this.statusBar = statusBar;
         this.router = router;
-        this.appPages = [
-            {
-                title: 'Inicio',
-                url: '/home',
-                icon: 'home'
-            },
-            /*{
-                  title: 'Reportes',
-                  children: [
-                      {
-                          title: 'Por Compañias',
-                          url: '/partner',
-                          icon: 'list'
-                      },
-                      {
-                          title: 'Por Facturas cobradas',
-                          url: '/reports',
-                          icon: 'list'
-                      },
-                  ]
-            },*/
-            {
-                title: 'Compañias',
-                url: '/partner',
-                icon: 'list'
-            },
-            {
-                title: 'Reportes',
-                url: '/reports',
-                icon: 'list'
-            }
-        ];
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
@@ -1072,15 +1030,6 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.statusBar.styleBlackTranslucent();
             _this.splashScreen.hide();
-            _this.storage.get('isLoggedin').then(function (val) {
-                // Si se ha iniciado la sesion
-                if (val) {
-                    _this.router.navigate(['/login']);
-                }
-                else {
-                    _this.router.navigate(['/home']);
-                }
-            });
         });
     };
     AppComponent.prototype.logout = function () {

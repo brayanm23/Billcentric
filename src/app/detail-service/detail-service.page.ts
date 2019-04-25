@@ -3,8 +3,11 @@ import { Service } from '../models/service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ServicesService} from '../service/services.service';
 import { Chart } from 'chart.js';
-
-
+import { PlanService } from '../plan/plan.service';
+import { ReportFilter } from '../reports/report.filter';
+import { ReportService } from '../reports/report.service';
+import { Pager } from '../providers/utils/pager';
+import { TableService } from '../providers/utils/pager';
 
 @Component({
   selector: 'app-detail-service',
@@ -12,18 +15,25 @@ import { Chart } from 'chart.js';
   styleUrls: ['./detail-service.page.scss'],
 })
 export class DetailServicePage implements OnInit {
+
     @ViewChild('barCanvas') barCanvas;
-  item: any = [];
-  barChart: any;
-  partner: any;
-  private servicio: any;
-  id: number;
+    barChart: any;
+    partner: any;
+    service: any;
+    frecuency: any;
+    private plan: any;
+    filter = new ReportFilter(this.tableService.filter);
+    filterDateDesde = null;
+    filterDateHasta = null;
+    private servicio: any;
+    id: number;
 
     constructor(private route: ActivatedRoute,
-              private router: Router,
-              public services: ServicesService) {
+                private router: Router,
+                public services: ServicesService,
+                private tableService: TableService<any>,
+                private reportService: ReportService) {
         const id = this.route.snapshot.params['id'];
-
     }
 
   ngOnInit() {
@@ -93,6 +103,19 @@ export class DetailServicePage implements OnInit {
 
         return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
 
+    }
+
+    reset() {
+        this.filter = new ReportFilter();
+        this.reportes().destroy();
+        // this.dataSource = new MatTableDataSource<any>([]);
+        // this.list();
+    }
+
+    search() {
+        this.tableService.pager.pageIndex = 0;
+        //  this.tableService.filter = new ReportFilter(this.filter);
+        // this.list();
     }
 
 }

@@ -58,7 +58,7 @@ var ServicePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/partner\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Servicios\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-searchbar placeholder=\"Buscar\"\n                   [(ngModel)]=\"queryText\"\n                   (ionInput)=\"filterService($event)\"\n                   clearInput>\n    </ion-searchbar>\n\n  <ion-list>\n\n    <ion-item-sliding *ngFor=\"let item of servicios\">\n      <ion-item>\n        <ion-icon name=\"arrow-back\" slot=\"end\"></ion-icon>\n        {{item.name_service}}\n      </ion-item>\n\n      <ion-item-options>\n        <ion-item-option color=\"danger\" (click)=\"readDetailService(item)\"><ion-icon name=\"today\"></ion-icon>Detalle</ion-item-option>\n        <ion-item-option color=\"medium\" (click)=\"readListPlans(item)\"><ion-icon name=\"list\"></ion-icon>Planes</ion-item-option>\n\n      </ion-item-options>\n\n    </ion-item-sliding>\n\n  </ion-list>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/menu/partner\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Servicios\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-searchbar placeholder=\"Buscar\"\n                   [(ngModel)]=\"queryText\"\n                   (ionInput)=\"filterService($event)\"\n                   clearInput>\n    </ion-searchbar>\n\n  <ion-list>\n\n    <ion-item-sliding *ngFor=\"let item of servicios\">\n      <ion-item>\n        <ion-icon name=\"arrow-back\" slot=\"end\"></ion-icon>\n        {{item.name_service}}\n      </ion-item>\n\n      <ion-item-options>\n        <ion-item-option color=\"danger\" (click)=\"readDetailService(item)\"><ion-icon name=\"today\"></ion-icon>Detalle</ion-item-option>\n        <ion-item-option color=\"medium\" (click)=\"readListPlans(item)\"><ion-icon name=\"list\"></ion-icon>Planes</ion-item-option>\n\n      </ion-item-options>\n\n    </ion-item-sliding>\n\n  </ion-list>\n</ion-content>\n"
 
 /***/ }),
 
@@ -133,10 +133,10 @@ var ServicePage = /** @class */ (function () {
         }, function (error) { console.log('error en la lista de servicios'); });
     };
     ServicePage.prototype.readListPlans = function (item) {
-        this.router.navigate(['/plan', item.id]);
+        this.router.navigate(['/menu/plan', item.id]);
     };
     ServicePage.prototype.readDetailService = function (item) {
-        this.router.navigate(['/detail-service', item.id]);
+        this.router.navigate(['/menu/detail-service', item.id]);
     };
     ServicePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

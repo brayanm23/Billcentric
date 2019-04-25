@@ -58,7 +58,7 @@ var DetailPartnerPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/partner\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Detalle del Partner\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ unico?.name_partner}}\n      </ion-card-title>\n      <p>Dirección: {{ unico?.adress_partner}}</p>\n      <p>Teléfono: {{ unico?.phone_partner}}</p>\n      <p>Ciudad: {{ unico?.city?.name_city}}</p>\n      <p>País: {{ unico?.city?.country?.name_country}}</p>\n      <p>Porcentaje de Cobro: {{ unico?.feeRate_partner}}</p>\n      <p>Estatus: {{ unico?.status_partner}}</p>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/menu/partner\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Detalle del Partner\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        {{ unico?.name_partner}}\n      </ion-card-title>\n      <p>Dirección: {{ unico?.adress_partner}}</p>\n      <p>Teléfono: {{ unico?.phone_partner}}</p>\n      <p>Ciudad: {{ unico?.city?.name_city}}</p>\n      <p>País: {{ unico?.city?.country?.name_country}}</p>\n      <p>Porcentaje de Cobro: {{ unico?.feeRate_partner}}</p>\n      <p>Estatus: {{ unico?.status_partner}}</p>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n"
 
 /***/ }),
 

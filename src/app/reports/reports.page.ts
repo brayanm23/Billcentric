@@ -14,6 +14,8 @@ import { MatTableDataSource, PageEvent } from '@angular/material';
 })
 export class ReportsPage implements OnInit {
 
+    dataSource: MatTableDataSource<any>;
+    displayedColumns: string[] = [ 'compania', 'servicio', 'plan', 'total'];
     isOpenSearchPanel = false;
     filter = new ReportFilter(this.tableService.filter);
     confirmDelete = true;

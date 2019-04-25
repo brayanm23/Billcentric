@@ -55,10 +55,10 @@ export class ServicePage implements OnInit {
   }
 
     readListPlans(item) {
-            this.router.navigate(['/plan', item.id]);
+            this.router.navigate(['/menu/plan', item.id]);
     }
 
     readDetailService(item) {
-        this.router.navigate(['/detail-service', item.id]);
+        this.router.navigate(['/menu/detail-service', item.id]);
     }
 }

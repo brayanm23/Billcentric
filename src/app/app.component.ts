@@ -12,27 +12,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.style.scss']
 })
 export class AppComponent {
-  public appPages = [
+  /*public appPages = [
     {
       title: 'Inicio',
       url: '/home',
       icon: 'home'
     },
-    /*{
-          title: 'Reportes',
-          children: [
-              {
-                  title: 'Por Compañias',
-                  url: '/partner',
-                  icon: 'list'
-              },
-              {
-                  title: 'Por Facturas cobradas',
-                  url: '/reports',
-                  icon: 'list'
-              },
-          ]
-    },*/
     {
       title: 'Compañias',
       url: '/partner',
@@ -43,7 +28,7 @@ export class AppComponent {
       url: '/reports',
       icon: 'list'
     }
-  ];
+  ];*/
 
   constructor(
     private platform: Platform,

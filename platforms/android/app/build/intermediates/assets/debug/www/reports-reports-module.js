@@ -1,5 +1,123 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["reports-reports-module"],{
 
+/***/ "./src/app/reports/report.filter.ts":
+/*!******************************************!*\
+  !*** ./src/app/reports/report.filter.ts ***!
+  \******************************************/
+/*! exports provided: ReportFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportFilter", function() { return ReportFilter; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+var ReportFilter = /** @class */ (function () {
+    function ReportFilter(filter) {
+        if (filter) {
+            this.id = filter.id;
+            this.id_partner = filter.id_partner;
+            this.id_service = filter.id_service;
+            this.id_plan = filter.id_plan;
+            this.since_date = filter.since_date;
+            this.until_date = filter.until_date;
+            this.del = filter.del;
+        }
+    }
+    ReportFilter.prototype.getHttpParams = function (httpParams) {
+        if (httpParams === void 0) { httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"](); }
+        if (this.id_partner) {
+            httpParams = httpParams.set('id_partner', this.id_partner.toString());
+        }
+        if (this.id_service) {
+            httpParams = httpParams.set('id_service', this.id_service.toString());
+        }
+        if (this.id) {
+            httpParams = httpParams.set('id', this.id.toString());
+        }
+        if (this.del) {
+            httpParams = httpParams.set('del', this.del.toString());
+        }
+        if (this.id_plan) {
+            httpParams = httpParams.set('id_plan', this.id_plan.toString());
+        }
+        if (this.until_date) {
+            httpParams = httpParams.set('until_date', this.until_date);
+        }
+        if (this.since_date) {
+            httpParams = httpParams.set('since_date', this.since_date);
+        }
+        return httpParams;
+    };
+    return ReportFilter;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reports/report.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/reports/report.service.ts ***!
+  \*******************************************/
+/*! exports provided: ReportService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportService", function() { return ReportService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/base.service */ "./src/app/services/base.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+
+var ReportService = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ReportService, _super);
+    function ReportService(http) {
+        var _this = _super.call(this) || this;
+        _this.http = http;
+        _this.BASE_URL = _services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"].HOST + '/invoice';
+        _this.BASE_URL2 = _services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"].HOST + '/payment';
+        return _this;
+    }
+    ReportService_1 = ReportService;
+    ReportService.prototype.getReportInvoices = function (requestOptions) {
+        if (requestOptions === void 0) { requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"](); }
+        requestOptions.headers = ReportService_1.createAuthorizationHeader();
+        return this.http.get(this.BASE_URL + '/report', requestOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(ReportService_1.extractDataFull), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(ReportService_1.handleError));
+    };
+    ReportService.prototype.getPaymentsByInvoice = function (requestOptions, id_invoice) {
+        if (requestOptions === void 0) { requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"](); }
+        requestOptions.headers = ReportService_1.createAuthorizationHeader();
+        return this.http.get(this.BASE_URL2 + '/list/' + id_invoice.toString(), requestOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(ReportService_1.extractDataFull), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(ReportService_1.handleError));
+    };
+    ReportService.prototype.getReportInvoicesCharged = function (requestOptions) {
+        if (requestOptions === void 0) { requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"](); }
+        requestOptions.headers = ReportService_1.createAuthorizationHeader();
+        return this.http.get(this.BASE_URL + '/report/charged', requestOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(ReportService_1.extractDataFull), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(ReportService_1.handleError));
+    };
+    var ReportService_1;
+    ReportService = ReportService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_2__["Http"]])
+    ], ReportService);
+    return ReportService;
+}(_services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"]));
+
+
+
+/***/ }),
+
 /***/ "./src/app/reports/reports.module.ts":
 /*!*******************************************!*\
   !*** ./src/app/reports/reports.module.ts ***!
@@ -66,7 +184,7 @@ var ReportsPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/home\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Facturas Cobradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <!--mat-accordion>\n        <mat-expansion-panel [expanded]=\"isOpenSearchPanel\" (opened)=\"openSearchPanel(true)\" [hideToggle]=\"true\"-->\n            <!--mat-expansion-panel-header-->\n    <div>\n                <div *ngIf=\"tableService.filter\" class=\"filter-panel-header fieldset-wrap\">\n                    <div class=\"field-row\">\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.del\">\n                            <span class=\"label\">Del</span>\n                            <span *ngIf=\"tableService.filter.del == 1\"> Dia </span>\n                            <span *ngIf=\"tableService.filter.del == 2\"> Dia Anterior </span>\n                            <span *ngIf=\"tableService.filter.del == 3\"> Mes </span>\n                            <span *ngIf=\"tableService.filter.del == 4\"> Mes Anterior </span>\n                        </div>\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.since_date\">\n                            <span class=\"label\">Desde</span>\n                            <span>{{tableService.filter.since_date}}</span>\n                        </div>\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.until_date\">\n                            <span class=\"label\">Hasta</span>\n                            <span>{{tableService.filter.until_date}}</span>\n                        </div>\n\n                    </div>\n                </div>\n                <!--/button title=\"Buscar\" type=\"button\">\n                    <ion-icon name=\"search\"></ion-icon>\n                </button>\n            <mat-expansion-panel-header-->\n\n            <form>\n                <fieldset class=\"fieldset\">\n\n                    <div class=\"field-row\">\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Del</label>\n                            <input type=\"radio\" value=\"1\" (change)=\"dropBusqueda()\" name=\"type\">\n                        </div>\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Rango fecha</label>\n                            <input type=\"radio\" value=\"2\" (change)=\"rangoBusqueda()\" name=\"type\">\n                        </div>\n                    </div>\n\n                    <div class=\"field-row\" *ngIf=\"del\">\n                        <div class=\"field-row-item\">\n                            <mat-select placeholder=\"Selecciona\" [(value)]=\"filter.del\" [compareWith]=\"compareFn\">\n                                <mat-option *ngFor=\"let opt of types\" [value]=\"opt.value\">{{opt.desc}}</mat-option>\n                            </mat-select>\n                        </div>\n                    </div>\n\n                    <div *ngIf=\"rango\">\n\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Desde</label>\n                            <input type=\"date\" name=\"since_date\" placeholder=\"None\"  [(ngModel)]=\"filter.since_date\">\n                        </div>\n\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Hasta</label>\n                            <input type=\"date\" name=\"until_date\" placeholder=\"None\"  [(ngModel)]=\"filter.until_date\">\n                        </div>\n\n                    </div>\n\n                </fieldset>\n                <div class=\"options\">\n                    <button class=\"btn-text gray\" type=\"button\" (click)=\"reset()\">\n                        <span >Limpiar</span>\n                    </button>\n                    <button class=\"btn-text blue\" type=\"button\" (click)=\"search()\">\n                        <span>Buscar</span>\n                    </button>\n                </div>\n            </form>\n    </div>\n        <!--/mat-expansion-panel>\n    </mat-accordion-->\n\n\n\n</ion-content>\n\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/menu\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Facturas Cobradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <!--mat-accordion>\n        <mat-expansion-panel [expanded]=\"isOpenSearchPanel\" (opened)=\"openSearchPanel(true)\" [hideToggle]=\"true\"-->\n            <!--mat-expansion-panel-header-->\n    <div>\n                <div *ngIf=\"tableService.filter\" class=\"filter-panel-header fieldset-wrap\">\n                    <div class=\"field-row\">\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.del\">\n                            <span class=\"label\">Del</span>\n                            <span *ngIf=\"tableService.filter.del == 1\"> Dia </span>\n                            <span *ngIf=\"tableService.filter.del == 2\"> Dia Anterior </span>\n                            <span *ngIf=\"tableService.filter.del == 3\"> Mes </span>\n                            <span *ngIf=\"tableService.filter.del == 4\"> Mes Anterior </span>\n                        </div>\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.since_date\">\n                            <span class=\"label\">Desde</span>\n                            <span>{{tableService.filter.since_date}}</span>\n                        </div>\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.until_date\">\n                            <span class=\"label\">Hasta</span>\n                            <span>{{tableService.filter.until_date}}</span>\n                        </div>\n\n                    </div>\n                </div>\n                <!--/button title=\"Buscar\" type=\"button\">\n                    <ion-icon name=\"search\"></ion-icon>\n                </button>\n            <mat-expansion-panel-header-->\n\n            <form>\n                <fieldset class=\"fieldset\">\n\n                    <div class=\"field-row\">\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Del</label>\n                            <input type=\"radio\" value=\"1\" (change)=\"dropBusqueda()\" name=\"type\">\n                        </div>\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Rango fecha</label>\n                            <input type=\"radio\" value=\"2\" (change)=\"rangoBusqueda()\" name=\"type\">\n                        </div>\n                    </div>\n\n                    <div class=\"field-row\" *ngIf=\"del\">\n                        <div class=\"field-row-item\">\n                            <mat-select placeholder=\"Selecciona\" [(value)]=\"filter.del\" [compareWith]=\"compareFn\">\n                                <mat-option *ngFor=\"let opt of types\" [value]=\"opt.value\">{{opt.desc}}</mat-option>\n                            </mat-select>\n                        </div>\n                    </div>\n\n                    <div *ngIf=\"rango\">\n\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Desde</label>\n                            <input type=\"date\" name=\"since_date\" placeholder=\"None\"  [(ngModel)]=\"filter.since_date\">\n                        </div>\n\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Hasta</label>\n                            <input type=\"date\" name=\"until_date\" placeholder=\"None\"  [(ngModel)]=\"filter.until_date\">\n                        </div>\n\n                    </div>\n\n                </fieldset>\n                <div class=\"options\">\n                    <button class=\"btn-text gray\" type=\"button\" (click)=\"reset()\">\n                        <span >Limpiar</span>\n                    </button>\n                    <button class=\"btn-text blue\" type=\"button\" (click)=\"search()\">\n                        <span>Buscar</span>\n                    </button>\n                </div>\n            </form>\n    </div>\n        <!--/mat-expansion-panel>\n    </mat-accordion-->\n\n\n\n</ion-content>\n\n"
 
 /***/ }),
 
