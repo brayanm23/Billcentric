@@ -12,7 +12,7 @@ import { TableService } from '../providers/utils/pager';
 import { HttpParams } from '@angular/common/http';
 import { MatTableDataSource, PageEvent } from '@angular/material';
 import { AlertService } from '../providers/utils/alertas';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-detail-service',
   templateUrl: './detail-service.page.html',
@@ -37,7 +37,8 @@ export class DetailServicePage implements OnInit {
                 public services: ServicesService,
                 private tableService: TableService<any>,
                 private reportService: ReportService,
-                public alertas: AlertService) {
+                public alertas: AlertService,
+                public datePipe: DatePipe) {
         const id = this.route.snapshot.params['id'];
     }
 
@@ -89,6 +90,7 @@ export class DetailServicePage implements OnInit {
                 console.log('Debe ingresar el parametro de fecha : Desde');
                 return;
             }
+            this.alertas.showLoader();
             this.reportService.getReportInvoices(this.reportService.buildRequestOptionsFinder(
                 this.tableService.sort,
                 'm',
@@ -98,6 +100,7 @@ export class DetailServicePage implements OnInit {
                 .subscribe(params => {
                 console.log(params['result']);
                 this.items = params['result']; // items que mostrara la tabla
+                this.estatus_invoices();
                 // this.dataSource = new MatTableDataSource<any>(this.items);
                 // this.tableService.pager = params['pager'];
                 // this.tableService.selection.clear();
@@ -105,7 +108,9 @@ export class DetailServicePage implements OnInit {
                   console.log('No se encontraron resultados');
                   // this.notificationService.alert('No se encontraron resultados para la busqueda');
                 }
+                this.alertas.dismiss();
             }, err => {
+                this.alertas.dismiss();
                 // this.notificationService.error(err);
                 console.log(err);
             });
@@ -168,5 +173,38 @@ export class DetailServicePage implements OnInit {
         //  this.tableService.filter = new ReportFilter(this.filter);
         // this.list();
     }
+
+    estatus_invoices() {
+        for (const invoice of this.items) {
+        invoice.dateCreated_invoice = this.datePipe.transform(invoice.dateCreated_invoice, 'MMMM dd, yyyy');
+        invoice.lastUpdated_invoice = this.datePipe.transform(invoice.lastUpdated_invoice, 'MMMM dd, yyyy');
+          if (invoice.status_invoice === 0) {
+            invoice.status_invoice = 'Creada';
+          }
+          if (invoice.status_invoice === 1) {
+            invoice.status_invoice = 'Lista';
+          }
+          if (invoice.status_invoice === 2) {
+            invoice.status_invoice = 'Procesada y enviada';
+          }
+          if (invoice.status_invoice === 3) {
+            invoice.status_invoice = 'Creada pero no enviada';
+          }
+          if (invoice.status_invoice === -1) {
+            invoice.status_invoice = 'Error Rotundo';
+          }
+          if (invoice.status_invoice === 5) {
+            invoice.status_invoice = 'Para rebilling';
+                }
+                if (invoice.status_invoice === -6) {
+            invoice.status_invoice = 'Incobrable';
+          }
+        }
+      }
+      read(item: any) {
+        // hacemos esto para no tener que consultar de nuevo la informacion del invoice en la siguiente pantalla
+        localStorage.setItem('invoice', JSON.stringify(item));
+        //this.router.navigate(['./' + item.id], {relativeTo: this.activatedRoute});
+      }
 
 }

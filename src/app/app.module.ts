@@ -24,7 +24,7 @@ import { AccessTokenRequest } from './providers/utils/accessTokenRequest';
 import { AuthorizationRequest } from './providers/utils/authorizationRequest';
 import { AuthService } from './providers/auth-service/auth-service';
 import { AlertService } from './providers/utils/alertas';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -51,6 +51,7 @@ import { AlertService } from './providers/utils/alertas';
       AuthorizationRequest,
       BaseModel,
       TableService,
+      DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
