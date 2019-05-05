@@ -230,10 +230,10 @@ form .field-row-item{
   flex-grow: 1;
   flex-basis: 0;
 }
-form .field-row-item:not(:last-child),
-.fieldset-wrap .field-row-item:not(:last-child){
-  margin-right: 20px;
-}
+// form .field-row-item:not(:last-child),
+// .fieldset-wrap .field-row-item:not(:last-child){
+//   // margin-right: 20px;
+// }
 form .error-message-wrap{
   margin-top: 3px;
   font-size: 9px;

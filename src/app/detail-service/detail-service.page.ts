@@ -13,13 +13,14 @@ import { HttpParams } from '@angular/common/http';
 import { MatTableDataSource, PageEvent } from '@angular/material';
 import { AlertService } from '../providers/utils/alertas';
 import { DatePipe } from '@angular/common';
+import { IonInfiniteScroll } from '@ionic/angular';
 @Component({
   selector: 'app-detail-service',
   templateUrl: './detail-service.page.html',
   styleUrls: ['./detail-service.page.scss'],
 })
 export class DetailServicePage implements OnInit {
-
+    @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
     @ViewChild('barCanvas') barCanvas;
     barChart: any;
     partner: any;

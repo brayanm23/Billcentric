@@ -17,7 +17,7 @@
       <p>Estatus: {{ servicio?.status_service }}</p>
     </ion-card-content>
   </ion-card>
-  <ion-card text-center>
+  <ion-card>
     <div padding-top="10px">
       <!-- <div *ngIf="tableService.filter" class="filter-panel-header fieldset-wrap">
                 <div class="field-row">
@@ -61,34 +61,44 @@
             </div>
           </div>
         </fieldset>
-        <div class="options">
-          <button class="btn-text gray" type="button" (click)="reset()">
-            <span>Limpiar</span>
-          </button>
-          <button class="btn-text blue" type="button" (click)="reportes()">
-            <span>Reporte</span>
-          </button>
-        </div>
-        <hr>
+        <ion-row>
+          <ion-col width-50  style="text-align: right; padding-left: 35px;">
+            <button class="btn-text gray" type="button"  (click)="reset()">
+              <span>Limpiar</span>
+            </button>
+          </ion-col>
+      
+          <ion-col width-50 style="text-align: left">
+            <button class="btn-text blue" type="button"  (click)="reportes()">
+              <span>Reporte</span>
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <div class="options"></div>
+        <hr />
       </form>
     </div>
     <br />
-    <ion-card-content>
+    <!-- <ion-card-content>
       <canvas #barCanvas width="400" height="400"></canvas>
-    </ion-card-content>
+    </ion-card-content> -->
   </ion-card>
   <ion-card>
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let item of items">
           <ion-label text-wrap>
-            <ion-text >
-              <p><b>Id</b> {{ item.id }}</p>
-              <p><b>Cliente</b> {{ item.customer?.name_customer }}</p>
-              <p><b>Estatus</b> {{ item.status_invoice }}</p>
-              <p><b>Monto</b> {{ item.total_invoice }}</p>
-              <p><b>Fecha</b> {{ item.dateCreated_invoice }}</p>
-              <br>
+            <ion-text>
+              <p><b>Id:</b> {{ item.id }}</p>
+              <p><b>Cliente:</b> {{ item.customer?.name_customer }}</p>
+              <p><b>Plan:</b> {{ item.billingSettings?.plan?.name_plan }}</p>
+              <p><b>Estatus:</b> {{ item.status_invoice }}</p>
+              <p><b>Monto:</b> {{ item.total_invoice }}</p>
+              <p><b>Fecha:</b> {{ item.dateCreated_invoice }}</p>
+              
+             
+              <br />
             </ion-text>
           </ion-label>
         </ion-item>
