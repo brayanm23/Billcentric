@@ -19,21 +19,21 @@
   </ion-card>
     <ion-card>
         <div padding-top="10px">
-            <div *ngIf="tableService.filter" class="filter-panel-header fieldset-wrap">
+            <!-- <div *ngIf="tableService.filter" class="filter-panel-header fieldset-wrap">
                 <div class="field-row">
 
                     <div class="field-row-item" *ngIf="tableService.filter.since_date">
                         <span class="label">Desde</span>
                         <span>{{tableService.filter.since_date}}</span>
                     </div>
-
+            
                     <div class="field-row-item" *ngIf="tableService.filter.until_date">
                         <span class="label">Hasta</span>
                         <span>{{tableService.filter.until_date}}</span>
                     </div>
 
                 </div>
-            </div>
+            </div> -->
 
 
             <form>
@@ -70,4 +70,20 @@
             <canvas #barCanvas width="400" height="400"></canvas>
         </ion-card-content>
     </ion-card>
+ <!-- <ion-card>
+     <ion-card-content>
+       
+            <ion-list>
+            <ion-item *ngFor="let item of items">
+                <p>Id {{ item.id }}</p>
+                <p>Cliente {{ item.customer?.name_customer }}</p>
+                <p>Estatus {{ item.status_invoice }}</p>
+                <p>Monto {{ item.total_invoice }}</p>
+                <p>Fecha {{ item.total_invoice }}</p>
+            </ion-item>
+            </ion-list>
+           
+     </ion-card-content>
+ </ion-card> -->
+    
 </ion-content>

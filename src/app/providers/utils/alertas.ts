@@ -20,6 +20,15 @@ export class AlertService {
         });
     }
 
+    showLoader() {
+        this.loadingController.create({
+            spinner: 'lines',
+            message: 'Cargando',
+        }).then((res) => {
+            res.present();
+        });
+    }
+
     async dismiss() {
         this.isLoading = false;
         return await this.loadingController.dismiss().then(() => console.log('dismissed'));
