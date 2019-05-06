@@ -62,45 +62,54 @@
                   </div>
 
               </fieldset>
-              <div class="options">
-                  <button class="btn-text gray" type="button" (click)="reset()">
-                      <span >Limpiar</span>
-                  </button>
-                  <button class="btn-text blue" type="button" (click)="reportes()">
+              <ion-row>
+                  <ion-col width-50  style="text-align: right; padding-left: 35px;">
+                    <button class="btn-text gray" type="button"  (click)="reset()">
+                      <span>Limpiar</span>
+                    </button>
+                  </ion-col>
+              
+                  <ion-col width-50 style="text-align: left">
+                    <button class="btn-text blue" type="button"  (click)="reportes()">
                       <span>Reporte</span>
-                  </button>
-
-                  <!--button class="btn-text blue" type="button" (click)="search()">
-                      <span>Reporte</span>
-                  </button-->
-              </div>
+                    </button>
+                  </ion-col>
+                </ion-row>
           </form>
       </div>
       <br>
-      <!--div class="field-row">
-
-          <div class="field-row-item">
-              <label class="label" position="floating" >Desde</label>
-              <input type="date" name="since_date" placeholder="None"  [(ngModel)]="filter.since_date">
-          </div>
-
-          <div class="field-row-item">
-              <label class="label" >Hasta</label>
-              <input type="date" name="until_date" placeholder="None"  [(ngModel)]="filter.until_date">
-          </div>
-
-      </div>
-    <ion-item>
-      <ion-label position="floating">Fecha Inicio</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Fecha Fin</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
-    </ion-item-->
-    <!--ion-button (click)="reportes()" shape="round" size="small" color="danger" expand="full">Generar Reporte</ion-button-->
-    <ion-card-content>
+     
+    <!-- <ion-card-content>
       <canvas #barCanvas width="400" height="400"></canvas>
-    </ion-card-content>
+    </ion-card-content> -->
+
   </ion-card>
+  <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let item of items">
+            <ion-label text-wrap>
+              <ion-text>
+                <p><b>Id:</b> {{ item.id }}</p>
+                <p><b>Cliente:</b> {{ item.customer?.name_customer }}</p>
+                <p><b>Plan:</b> {{ item.billingSettings?.plan?.name_plan }}</p>
+                <p><b>Estatus:</b> {{ item.status_invoice }}</p>
+                <p><b>Monto:</b> {{ item.total_invoice }}</p>
+                <p><b>Fecha:</b> {{ item.dateCreated_invoice }}</p>
+                
+               
+                <br />
+              </ion-text>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+     
+    </ion-card>
+    <ion-infinite-scroll *ngIf="activeScroll" threshold="100px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Cargando...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
 </ion-content>

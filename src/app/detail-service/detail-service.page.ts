@@ -103,11 +103,11 @@ export class DetailServicePage implements OnInit {
         if ( httpParams['updates'] != null) {
             console.log("updates http params");
             if (this.filter.since_date != null && this.filter.until_date == null){
-                console.log('Debe ingresar el parametro de fecha : Hasta');
+              this.presentToast('Debe ingresar el parametro de fecha : Hasta', 'primary');
                 return;
             }
             if (this.filter.since_date == null && this.filter.until_date != null){
-                console.log('Debe ingresar el parametro de fecha : Desde');
+               this.presentToast('Debe ingresar el parametro de fecha : Desde', 'primary');
                 return;
             }
             this.alertas.showLoader();
@@ -228,6 +228,7 @@ export class DetailServicePage implements OnInit {
     reset() {
         //this.filter = new ReportFilter(this.tableService.filter);
         this.items=[];
+        this.index=1;
         // this.dataSource = new MatTableDataSource<any>([]);
         // this.list();
     }

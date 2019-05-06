@@ -1,128 +1,311 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Service } from '../models/service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ServicesService} from '../service/services.service';
-import { PlanService } from '../plan/plan.service';
-import { ReportFilter } from '../reports/report.filter';
-import { ReportService } from '../reports/report.service';
-import { Pager } from '../providers/utils/pager';
-import { TableService } from '../providers/utils/pager';
-import { Chart } from 'chart.js';
-
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Service } from "../models/service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ServicesService } from "../service/services.service";
+import { PlanService } from "../plan/plan.service";
+import { ReportFilter } from "../reports/report.filter";
+import { ReportService } from "../reports/report.service";
+import { Pager } from "../providers/utils/pager";
+import { TableService } from "../providers/utils/pager";
+import { HttpParams } from "@angular/common/http";
+import { MatTableDataSource, PageEvent } from "@angular/material";
+import { AlertService } from "../providers/utils/alertas";
+import { DatePipe } from "@angular/common";
+import { IonInfiniteScroll } from "@ionic/angular";
+import { ToastController } from "@ionic/angular";
+import { Chart } from "chart.js";
 
 @Component({
-  selector: 'app-detail-plan',
-  templateUrl: './detail-plan.page.html',
-  styleUrls: ['./detail-plan.page.scss'],
+  selector: "app-detail-plan",
+  templateUrl: "./detail-plan.page.html",
+  styleUrls: ["./detail-plan.page.scss"]
 })
 export class DetailPlanPage implements OnInit {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild("barCanvas") barCanvas;
+  barChart: any;
+  partner: any;
+  service: any;
+  frecuency: any;
+  private plan: any;
+  filter = new ReportFilter(this.tableService.filter);
+  filterDateDesde = null;
+  filterDateHasta = null;
+  id: number;
+  index: number = 1;
+  items: any[] = [];
+  activeScroll: boolean = false;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public services: ServicesService,
+    public planService: PlanService,
+    private tableService: TableService<any>,
+    private reportService: ReportService,
+    public alertas: AlertService,
+    public datePipe: DatePipe,
+    public toastController: ToastController
+  ) {}
 
-    @ViewChild('barCanvas') barCanvas;
-    barChart: any;
-    partner: any;
-    service: any;
-    frecuency: any;
-    private plan: any;
-    filter = new ReportFilter(this.tableService.filter);
-    filterDateDesde = null;
-    filterDateHasta = null;
+  ngOnInit() {
+    const id = this.route.snapshot.params["id"];
+    this.alertas.showLoader();
+    // buscamos el plan por su ID
+    this.planService.getById(id).subscribe(plan => {
+      console.log(plan);
+      this.plan = plan;
+      this.filter.id_plan = this.plan.id;
+      this.filter.id_service = this.plan.service_id; //la variable filter sirve para colocar por parametros las propiedadesa filtrar
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
-                public services: ServicesService,
-                public planService: PlanService,
-                private tableService: TableService<any>,
-                private reportService: ReportService) { }
-
-    ngOnInit() {
-        const id = this.route.snapshot.params['id'];
-
-        // buscamos el plan por su ID
-        this.planService.getById(id)
-            .subscribe(plan => {
-                this.plan = plan;
-                if (this.plan.status_plan === 1) {
-                    this.plan.status_plan = 'Activo'; }
-                if (this.plan.status_plan === 2) {
-                    this.plan.status_plan = 'Inactivo'; }
-                // buscamos el servicio al que esta asociado el plan
-                this.planService.findService(this.plan.service_id).subscribe( service => {
-                    this.service = service;
-                    // buscamos el partner al que esta asociado tanto el plan como el servicio
-                    this.planService.findPartner(service['partner']).subscribe(partner => {
-                        this.partner = partner;
-                        // buscamos la frecuencia
-                        // this.planService.findFrecuency(this.plan.frecuency_id).subscribe(frecuency=>{
-                        //   this.frecuency = frecuency;
-                        //  });
-                    }, (err) => {
-                        console.log(err + 'esto es en plan mensaje 1');
-                    });
-                }, (err) => {
-                    console.log(err + 'esto es en plan mensaje 2');
-                });
-            });
-    }
-
-    getChart(context, chartType, data, options?) {
-        return new Chart (context, {
-            data,
-            options,
-            type: chartType,
-        });
-    }
-
-    reportes() {
-        const data = {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
-
-        const options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+      if (this.plan.status_plan === 1) {
+        this.plan.status_plan = "Activo";
+      }
+      if (this.plan.status_plan === 2) {
+        this.plan.status_plan = "Inactivo";
+      }
+      // buscamos el servicio al que esta asociado el plan
+      this.planService.findService(this.plan.service_id).subscribe(
+        service => {
+          this.service = service;
+          // buscamos el partner al que esta asociado tanto el plan como el servicio
+          this.planService.findPartner(service["partner"]).subscribe(
+            partner => {
+              this.partner = partner;
+              this.filter.id_partner = this.partner.id;
+              // buscamos la frecuencia
+              // this.planService.findFrecuency(this.plan.frecuency_id).subscribe(frecuency=>{
+              //   this.frecuency = frecuency;
+              //  });
+              this.alertas.dismiss();
+            },
+            err => {
+              console.log(err + "esto es en plan mensaje 1");
+              this.alertas.dismiss();
             }
-        };
+          );
+        },
+        err => {
+          this.alertas.dismiss();
+          console.log(err + "esto es en plan mensaje 2");
+        }
+      );
+    });
+  }
 
-        return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
+  getChart(context, chartType, data, options?) {
+    return new Chart(context, {
+      data,
+      options,
+      type: chartType
+    });
+  }
 
+  async presentToast(text: string, color: string = "primary") {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 2000,
+      color: color
+    });
+    toast.present();
+  }
+
+  list(event?: PageEvent) {
+    let httpParams = new HttpParams();
+    httpParams = this.filter.getHttpParams(httpParams);
+    if (httpParams["updates"] != null) {
+      console.log("updates http params");
+      if (this.filter.since_date != null && this.filter.until_date == null) {
+        this.presentToast("Debe ingresar el parametro de fecha : Hasta","primary");
+        return;
+      }
+      if (this.filter.since_date == null && this.filter.until_date != null) {
+        this.presentToast("Debe ingresar el parametro de fecha : Desde", "primary");
+        return;
+      }
+      this.alertas.showLoader();
+      this.reportService
+        .getReportInvoices(
+          this.reportService.buildRequestOptionsFinder(
+            this.tableService.sort,
+            "m",
+            httpParams["updates"],
+            {
+              pageIndex: event
+                ? event.pageIndex
+                : this.tableService.pager.pageIndex,
+              pageSize: event
+                ? event.pageSize
+                : this.tableService.pager.pageSize
+            }
+          )
+        )
+        .subscribe(
+          params => {
+            console.log(params["result"]);
+            this.items = params["result"]; // items que mostrara la tabla
+            this.estatus_invoices();
+            // this.dataSource = new MatTableDataSource<any>(this.items);
+            // this.tableService.pager = params['pager'];
+            // this.tableService.selection.clear();
+            if (this.items.length === 0) {
+              this.activeScroll = false;
+              this.presentToast("No se encontraron resultados", "warning");
+              //this.notificationService.alert('No se encontraron resultados para la busqueda');
+            } else this.activeScroll = true;
+
+            this.alertas.dismiss();
+          },
+          err => {
+            this.alertas.dismiss();
+            // this.notificationService.error(err);
+            console.log(err);
+          }
+        );
     }
+  }
 
-    reset() {
-        this.filter = new ReportFilter();
-        this.reportes().destroy();
-        // this.dataSource = new MatTableDataSource<any>([]);
-        // this.list();
-    }
+  reportes() {
+    this.tableService.pager.pageIndex = 0;
+    console.log("reportes");
+    this.list();
+    // const data = {
+    //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //     datasets: [{
+    //         label: '# of Votes',
+    //         data: [12, 19, 3, 5, 2, 3],
+    //         backgroundColor: [
+    //             'rgba(255, 99, 132, 0.2)',
+    //             'rgba(54, 162, 235, 0.2)',
+    //             'rgba(255, 206, 86, 0.2)',
+    //             'rgba(75, 192, 192, 0.2)',
+    //             'rgba(153, 102, 255, 0.2)',
+    //             'rgba(255, 159, 64, 0.2)'
+    //         ],
+    //         borderColor: [
+    //             'rgba(255,99,132,1)',
+    //             'rgba(54, 162, 235, 1)',
+    //             'rgba(255, 206, 86, 1)',
+    //             'rgba(75, 192, 192, 1)',
+    //             'rgba(153, 102, 255, 1)',
+    //             'rgba(255, 159, 64, 1)'
+    //         ],
+    //         borderWidth: 1
+    //     }]
+    // };
 
-    search() {
-        this.tableService.pager.pageIndex = 0;
-       //  this.tableService.filter = new ReportFilter(this.filter);
-        // this.list();
+    // const options = {
+    //     scales: {
+    //         yAxes: [{
+    //             ticks: {
+    //                 beginAtZero: true
+    //             }
+    //         }]
+    //     }
+    // };
+
+    // return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
+  }
+  loadData(event1, event?: PageEvent) {
+    this.tableService.pager.pageIndex = this.index;
+
+    let httpParams = new HttpParams();
+    httpParams = this.filter.getHttpParams(httpParams);
+    if (httpParams["updates"] != null) {
+      console.log("updates http params 1");
+      this.reportService
+        .getReportInvoices(
+          this.reportService.buildRequestOptionsFinder(
+            this.tableService.sort,
+            "m",
+            httpParams["updates"],
+            {
+              pageIndex: event
+                ? event.pageIndex
+                : this.tableService.pager.pageIndex,
+              pageSize: event
+                ? event.pageSize
+                : this.tableService.pager.pageSize
+            }
+          )
+        )
+        .subscribe(
+          params => {
+            console.log(params["result"]);
+
+            let newItems = params["result"]; // items que mostrara la tabla
+            for (const item of newItems) {
+              this.items.push(item);
+            }
+
+            this.estatus_invoices();
+            event1.target.complete();
+            if (this.items.length === 0) {
+              console.log("No se encontraron resultados");
+              // this.notificationService.alert('No se encontraron resultados para la busqueda');
+            }else this.activeScroll = true;
+            if (this.items.length == 1000) {
+              event1.target.disabled = true;
+            }
+          },
+          err => {
+            // this.notificationService.error(err);
+            console.log(err);
+          }
+        );
     }
+    this.index = this.index + 1;
+  }
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+
+  reset() {
+    this.items = [];
+    this.index=1;
+  }
+
+  search() {
+    this.tableService.pager.pageIndex = 0;
+    //  this.tableService.filter = new ReportFilter(this.filter);
+    // this.list();
+  }
+  estatus_invoices() {
+    for (const invoice of this.items) {
+      invoice.dateCreated_invoice = this.datePipe.transform(
+        invoice.dateCreated_invoice,
+        "MMMM dd, yyyy"
+      );
+      invoice.lastUpdated_invoice = this.datePipe.transform(
+        invoice.lastUpdated_invoice,
+        "MMMM dd, yyyy"
+      );
+      if (invoice.status_invoice === 0) {
+        invoice.status_invoice = "Creada";
+      }
+      if (invoice.status_invoice === 1) {
+        invoice.status_invoice = "Lista";
+      }
+      if (invoice.status_invoice === 2) {
+        invoice.status_invoice = "Procesada y enviada";
+      }
+      if (invoice.status_invoice === 3) {
+        invoice.status_invoice = "Creada pero no enviada";
+      }
+      if (invoice.status_invoice === -1) {
+        invoice.status_invoice = "Error Rotundo";
+      }
+      if (invoice.status_invoice === 5) {
+        invoice.status_invoice = "Para rebilling";
+      }
+      if (invoice.status_invoice === -6) {
+        invoice.status_invoice = "Incobrable";
+      }
+    }
+  }
+  read(item: any) {
+    // hacemos esto para no tener que consultar de nuevo la informacion del invoice en la siguiente pantalla
+    localStorage.setItem("invoice", JSON.stringify(item));
+    //this.router.navigate(['./' + item.id], {relativeTo: this.activatedRoute});
+  }
 }
