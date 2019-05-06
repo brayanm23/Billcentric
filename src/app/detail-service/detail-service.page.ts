@@ -14,6 +14,7 @@ import { MatTableDataSource, PageEvent } from '@angular/material';
 import { AlertService } from '../providers/utils/alertas';
 import { DatePipe } from '@angular/common';
 import { IonInfiniteScroll } from '@ionic/angular';
+
 @Component({
   selector: 'app-detail-service',
   templateUrl: './detail-service.page.html',
@@ -32,6 +33,7 @@ export class DetailServicePage implements OnInit {
     filterDateHasta = null;
     private servicio: any;
     id: number;
+    index: number= 1;
     items: any[] = [];
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -39,11 +41,14 @@ export class DetailServicePage implements OnInit {
                 private tableService: TableService<any>,
                 private reportService: ReportService,
                 public alertas: AlertService,
-                public datePipe: DatePipe) {
+                public datePipe: DatePipe,
+                ) {
         const id = this.route.snapshot.params['id'];
+
     }
 
   ngOnInit() {
+      
       const id = this.route.snapshot.params['id'];
       this.alertas.showLoader();
       this.services.getById(id)
@@ -107,7 +112,7 @@ export class DetailServicePage implements OnInit {
                 // this.tableService.selection.clear();
                 if (this.items.length === 0) {
                   console.log('No se encontraron resultados');
-                  // this.notificationService.alert('No se encontraron resultados para la busqueda');
+                   //this.notificationService.alert('No se encontraron resultados para la busqueda');
                 }
                 this.alertas.dismiss();
             }, err => {
@@ -123,48 +128,92 @@ export class DetailServicePage implements OnInit {
         this.tableService.pager.pageIndex = 0;
         console.log("reportes");
         this.list();
-        const data = {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
+        // const data = {
+        //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //     datasets: [{
+        //         label: '# of Votes',
+        //         data: [12, 19, 3, 5, 2, 3],
+        //         backgroundColor: [
+        //             'rgba(255, 99, 132, 0.2)',
+        //             'rgba(54, 162, 235, 0.2)',
+        //             'rgba(255, 206, 86, 0.2)',
+        //             'rgba(75, 192, 192, 0.2)',
+        //             'rgba(153, 102, 255, 0.2)',
+        //             'rgba(255, 159, 64, 0.2)'
+        //         ],
+        //         borderColor: [
+        //             'rgba(255,99,132,1)',
+        //             'rgba(54, 162, 235, 1)',
+        //             'rgba(255, 206, 86, 1)',
+        //             'rgba(75, 192, 192, 1)',
+        //             'rgba(153, 102, 255, 1)',
+        //             'rgba(255, 159, 64, 1)'
+        //         ],
+        //         borderWidth: 1
+        //     }]
+        // };
 
-        const options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        };
+        // const options = {
+        //     scales: {
+        //         yAxes: [{
+        //             ticks: {
+        //                 beginAtZero: true
+        //             }
+        //         }]
+        //     }
+        // };
 
-        return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
+        // return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
 
     }
+    loadData(event1,event?: PageEvent) {
+        this.tableService.pager.pageIndex = this.index;
+
+        let httpParams = new HttpParams()
+        httpParams = this.filter.getHttpParams(httpParams);
+        if ( httpParams['updates'] != null) {
+            console.log("updates http params 1");
+            this.reportService.getReportInvoices(this.reportService.buildRequestOptionsFinder(
+                this.tableService.sort,
+                'm',
+                httpParams['updates'],
+                {pageIndex: event ? event.pageIndex : this.tableService.pager.pageIndex,
+                    pageSize: event ? event.pageSize : this.tableService.pager.pageSize}))
+                .subscribe(params => {
+                console.log(params['result']);
+                
+                  let newItems = params['result']; // items que mostrara la tabla
+                  for(const item of newItems){
+                      this.items.push(item);
+                  }
+
+                this.estatus_invoices();
+                event1.target.complete();
+                if (this.items.length === 0) {
+                  console.log('No se encontraron resultados');
+                  // this.notificationService.alert('No se encontraron resultados para la busqueda');
+                }
+                if (this.items.length == 1000) {
+                    event1.target.disabled = true;
+                  }
+            }, err => {
+                
+                // this.notificationService.error(err);
+                console.log(err);
+            });
+        }
+        this.index=this.index+1;
+      }
+     
+      toggleInfiniteScroll() {
+        this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+      }
+
+
 
     reset() {
-        this.filter = new ReportFilter();
-        this.reportes().destroy();
+        //this.filter = new ReportFilter(this.tableService.filter);
+        this.items=[];
         // this.dataSource = new MatTableDataSource<any>([]);
         // this.list();
     }
