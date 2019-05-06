@@ -14,7 +14,7 @@ import { MatTableDataSource, PageEvent } from '@angular/material';
 import { AlertService } from '../providers/utils/alertas';
 import { DatePipe } from '@angular/common';
 import { IonInfiniteScroll } from '@ionic/angular';
-
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-detail-service',
   templateUrl: './detail-service.page.html',
@@ -42,6 +42,7 @@ export class DetailServicePage implements OnInit {
                 private reportService: ReportService,
                 public alertas: AlertService,
                 public datePipe: DatePipe,
+                public toastController: ToastController
                 ) {
         const id = this.route.snapshot.params['id'];
 
@@ -72,7 +73,10 @@ export class DetailServicePage implements OnInit {
                           this.alertas.dismiss()
                           console.log(err);
                       });
-              });
+              },(err1) => {
+                this.alertas.dismiss()
+                console.log(err1);
+            });
   }
 
     getChart(context, chartType, data, options?) {
@@ -82,6 +86,16 @@ export class DetailServicePage implements OnInit {
             type: chartType,
         });
     }
+
+ async presentToast(text:string, color: string='primary') {
+        const toast = await this.toastController.create({
+          message: text,
+          duration: 2000,
+          color: color,
+
+        });
+        toast.present();
+      }
 
  list(event?: PageEvent) {
         let httpParams = new HttpParams()
@@ -111,7 +125,7 @@ export class DetailServicePage implements OnInit {
                 // this.tableService.pager = params['pager'];
                 // this.tableService.selection.clear();
                 if (this.items.length === 0) {
-                  console.log('No se encontraron resultados');
+                    this.presentToast('No se encontraron resultados','warning');
                    //this.notificationService.alert('No se encontraron resultados para la busqueda');
                 }
                 this.alertas.dismiss();
