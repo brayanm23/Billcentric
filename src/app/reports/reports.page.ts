@@ -68,8 +68,7 @@ export class ReportsPage implements OnInit {
     }
 
     reset() {
-        this.filter = new ReportFilter();
-        this.list();
+       this.items=[];
     }
 
     search() {

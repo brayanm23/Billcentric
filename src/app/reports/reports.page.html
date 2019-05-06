@@ -8,97 +8,121 @@
 </ion-header>
 
 <ion-content padding>
-    <!--mat-accordion>
+  <!--mat-accordion>
         <mat-expansion-panel [expanded]="isOpenSearchPanel" (opened)="openSearchPanel(true)" [hideToggle]="true"-->
-            <!--mat-expansion-panel-header-->
-    <div>
-                <div *ngIf="tableService.filter" class="filter-panel-header fieldset-wrap">
-                    <div class="field-row">
+  <!--mat-expansion-panel-header-->
+  <div>
+    <div *ngIf="tableService.filter" class="filter-panel-header fieldset-wrap">
+      <div class="field-row">
+        <div class="field-row-item" *ngIf="tableService.filter.del">
+          <span class="label">Del</span>
+          <span *ngIf="tableService.filter.del == 1"> Dia </span>
+          <span *ngIf="tableService.filter.del == 2"> Dia Anterior </span>
+          <span *ngIf="tableService.filter.del == 3"> Mes </span>
+          <span *ngIf="tableService.filter.del == 4"> Mes Anterior </span>
+        </div>
 
-                        <div class="field-row-item" *ngIf="tableService.filter.del">
-                            <span class="label">Del</span>
-                            <span *ngIf="tableService.filter.del == 1"> Dia </span>
-                            <span *ngIf="tableService.filter.del == 2"> Dia Anterior </span>
-                            <span *ngIf="tableService.filter.del == 3"> Mes </span>
-                            <span *ngIf="tableService.filter.del == 4"> Mes Anterior </span>
-                        </div>
+        <div class="field-row-item" *ngIf="tableService.filter.since_date">
+          <span class="label">Desde</span>
+          <span>{{ tableService.filter.since_date }}</span>
+        </div>
 
-                        <div class="field-row-item" *ngIf="tableService.filter.since_date">
-                            <span class="label">Desde</span>
-                            <span>{{tableService.filter.since_date}}</span>
-                        </div>
-
-                        <div class="field-row-item" *ngIf="tableService.filter.until_date">
-                            <span class="label">Hasta</span>
-                            <span>{{tableService.filter.until_date}}</span>
-                        </div>
-
-                    </div>
-                </div>
-                <!--/button title="Buscar" type="button">
+        <div class="field-row-item" *ngIf="tableService.filter.until_date">
+          <span class="label">Hasta</span>
+          <span>{{ tableService.filter.until_date }}</span>
+        </div>
+      </div>
+    </div>
+    <!--/button title="Buscar" type="button">
                     <ion-icon name="search"></ion-icon>
                 </button>
             <mat-expansion-panel-header-->
 
-            <form>
-                <fieldset class="fieldset">
+    <form>
+      <fieldset class="fieldset">
+        <div class="field-row">
+          <div class="field-row-item">
+            <label class="label" for="name_plan">Del</label>
+            <input
+              type="radio"
+              value="1"
+              (change)="dropBusqueda()"
+              name="type"
+            />
+          </div>
+          <div class="field-row-item">
+            <label class="label" for="name_plan">Rango fecha</label>
+            <input
+              type="radio"
+              value="2"
+              (change)="rangoBusqueda()"
+              name="type"
+            />
+          </div>
+        </div>
 
-                    <div class="field-row">
-                        <div class="field-row-item">
-                            <label class="label" for="name_plan">Del</label>
-                            <input type="radio" value="1" (change)="dropBusqueda()" name="type">
-                        </div>
-                        <div class="field-row-item">
-                            <label class="label" for="name_plan">Rango fecha</label>
-                            <input type="radio" value="2" (change)="rangoBusqueda()" name="type">
-                        </div>
-                    </div>
+        <div class="field-row" *ngIf="del">
+          <div class="field-row-item">
+            <mat-select
+              placeholder="Selecciona"
+              [(value)]="filter.del"
+              [compareWith]="compareFn"
+            >
+              <mat-option *ngFor="let opt of types" [value]="opt.value">{{
+                opt.desc
+              }}</mat-option>
+            </mat-select>
+          </div>
+        </div>
 
-                    <div class="field-row" *ngIf="del">
-                        <div class="field-row-item">
-                            <mat-select placeholder="Selecciona" [(value)]="filter.del" [compareWith]="compareFn">
-                                <mat-option *ngFor="let opt of types" [value]="opt.value">{{opt.desc}}</mat-option>
-                            </mat-select>
-                        </div>
-                    </div>
+        <div *ngIf="rango">
+          <div class="field-row-item">
+            <label class="label" for="name_plan">Desdes</label>
+            <input
+              type="date"
+              name="since_date"
+              placeholder="None"
+              [(ngModel)]="filter.since_date"
+            />
+          </div>
 
-                    <div *ngIf="rango">
-
-                        <div class="field-row-item">
-                            <label class="label" for="name_plan">Desdes</label>
-                            <input type="date" name="since_date" placeholder="None"  [(ngModel)]="filter.since_date">
-                        </div>
-
-                        <div class="field-row-item">
-                            <label class="label" for="name_plan">Hasta</label>
-                            <input type="date" name="until_date" placeholder="None"  [(ngModel)]="filter.until_date">
-                        </div>
-
-                    </div>
-
-                </fieldset>
-                <div class="options">
-                    <button class="btn-text gray" type="button" (click)="reset()">
-                        <span >Limpiar</span>
-                    </button>
-                    <button class="btn-text blue" type="button" (click)="search()">
-                        <span>Buscar</span>
-                    </button>
-                </div>
-            </form>
-    </div>
-        <!--/mat-expansion-panel>
+          <div class="field-row-item">
+            <label class="label" for="name_plan">Hasta</label>
+            <input
+              type="date"
+              name="until_date"
+              placeholder="None"
+              [(ngModel)]="filter.until_date"
+            />
+          </div>
+        </div>
+      </fieldset>
+      <div class="options">
+        <button class="btn-text gray" type="button" (click)="reset()">
+          <span>Limpiar</span>
+        </button>
+        <button class="btn-text blue" type="button" (click)="search()">
+          <span>Buscar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <!--/mat-expansion-panel>
     </mat-accordion-->
-    <div>
+  <div>
     <ion-list>
-    <ion-item *ngFor="let item of items">
-        <p>Compañia {{ item.compania }}</p>
-        <p>Servicio {{ item.servicio }}</p>
-        <p>Plan {{ item.plan }}</p>
-        <p>Total {{ item.total }}</p>
-    </ion-item>
+      <ion-item *ngFor="let item of items">
+        <ion-label text-wrap>
+          <ion-text>
+            <p><b>Compañia:</b> {{ item.compania }}</p>
+            <p><b>Servicio:</b> {{ item.servicio }}</p>
+            <p><b>Plan:</b> {{ item.plan }}</p>
+            <p><b>Total :</b> {{ item.total }}</p>
+
+            <br />
+          </ion-text>
+        </ion-label>
+      </ion-item>
     </ion-list>
-    </div>
-
+  </div>
 </ion-content>
-
