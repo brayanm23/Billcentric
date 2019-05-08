@@ -102,13 +102,13 @@ export class DetailServicePage implements OnInit {
         httpParams = this.filter.getHttpParams(httpParams);
         if ( httpParams['updates'] != null) {
             console.log("updates http params");
-            if (this.filter.since_date != null && this.filter.until_date == null){
-              this.presentToast('Debe ingresar el parametro de fecha : Hasta', 'primary');
-                return;
+            if ((this.filter.since_date != null && this.filter.since_date !="") && (this.filter.until_date == null || this.filter.until_date=="")) {
+              this.presentToast("Debe ingresar el parametro de fecha : Hasta","primary");
+              return;
             }
-            if (this.filter.since_date == null && this.filter.until_date != null){
-               this.presentToast('Debe ingresar el parametro de fecha : Desde', 'primary');
-                return;
+            if ((this.filter.since_date == null || this.filter.since_date =="") && (this.filter.until_date != null && this.filter.until_date!="")) {
+              this.presentToast("Debe ingresar el parametro de fecha : Desde", "primary");
+              return;
             }
             this.alertas.showLoader();
             this.reportService.getReportInvoices(this.reportService.buildRequestOptionsFinder(

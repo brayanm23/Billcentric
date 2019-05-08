@@ -112,13 +112,14 @@ export class DetailPlanPage implements OnInit {
   list(event?: PageEvent) {
     let httpParams = new HttpParams();
     httpParams = this.filter.getHttpParams(httpParams);
+    console.log(this.filter);
     if (httpParams["updates"] != null) {
       console.log("updates http params");
-      if (this.filter.since_date != null && this.filter.until_date == null) {
+      if ((this.filter.since_date != null && this.filter.since_date !="") && (this.filter.until_date == null || this.filter.until_date=="")) {
         this.presentToast("Debe ingresar el parametro de fecha : Hasta","primary");
         return;
       }
-      if (this.filter.since_date == null && this.filter.until_date != null) {
+      if ((this.filter.since_date == null || this.filter.since_date =="") && (this.filter.until_date != null && this.filter.until_date!="")) {
         this.presentToast("Debe ingresar el parametro de fecha : Desde", "primary");
         return;
       }
@@ -263,6 +264,7 @@ export class DetailPlanPage implements OnInit {
   reset() {
     this.items = [];
     this.index=1;
+    this.activeScroll=false;
   }
 
   search() {
