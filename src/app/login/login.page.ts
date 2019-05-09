@@ -72,7 +72,8 @@ export class LoginPage implements OnInit {
                 this.userService.getById(authorizationResponse.user_id).subscribe(user => {
                     localStorage.setItem('accessToken', JSON.stringify({user: user, token: authorizationResponse.access_token}));
                     localStorage.setItem('currentData', JSON.stringify({user: user, token: authorizationResponse.access_token}));
-                    this.router.navigate(['/menu']);
+                    this.alertas.dismiss();
+                    this.router.navigate(['/menu'], { skipLocationChange: true });
                     this.storage.set('isLoggedin', 'true');
                 });
             }, error => {

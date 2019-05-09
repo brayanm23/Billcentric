@@ -14,7 +14,6 @@ export class AlertService {
         this.loadingController.create({
             spinner: 'lines',
             message: 'Autenticando',
-            duration: 1000
         }).then((res) => {
             res.present();
         });
