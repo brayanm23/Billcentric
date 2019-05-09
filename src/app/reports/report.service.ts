@@ -42,4 +42,13 @@ export class ReportService extends BaseService {
                 , catchError(ReportService.handleError)
             );
     }
+    getReportInvoicesGrap(requestOptions: RequestOptions = new RequestOptions()): Observable<any[]> {
+        requestOptions.headers = ReportService.createAuthorizationHeader();
+        return this.http.get(this.BASE_URL + '/report/bystatus', requestOptions)
+            .pipe(
+                map(ReportService.extractDataFull)
+                , catchError(ReportService.handleError)
+            );
+    }
+
 }
