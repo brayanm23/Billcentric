@@ -62,14 +62,14 @@
           </div>
         </fieldset>
         <ion-row>
-          <ion-col width-50  style="text-align: right; padding-left: 35px;">
-            <button class="btn-text gray" type="button"  (click)="reset()">
+          <ion-col width-50 style="text-align: right; padding-left: 35px;">
+            <button class="btn-text gray" type="button" (click)="reset()">
               <span>Limpiar</span>
             </button>
           </ion-col>
-      
+
           <ion-col width-50 style="text-align: left">
-            <button class="btn-text blue" type="button"  (click)="reportes()">
+            <button class="btn-text blue" type="button" (click)="reportes()">
               <span>Reporte</span>
             </button>
           </ion-col>
@@ -80,33 +80,37 @@
       </form>
     </div>
     <br />
-    <ion-card-content>
-     
-    </ion-card-content>
+    <ion-card-content> </ion-card-content>
   </ion-card>
-  <canvas #barCanvas width="350" height="400"></canvas>
-      <ion-list>
-        <ion-item *ngFor="let item of items">
-          <ion-label text-wrap>
-            <ion-text>
-              <p><b>Id:</b> {{ item.id }}</p>
-              <p><b>Cliente:</b> {{ item.customer?.name_customer }}</p>
-              <p><b>Plan:</b> {{ item.billingSettings?.plan?.name_plan }}</p>
-              <p><b>Estatus:</b> {{ item.status_invoice }}</p>
-              <p><b>Monto:</b> {{ item.total_invoice }}</p>
-              <p><b>Fecha:</b> {{ item.dateCreated_invoice }}</p>
-              
-             
-              <br />
-            </ion-text>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    
-  <ion-infinite-scroll *ngIf="items" threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content
-          loadingSpinner="bubbles"
-          loadingText="Cargando...">
-        </ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+  <div *ngIf="activeScroll">
+    <canvas #barCanvas width="350" height="400"></canvas>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-label text-wrap>
+        <ion-text>
+          <p><b>Id:</b> {{ item.id }}</p>
+          <p><b>Cliente:</b> {{ item.customer?.name_customer }}</p>
+          <p><b>Plan:</b> {{ item.billingSettings?.plan?.name_plan }}</p>
+          <p><b>Estatus:</b> {{ item.status_invoice }}</p>
+          <p><b>Monto:</b> {{ item.total_invoice }}</p>
+          <p><b>Fecha:</b> {{ item.dateCreated_invoice }}</p>
+
+          <br />
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll
+    *ngIf="activeScroll"
+    threshold="100px"
+    (ionInfinite)="loadData($event)"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

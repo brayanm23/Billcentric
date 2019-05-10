@@ -35,7 +35,9 @@ export class DetailServicePage implements OnInit {
   id: number;
   index: number = 1;
   items: any[] = [];
-  items1: any[] = [];
+  items1: any[] = [];//items para grafica
+  activeScroll: boolean = false;
+  
   constructor(private route: ActivatedRoute,
     private router: Router,
     public services: ServicesService,
@@ -105,12 +107,17 @@ export class DetailServicePage implements OnInit {
     httpParams = this.filter.getHttpParams(httpParams);
     if (httpParams['updates'] != null) {
       console.log("updates http params");
+     
       if ((this.filter.since_date != null && this.filter.since_date != "") && (this.filter.until_date == null || this.filter.until_date == "")) {
         this.presentToast("Debe ingresar el parametro de fecha : Hasta", "primary");
         return;
       }
       if ((this.filter.since_date == null || this.filter.since_date == "") && (this.filter.until_date != null && this.filter.until_date != "")) {
         this.presentToast("Debe ingresar el parametro de fecha : Desde", "primary");
+        return;
+      }
+      if (this.filter.since_date>this.filter.until_date) {
+        this.presentToast("Fecha final debe ser mayor a la fecha inicial", "warning");
         return;
       }
       this.alertas.showLoader();
@@ -123,7 +130,16 @@ export class DetailServicePage implements OnInit {
           pageSize: event ? event.pageSize : this.tableService.pager.pageSize
         }))
         .subscribe(params => {
-
+          console.log(params['result']);
+          this.items = params['result']; // items que mostrara la tabla
+          this.estatus_invoices();
+          if (this.items.length === 0) { 
+            this.alertas.dismiss();
+            this.activeScroll = false;
+            this.presentToast('No se encontraron resultados', 'warning');
+          }else{ // si existen items se genera la grafica
+           
+           this.activeScroll = true;
 
           //Peticion de data para reporte grafico===========
           
@@ -150,26 +166,20 @@ export class DetailServicePage implements OnInit {
              
               console.log(data);
               console.log(labels);
+             
               this.generateGrap(labels, data)
-
+              this.alertas.dismiss();
             }, err => {
-
+              this.alertas.dismiss();
               console.log(err);
             });
           //====================================================
 
-
-          console.log(params['result']);
-          this.items = params['result']; // items que mostrara la tabla
-          this.estatus_invoices();
-          // this.dataSource = new MatTableDataSource<any>(this.items);
-          // this.tableService.pager = params['pager'];
-          // this.tableService.selection.clear();
-          if (this.items.length === 0) {
-            this.presentToast('No se encontraron resultados', 'warning');
-            //this.notificationService.alert('No se encontraron resultados para la busqueda');
-          }
-          this.alertas.dismiss();
+        }
+         
+          
+         
+          
         }, err => {
           this.alertas.dismiss();
           // this.notificationService.error(err);
@@ -191,7 +201,7 @@ generateGrap(labels, data1){
 const data = {
         labels: labels,
         datasets: [{
-            label: '% de facturas',
+            label: '% de Facturas',
             data: data1,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -257,9 +267,10 @@ const data = {
           this.estatus_invoices();
           event1.target.complete();
           if (this.items.length === 0) {
-            console.log('No se encontraron resultados');
-            // this.notificationService.alert('No se encontraron resultados para la busqueda');
-          }
+            this.activeScroll = false;
+            this.presentToast("No se encontraron mas resultados", "warning");;
+          }else this.activeScroll = true;
+
           if (this.items.length == 1000) {
             event1.target.disabled = true;
           }
@@ -282,6 +293,7 @@ const data = {
     //this.filter = new ReportFilter(this.tableService.filter);
     this.items = [];
     this.index = 1;
+    this.activeScroll=false;
     // this.dataSource = new MatTableDataSource<any>([]);
     // this.list();
   }

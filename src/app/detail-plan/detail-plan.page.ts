@@ -34,6 +34,7 @@ export class DetailPlanPage implements OnInit {
   id: number;
   index: number = 1;
   items: any[] = [];
+  items1: any[] = [];
   activeScroll: boolean = false;
   constructor(
     private route: ActivatedRoute,
@@ -113,55 +114,88 @@ export class DetailPlanPage implements OnInit {
     let httpParams = new HttpParams();
     httpParams = this.filter.getHttpParams(httpParams);
     console.log(this.filter);
-    if (httpParams["updates"] != null) {
+    if (httpParams['updates'] != null) {
       console.log("updates http params");
-      if ((this.filter.since_date != null && this.filter.since_date !="") && (this.filter.until_date == null || this.filter.until_date=="")) {
-        this.presentToast("Debe ingresar el parametro de fecha : Hasta","primary");
+      
+      if ((this.filter.since_date != null && this.filter.since_date != "") && (this.filter.until_date == null || this.filter.until_date == "")) {
+        this.presentToast("Debe ingresar el parametro de fecha : Hasta", "primary");
         return;
       }
-      if ((this.filter.since_date == null || this.filter.since_date =="") && (this.filter.until_date != null && this.filter.until_date!="")) {
+      if ((this.filter.since_date == null || this.filter.since_date == "") && (this.filter.until_date != null && this.filter.until_date != "")) {
         this.presentToast("Debe ingresar el parametro de fecha : Desde", "primary");
         return;
       }
+      if (this.filter.since_date>this.filter.until_date) {
+        this.presentToast("Fecha final debe ser mayor a la fecha inicial", "warning");
+        return;
+      }
       this.alertas.showLoader();
-      this.reportService
-        .getReportInvoices(
-          this.reportService.buildRequestOptionsFinder(
-            this.tableService.sort,
-            "m",
-            httpParams["updates"],
-            {
-              pageIndex: event
-                ? event.pageIndex
-                : this.tableService.pager.pageIndex,
-              pageSize: event
-                ? event.pageSize
-                : this.tableService.pager.pageSize
-            }
-          )
-        )
-        .subscribe(
-          params => {
-            console.log(params["result"]);
-            this.items = params["result"]; // items que mostrara la tabla
-            this.estatus_invoices();
-            // this.dataSource = new MatTableDataSource<any>(this.items);
-            // this.tableService.pager = params['pager'];
-            // this.tableService.selection.clear();
-            if (this.items.length === 0) {
-              this.activeScroll = false;
-              this.presentToast("No se encontraron resultados", "warning");
-              //this.notificationService.alert('No se encontraron resultados para la busqueda');
-            } else this.activeScroll = true;
+      this.reportService.getReportInvoices(this.reportService.buildRequestOptionsFinder(
+        this.tableService.sort,
+        'm',
+        httpParams['updates'],
+        {
+          pageIndex: event ? event.pageIndex : this.tableService.pager.pageIndex,
+          pageSize: event ? event.pageSize : this.tableService.pager.pageSize
+        }))
+        .subscribe(params => {
+          console.log(params['result']);
+          this.items = params['result']; // items que mostrara la tabla
+          this.estatus_invoices();
+          if (this.items.length === 0) { 
+            this.alertas.dismiss();
+            this.activeScroll = false;
+            this.presentToast('No se encontraron resultados', 'warning');
+          }else{ // si existen items se genera la grafica
+           
+           this.activeScroll = true;
 
-            this.alertas.dismiss();
-          },
-          err => {
-            this.alertas.dismiss();
-            // this.notificationService.error(err);
-            console.log(err);
-          }
-        );
+          //Peticion de data para reporte grafico===========
+          this.filter.id_service=-1;
+          let httpParams1 = new HttpParams();
+          httpParams1 = this.filter.getHttpParams(httpParams1);
+          this.reportService.getReportInvoicesGrap(this.reportService.buildRequestOptionsFinder(
+            this.tableService.sort,
+            'm',
+            httpParams1['updates'],
+            {
+              pageIndex: event ? event.pageIndex : this.tableService.pager.pageIndex,
+              pageSize: event ? event.pageSize : this.tableService.pager.pageSize
+            }))
+            .subscribe(params => {
+
+              console.log(params['result']);
+              this.items1=params['result'];
+              this.statusData();
+              let data=[];
+              let labels=[];
+              for(let item of this.items1){
+                    data.push(item.porcentaje);
+                    labels.push(item.estatus);
+                   
+              }
+             
+              console.log(data);
+              console.log(labels);
+             
+              this.generateGrap(labels, data)
+              this.alertas.dismiss();
+            }, err => {
+              this.alertas.dismiss();
+              console.log(err);
+            });
+          //====================================================
+
+        }
+         
+          
+         
+          
+        }, err => {
+          this.alertas.dismiss();
+          // this.notificationService.error(err);
+          console.log(err);
+        });
     }
   }
 
@@ -169,43 +203,48 @@ export class DetailPlanPage implements OnInit {
     this.tableService.pager.pageIndex = 0;
     console.log("reportes");
     this.list();
-    // const data = {
-    //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    //     datasets: [{
-    //         label: '# of Votes',
-    //         data: [12, 19, 3, 5, 2, 3],
-    //         backgroundColor: [
-    //             'rgba(255, 99, 132, 0.2)',
-    //             'rgba(54, 162, 235, 0.2)',
-    //             'rgba(255, 206, 86, 0.2)',
-    //             'rgba(75, 192, 192, 0.2)',
-    //             'rgba(153, 102, 255, 0.2)',
-    //             'rgba(255, 159, 64, 0.2)'
-    //         ],
-    //         borderColor: [
-    //             'rgba(255,99,132,1)',
-    //             'rgba(54, 162, 235, 1)',
-    //             'rgba(255, 206, 86, 1)',
-    //             'rgba(75, 192, 192, 1)',
-    //             'rgba(153, 102, 255, 1)',
-    //             'rgba(255, 159, 64, 1)'
-    //         ],
-    //         borderWidth: 1
-    //     }]
-    // };
-
-    // const options = {
-    //     scales: {
-    //         yAxes: [{
-    //             ticks: {
-    //                 beginAtZero: true
-    //             }
-    //         }]
-    //     }
-    // };
-
-    // return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
+    
   }
+
+  generateGrap(labels, data1){
+    const data = {
+            labels: labels,
+            datasets: [{
+                label: '% de Facturas',
+                data: data1,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+    
+        const options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+    
+        return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
+    
+    }
   loadData(event1, event?: PageEvent) {
     this.tableService.pager.pageIndex = this.index;
 
@@ -241,9 +280,11 @@ export class DetailPlanPage implements OnInit {
             this.estatus_invoices();
             event1.target.complete();
             if (this.items.length === 0) {
-              console.log("No se encontraron resultados");
-              // this.notificationService.alert('No se encontraron resultados para la busqueda');
+              this.activeScroll = false;
+              this.presentToast("No se encontraron mas resultados", "warning");
+             // console.log("No se encontraron resultados");
             }else this.activeScroll = true;
+
             if (this.items.length == 1000) {
               event1.target.disabled = true;
             }
@@ -305,6 +346,36 @@ export class DetailPlanPage implements OnInit {
       }
     }
   }
+  statusData(){
+    for (const item of this.items1) {
+    
+      if (item.estatus === 0) {
+        item.estatus = 'Creada';
+      }
+      if (item.estatus === 1) {
+        item.estatus = 'Lista';
+      }
+      if (item.estatus === 2) {
+        item.estatus = 'Procesada y enviada';
+      }
+      if (item.estatus === 3) {
+        item.estatus = 'Creada pero no enviada';
+      }
+      if (item.estatus === -1) {
+        item.estatus = 'Error Rotundo';
+      }
+      if (item.estatus === 5) {
+        item.estatus = 'Para rebilling';
+      }
+      if (item.estatus === -6) {
+        item.estatus = 'Incobrable';
+      }
+
+     
+    }
+   
+  }
+
   read(item: any) {
     // hacemos esto para no tener que consultar de nuevo la informacion del invoice en la siguiente pantalla
     localStorage.setItem("invoice", JSON.stringify(item));
