@@ -308,59 +308,64 @@ const data = {
 
   estatus_invoices() {
     for (const invoice of this.items) {
-      invoice.dateCreated_invoice = this.datePipe.transform(invoice.dateCreated_invoice, 'MMMM dd, yyyy');
-      invoice.lastUpdated_invoice = this.datePipe.transform(invoice.lastUpdated_invoice, 'MMMM dd, yyyy');
+      invoice.dateCreated_invoice = this.datePipe.transform(
+        invoice.dateCreated_invoice,
+        "MMMM dd, yyyy"
+      );
+      invoice.lastUpdated_invoice = this.datePipe.transform(
+        invoice.lastUpdated_invoice,
+        "MMMM dd, yyyy"
+      );
       if (invoice.status_invoice === 0) {
-        invoice.status_invoice = 'Creada';
+        invoice.status_invoice = "Por procesar(En cola)";
       }
       if (invoice.status_invoice === 1) {
-        invoice.status_invoice = 'Lista';
+        invoice.status_invoice = "Procesadas";
       }
       if (invoice.status_invoice === 2) {
-        invoice.status_invoice = 'Procesada y enviada';
+        invoice.status_invoice = "No procesadas por Hecticus";
       }
       if (invoice.status_invoice === 3) {
-        invoice.status_invoice = 'Creada pero no enviada';
+        invoice.status_invoice = "En proceso";
       }
-      if (invoice.status_invoice === -1) {
-        invoice.status_invoice = 'Error Rotundo';
+      if (invoice.status_invoice === 4) {
+        invoice.status_invoice = "Cancelada";
       }
       if (invoice.status_invoice === 5) {
-        invoice.status_invoice = 'Para rebilling';
+        invoice.status_invoice = "Rebilling";
       }
       if (invoice.status_invoice === -6) {
-        invoice.status_invoice = 'Incobrable';
+        invoice.status_invoice = "Incobrables";
       }
     }
   }
+
+
   statusData(){
     for (const item of this.items1) {
     
       if (item.estatus === 0) {
-        item.estatus = 'Creada';
+        item.estatus = 'Por procesar(En cola)';
       }
       if (item.estatus === 1) {
-        item.estatus = 'Lista';
+        item.estatus = 'Procesadas';
       }
       if (item.estatus === 2) {
-        item.estatus = 'Procesada y enviada';
+        item.estatus = 'No procesadas por Hecticus';
       }
       if (item.estatus === 3) {
-        item.estatus = 'Creada pero no enviada';
+        item.estatus = 'En proceso';
       }
-      if (item.estatus === -1) {
-        item.estatus = 'Error Rotundo';
+      if (item.estatus === 4) {
+        item.estatus = 'Cancelada';
       }
       if (item.estatus === 5) {
-        item.estatus = 'Para rebilling';
+        item.estatus = 'Rebilling';
       }
       if (item.estatus === -6) {
-        item.estatus = 'Incobrable';
+        item.estatus = 'Incobrables';
       }
-
-     
     }
-   
   }
   read(item: any) {
     // hacemos esto para no tener que consultar de nuevo la informacion del invoice en la siguiente pantalla
