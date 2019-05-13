@@ -29,7 +29,7 @@ export class AppComponent {
       icon: 'list'
     }
   ];*/
-
+subscription: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -38,6 +38,7 @@ export class AppComponent {
     private router: Router
   ) {
     this.initializeApp();
+    
   }
 
   initializeApp() {
@@ -45,10 +46,38 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
+      
+      });
+      
+      this.platform.backButton.subscribe(() => {
+       
+        if(this.router.url=='/menu/home'|| this.router.url=='/login' || this.router.url=='/menu/partner' || this.router.url=='/menu/reports' ){
+         
+          this.subscription=navigator['app'].exitApp();
+        }
+          
       });
   }
+
+ngOnInit(): void {
+  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  //Add 'implements OnInit' to the class.
+  let sesion = sessionStorage.getItem('token');
+  console.log(sesion);
+  if(sesion==null){
+      this.router.navigate(['/login'], {skipLocationChange:true});
+  }
+
+  
+  
+}
+
+  ionViewWillLeave(){
+    
+    this.subscription.unsubscribe();
+}
   logout() {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], {skipLocationChange:true});
       // this.nav.setRoot(LoginPage); // Close this application
       localStorage.removeItem('currentData');
       localStorage.clear();
