@@ -4,8 +4,8 @@ import { HttpParams } from '@angular/common/http';
 import { ReportFilter } from './report.filter';
 import { ReportService } from './report.service';
 import { MatTableDataSource, PageEvent } from '@angular/material';
-
-
+import { ToastController } from "@ionic/angular";
+import { AlertService } from "../providers/utils/alertas";
 
 @Component({
   selector: 'app-reports',
@@ -23,43 +23,60 @@ export class ReportsPage implements OnInit {
     rango = false;
     del = false;
     types: any[] = [];
-
+    activeScroll: boolean = false;
 
     constructor(private tableService: TableService<any>,
-              private reportService: ReportService) { }
+              private reportService: ReportService,
+              public toastController: ToastController,
+              public alertas: AlertService) { }
 
   ngOnInit() {
       this.types = [{desc: 'Dia', value: 1}, {desc: 'Dia anterior', value: 2}, {desc: 'Mes', value: 3}, {desc: 'Mes Anterior', value: 4}];
   }
-
+  async presentToast(text: string, color: string = "primary") {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 2000,
+      color: color
+    });
+    toast.present();
+  }
     list(event?: PageEvent) {
         let httpParams = new HttpParams()
         httpParams = this.filter.getHttpParams(httpParams);
-        if ( httpParams['updates'] != null) {
-            if (this.filter.since_date != null && this.filter.until_date == null){
-                console.log('Debe ingresar el parametro de fecha : Hasta');
-                return;
+        if (httpParams['updates'] != null) {
+            console.log("updates http params");
+            
+            if ((this.filter.since_date != null && this.filter.since_date != "") && (this.filter.until_date == null || this.filter.until_date == "")) {
+              this.presentToast("Debe ingresar el parametro de fecha : Hasta", "primary");
+              return;
             }
-            if (this.filter.since_date == null && this.filter.until_date != null){
-                console.log('Debe ingresar el parametro de fecha : Desde');
-                return;
+            if ((this.filter.since_date == null || this.filter.since_date == "") && (this.filter.until_date != null && this.filter.until_date != "")) {
+              this.presentToast("Debe ingresar el parametro de fecha : Desde", "primary");
+              return;
             }
+            if (this.filter.since_date>this.filter.until_date) {
+              this.presentToast("Fecha final debe ser mayor a la fecha inicial", "warning");
+              return;
+            }
+            this.alertas.showLoader();
             this.reportService.getReportInvoicesCharged(this.reportService.buildRequestOptionsFinder(
-                this.tableService.sort,
-                'm',
-                httpParams['updates'],
-                {pageIndex: event ? event.pageIndex : this.tableService.pager.pageIndex,
-                    pageSize: event ? event.pageSize : this.tableService.pager.pageSize}))
-                .subscribe(params => {
+              this.tableService.sort,
+              'm',
+              httpParams['updates'],
+              {
+                pageIndex: event ? event.pageIndex : this.tableService.pager.pageIndex,
+                pageSize: event ? event.pageSize : this.tableService.pager.pageSize
+              }))
+              .subscribe(params => {
                 console.log(params['result']);
                 this.items = params['result']; // items que mostrara la tabla
-                // this.dataSource = new MatTableDataSource<any>(this.items);
-                // this.tableService.pager = params['pager'];
-                // this.tableService.selection.clear();
-                if (this.items.length === 0) {
-                  console.log('No se encontraron resultados');
-                  // this.notificationService.alert('No se encontraron resultados para la busqueda');
+                if (this.items.length === 0) { 
+                  this.alertas.dismiss();
+                  this.activeScroll = false;
+                  this.presentToast('No se encontraron resultados', 'warning');
                 }
+                this.alertas.dismiss();
             }, err => {
                 // this.notificationService.error(err);
                 console.log(err);
