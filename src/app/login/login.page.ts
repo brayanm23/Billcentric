@@ -77,23 +77,25 @@ export class LoginPage implements OnInit {
 
       this.authService.login(authorizationRequest).subscribe(authorizationResponse => {
         sessionStorage.setItem('token', authorizationResponse.access_token);
+        this.storage.set('token',authorizationResponse.access_token);// asiganamos el token para mantener sesion persistente 
         // sessionStorage.setItem('token', authorizationResponse.access_token);  viejo
         // console.log(authorizationResponse);
         this.userService.getById(authorizationResponse.user_id).subscribe(user => {
           localStorage.setItem('accessToken', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
           localStorage.setItem('currentData', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
           this.alertas.dismiss();
-          this.router.navigate(['/menu'], { skipLocationChange: true });
+          this.router.navigate(['/menu']);
           this.storage.set('isLoggedin', 'true');
+          
         }, error => {
           this.alertas.dismiss();
           this.presentToast("Error de conexión","danger");
          
         });
       }, error => {
-        console.log(error.message);
+        console.log(error);
         this.alertas.dismiss();
-        this.presentToast("Usuario o contraseña invalida","danger");
+        this.presentToast(error,"danger");
       });
     }
   }

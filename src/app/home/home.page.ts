@@ -10,7 +10,8 @@ import {Router} from '@angular/router';
 export class HomePage {
 
     constructor(
-        private router: Router
+        private router: Router,
+        public storage: Storage 
     ) { }
     logout() {
         this.router.navigate(['/login']);
@@ -18,5 +19,6 @@ export class HomePage {
         localStorage.removeItem('currentData');
         localStorage.clear();
         sessionStorage.clear();
+        this.storage.clear();
     }
 }
