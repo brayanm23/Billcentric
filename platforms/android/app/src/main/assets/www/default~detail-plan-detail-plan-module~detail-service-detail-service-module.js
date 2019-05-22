@@ -32491,6 +32491,12 @@ var ReportService = /** @class */ (function (_super) {
         return this.http.get(this.BASE_URL + '/report/charged', requestOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(ReportService_1.extractDataFull), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(ReportService_1.handleError));
     };
+    ReportService.prototype.getReportInvoicesGrap = function (requestOptions) {
+        if (requestOptions === void 0) { requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"](); }
+        requestOptions.headers = ReportService_1.createAuthorizationHeader();
+        return this.http.get(this.BASE_URL + '/report/bystatus', requestOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(ReportService_1.extractDataFull), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(ReportService_1.handleError));
+    };
     var ReportService_1;
     ReportService = ReportService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

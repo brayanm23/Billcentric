@@ -308,21 +308,21 @@ const data = {
 
   estatus_invoices() {
     for (const invoice of this.items) {
-      invoice.dateCreated_invoice = this.datePipe.transform(
-        invoice.dateCreated_invoice,
+      invoice.date_created_invoice = this.datePipe.transform(
+        invoice.date_created_invoice,
         "MMMM dd, yyyy"
       );
-      invoice.lastUpdated_invoice = this.datePipe.transform(
-        invoice.lastUpdated_invoice,
+      invoice.last_updated_invoice = this.datePipe.transform(
+        invoice.last_updated_invoice,
         "MMMM dd, yyyy"
       );
-      if (invoice.status_invoice === 0) {
+      /*if (invoice.status_invoice === 0) {
         invoice.status_invoice = "Por procesar(En cola)";
-      }
+      }*/
       if (invoice.status_invoice === 1) {
-        invoice.status_invoice = "Procesadas";
+        invoice.desc_status = invoice.desc_status + " - " + invoice.description_errorcodebac;
       }
-      if (invoice.status_invoice === 2) {
+      /*if (invoice.status_invoice === 2) {
         invoice.status_invoice = "No procesadas por Hecticus";
       }
       if (invoice.status_invoice === 3) {
@@ -336,7 +336,7 @@ const data = {
       }
       if (invoice.status_invoice === -6) {
         invoice.status_invoice = "Incobrables";
-      }
+      }*/
     }
   }
 

@@ -90,11 +90,11 @@
             <ion-label text-wrap>
               <ion-text>
                 <p><b>Id:</b> {{ item.id }}</p>
-                <p><b>Cliente:</b> {{ item.customer?.name_customer }}</p>
-                <p><b>Plan:</b> {{ item.billingSettings?.plan?.name_plan }}</p>
-                <p><b>Estatus:</b> {{ item.status_invoice }}</p>
+                <p><b>Cliente:</b> {{ item.name_customer }}</p>
+                <p><b>Plan:</b> {{ item.name_plan }}</p>
+                <p><b>Estatus:</b> {{ item.desc_status }}</p>
                 <p><b>Monto:</b> {{ item.total_invoice }}</p>
-                <p><b>Fecha:</b> {{ item.dateCreated_invoice }}</p>
+                <p><b>Fecha:</b> {{ item.date_created_invoice }}</p>
                 
                
                 <br />

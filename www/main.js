@@ -939,7 +939,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'menu',
         pathMatch: 'full'
     },
     { path: 'login', loadChildren: './login/login.module#LoginPageModule'
@@ -999,23 +999,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    /*public appPages = [
-      {
-        title: 'Inicio',
-        url: '/home',
-        icon: 'home'
-      },
-      {
-        title: 'Compañias',
-        url: '/partner',
-        icon: 'list'
-      },
-      {
-        title: 'Reportes',
-        url: '/reports',
-        icon: 'list'
-      }
-    ];*/
     function AppComponent(platform, splashScreen, storage, statusBar, router) {
         this.platform = platform;
         this.splashScreen = splashScreen;
@@ -1031,9 +1014,32 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleBlackTranslucent();
             _this.splashScreen.hide();
         });
+        this.platform.backButton.subscribe(function () {
+            if (_this.router.url == '/menu/home' || _this.router.url == '/login' || _this.router.url == '/menu/partner' || _this.router.url == '/menu/reports') {
+                _this.subscription = navigator['app'].exitApp();
+            }
+        });
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        var sesion = null;
+        this.storage.get('token').then(function (val) {
+            sesion = val;
+            console.log(sesion);
+            if (sesion == null) {
+                _this.router.navigate(['/login']);
+            }
+            else
+                sessionStorage.setItem('token', sesion);
+        });
+    };
+    AppComponent.prototype.ionViewWillLeave = function () {
+        this.subscription.unsubscribe();
     };
     AppComponent.prototype.logout = function () {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], { skipLocationChange: true });
         // this.nav.setRoot(LoginPage); // Close this application
         localStorage.removeItem('currentData');
         localStorage.clear();
@@ -1090,6 +1096,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _providers_utils_authorizationRequest__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./providers/utils/authorizationRequest */ "./src/app/providers/utils/authorizationRequest.ts");
 /* harmony import */ var _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./providers/auth-service/auth-service */ "./src/app/providers/auth-service/auth-service.ts");
 /* harmony import */ var _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./providers/utils/alertas */ "./src/app/providers/utils/alertas.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 
 
 
@@ -1107,6 +1114,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Providers
+
 
 
 
@@ -1144,6 +1152,7 @@ var AppModule = /** @class */ (function () {
                 _providers_utils_authorizationRequest__WEBPACK_IMPORTED_MODULE_19__["AuthorizationRequest"],
                 _providers_utils_BaseModel__WEBPACK_IMPORTED_MODULE_15__["BaseModel"],
                 _providers_utils_pager__WEBPACK_IMPORTED_MODULE_16__["TableService"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_22__["DatePipe"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"] }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
@@ -1163,7 +1172,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".menu-header {\n  padding: 20px 20px;\n  background-image: url('logobillcentric.png');\n  background-size: cover;\n  background-position: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2JyYXlhbi9Fc2NyaXRvcmlvL0JpbGxjZW50cmljL3NyYy9hcHAvYXBwLnN0eWxlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsNENBQStEO0VBQy9ELHNCQUFzQjtFQUN0QiwyQkFBMkIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FwcC5zdHlsZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1lbnUtaGVhZGVyIHtcbiAgcGFkZGluZzogMjBweCAyMHB4O1xuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy4uL2Fzc2V0cy9pbWcvbG9nby9sb2dvYmlsbGNlbnRyaWMucG5nJyk7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbn0iXX0= */"
+module.exports = ".menu-header {\n  padding: 20px 20px;\n  background-image: url('logobillcentric.png');\n  background-size: cover;\n  background-position: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2JyYXlhbi9CaWxsY2VudHJpYy9zcmMvYXBwL2FwcC5zdHlsZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLDRDQUErRDtFQUMvRCxzQkFBc0I7RUFDdEIsMkJBQTJCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9hcHAuc3R5bGUuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tZW51LWhlYWRlciB7XG4gIHBhZGRpbmc6IDIwcHggMjBweDtcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCcuLi9hc3NldHMvaW1nL2xvZ28vbG9nb2JpbGxjZW50cmljLnBuZycpO1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG59Il19 */"
 
 /***/ }),
 
@@ -1183,8 +1192,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
 /* harmony import */ var rxjs_add_operator_first__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/first */ "./node_modules/rxjs-compat/_esm5/add/operator/first.js");
 /* harmony import */ var rxjs_add_operator_catch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/add/operator/catch */ "./node_modules/rxjs-compat/_esm5/add/operator/catch.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/base.service */ "./src/app/services/base.service.ts");
+/* harmony import */ var rxjs_add_observable_throw__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/add/observable/throw */ "./node_modules/rxjs-compat/_esm5/add/observable/throw.js");
+/* harmony import */ var rxjs_Observable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/Observable */ "./node_modules/rxjs-compat/_esm5/Observable.js");
+/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../services/base.service */ "./src/app/services/base.service.ts");
+
 
 
 
@@ -1205,23 +1216,23 @@ var AuthService = /** @class */ (function () {
         if (error instanceof _angular_http__WEBPACK_IMPORTED_MODULE_2__["Response"]) {
             if (error.status === 400) {
                 //   No se pudo actualizar, corriga los parámetros inválidos e intente nuevamente
-                return rxjs__WEBPACK_IMPORTED_MODULE_6__["Observable"].throw('Email o password es incorrecto, intente nuevamente');
+                return rxjs_Observable__WEBPACK_IMPORTED_MODULE_7__["Observable"].throw('Email o password es incorrecto, intente nuevamente');
             }
             if (error.status === 401) {
-                return rxjs__WEBPACK_IMPORTED_MODULE_6__["Observable"].throw('No se pudo actualizar, su contraseña actual es incorrecta');
+                return rxjs_Observable__WEBPACK_IMPORTED_MODULE_7__["Observable"].throw('No se pudo actualizar, su contraseña actual es incorrecta');
             }
             if (error.status === 403) {
                 //   No se pudo actualizar, corriga los parámetros inválidos e intente nuevamente
-                return rxjs__WEBPACK_IMPORTED_MODULE_6__["Observable"].throw('No posee permisos suficientes para esta accion, contacte con el administrado');
+                return rxjs_Observable__WEBPACK_IMPORTED_MODULE_7__["Observable"].throw('No posee permisos suficientes para esta accion, contacte con el administrado');
             }
             if (error.status === 404) {
-                return rxjs__WEBPACK_IMPORTED_MODULE_6__["Observable"].throw('No se pudo actualizar, registro inexistente');
+                return rxjs_Observable__WEBPACK_IMPORTED_MODULE_7__["Observable"].throw('No se pudo actualizar, registro inexistente');
             }
             if (error.status === 409) {
-                return rxjs__WEBPACK_IMPORTED_MODULE_6__["Observable"].throw('No se pudo actualizar, corriga los parámetros requeridos o las dependencias inválidas e intente nuevamente');
+                return rxjs_Observable__WEBPACK_IMPORTED_MODULE_7__["Observable"].throw('No se pudo actualizar, corriga los parámetros requeridos o las dependencias inválidas e intente nuevamente');
             }
         }
-        return rxjs__WEBPACK_IMPORTED_MODULE_6__["Observable"].throw('No se pudo actualizar, consulte con el administrador del sistema');
+        return rxjs_Observable__WEBPACK_IMPORTED_MODULE_7__["Observable"].throw('No se pudo actualizar, consulte con el administrador del sistema');
     };
     AuthService.prototype.login = function (authorizationRequest) {
         var params = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["URLSearchParams"]();
@@ -1231,15 +1242,15 @@ var AuthService = /** @class */ (function () {
         params.append('client_id', 'android_app');
         return this.http
             .post(AuthService_1.BASE_URL + '/token', params, { headers: this.headers })
-            .map(_services_base_service__WEBPACK_IMPORTED_MODULE_7__["BaseService"].extractDataFull)
+            .map(_services_base_service__WEBPACK_IMPORTED_MODULE_8__["BaseService"].extractDataFull)
             .catch(this.handleError);
     };
     AuthService.prototype.verifyToken = function (token) {
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["Headers"]({ 'Authorization': token });
         var options = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"]({ headers: headers });
         return this.http.get(AuthService_1.BASE_URL + '/verify', options)
-            .map(_services_base_service__WEBPACK_IMPORTED_MODULE_7__["BaseService"].extractHeaders)
-            .catch(_services_base_service__WEBPACK_IMPORTED_MODULE_7__["BaseService"].handleError);
+            .map(_services_base_service__WEBPACK_IMPORTED_MODULE_8__["BaseService"].extractHeaders)
+            .catch(_services_base_service__WEBPACK_IMPORTED_MODULE_8__["BaseService"].handleError);
     };
     AuthService.prototype.logout = function () {
         localStorage.removeItem('currentData');
@@ -1249,7 +1260,7 @@ var AuthService = /** @class */ (function () {
         return new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"]({ headers: new _angular_http__WEBPACK_IMPORTED_MODULE_2__["Headers"]({ key: value }) });
     };
     var AuthService_1;
-    AuthService.BASE_URL = _services_base_service__WEBPACK_IMPORTED_MODULE_7__["BaseService"].HOST + '/oauth';
+    AuthService.BASE_URL = _services_base_service__WEBPACK_IMPORTED_MODULE_8__["BaseService"].HOST + '/oauth';
     AuthService = AuthService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_2__["Http"]])
@@ -1346,7 +1357,15 @@ var AlertService = /** @class */ (function () {
         this.loadingController.create({
             spinner: 'lines',
             message: 'Autenticando',
-            duration: 1000
+            duration: 10000
+        }).then(function (res) {
+            res.present();
+        });
+    };
+    AlertService.prototype.showLoader = function () {
+        this.loadingController.create({
+            spinner: 'lines',
+            message: 'Cargando',
         }).then(function (res) {
             res.present();
         });
@@ -1623,7 +1642,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/brayan/Escritorio/Billcentric/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/brayan/Billcentric/src/main.ts */"./src/main.ts");
 
 
 /***/ })

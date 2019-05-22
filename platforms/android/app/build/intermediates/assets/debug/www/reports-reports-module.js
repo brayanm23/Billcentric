@@ -104,6 +104,12 @@ var ReportService = /** @class */ (function (_super) {
         return this.http.get(this.BASE_URL + '/report/charged', requestOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(ReportService_1.extractDataFull), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(ReportService_1.handleError));
     };
+    ReportService.prototype.getReportInvoicesGrap = function (requestOptions) {
+        if (requestOptions === void 0) { requestOptions = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"](); }
+        requestOptions.headers = ReportService_1.createAuthorizationHeader();
+        return this.http.get(this.BASE_URL + '/report/bystatus', requestOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(ReportService_1.extractDataFull), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(ReportService_1.handleError));
+    };
     var ReportService_1;
     ReportService = ReportService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -184,7 +190,7 @@ var ReportsPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/menu\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Facturas Cobradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <!--mat-accordion>\n        <mat-expansion-panel [expanded]=\"isOpenSearchPanel\" (opened)=\"openSearchPanel(true)\" [hideToggle]=\"true\"-->\n            <!--mat-expansion-panel-header-->\n    <div>\n                <div *ngIf=\"tableService.filter\" class=\"filter-panel-header fieldset-wrap\">\n                    <div class=\"field-row\">\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.del\">\n                            <span class=\"label\">Del</span>\n                            <span *ngIf=\"tableService.filter.del == 1\"> Dia </span>\n                            <span *ngIf=\"tableService.filter.del == 2\"> Dia Anterior </span>\n                            <span *ngIf=\"tableService.filter.del == 3\"> Mes </span>\n                            <span *ngIf=\"tableService.filter.del == 4\"> Mes Anterior </span>\n                        </div>\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.since_date\">\n                            <span class=\"label\">Desde</span>\n                            <span>{{tableService.filter.since_date}}</span>\n                        </div>\n\n                        <div class=\"field-row-item\" *ngIf=\"tableService.filter.until_date\">\n                            <span class=\"label\">Hasta</span>\n                            <span>{{tableService.filter.until_date}}</span>\n                        </div>\n\n                    </div>\n                </div>\n                <!--/button title=\"Buscar\" type=\"button\">\n                    <ion-icon name=\"search\"></ion-icon>\n                </button>\n            <mat-expansion-panel-header-->\n\n            <form>\n                <fieldset class=\"fieldset\">\n\n                    <div class=\"field-row\">\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Del</label>\n                            <input type=\"radio\" value=\"1\" (change)=\"dropBusqueda()\" name=\"type\">\n                        </div>\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Rango fecha</label>\n                            <input type=\"radio\" value=\"2\" (change)=\"rangoBusqueda()\" name=\"type\">\n                        </div>\n                    </div>\n\n                    <div class=\"field-row\" *ngIf=\"del\">\n                        <div class=\"field-row-item\">\n                            <mat-select placeholder=\"Selecciona\" [(value)]=\"filter.del\" [compareWith]=\"compareFn\">\n                                <mat-option *ngFor=\"let opt of types\" [value]=\"opt.value\">{{opt.desc}}</mat-option>\n                            </mat-select>\n                        </div>\n                    </div>\n\n                    <div *ngIf=\"rango\">\n\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Desde</label>\n                            <input type=\"date\" name=\"since_date\" placeholder=\"None\"  [(ngModel)]=\"filter.since_date\">\n                        </div>\n\n                        <div class=\"field-row-item\">\n                            <label class=\"label\" for=\"name_plan\">Hasta</label>\n                            <input type=\"date\" name=\"until_date\" placeholder=\"None\"  [(ngModel)]=\"filter.until_date\">\n                        </div>\n\n                    </div>\n\n                </fieldset>\n                <div class=\"options\">\n                    <button class=\"btn-text gray\" type=\"button\" (click)=\"reset()\">\n                        <span >Limpiar</span>\n                    </button>\n                    <button class=\"btn-text blue\" type=\"button\" (click)=\"search()\">\n                        <span>Buscar</span>\n                    </button>\n                </div>\n            </form>\n    </div>\n        <!--/mat-expansion-panel>\n    </mat-accordion-->\n\n\n\n</ion-content>\n\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/menu\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Facturas Cobradas</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <!--mat-accordion>\n        <mat-expansion-panel [expanded]=\"isOpenSearchPanel\" (opened)=\"openSearchPanel(true)\" [hideToggle]=\"true\"-->\n  <!--mat-expansion-panel-header-->\n  <div>\n    <div *ngIf=\"tableService.filter\" class=\"filter-panel-header fieldset-wrap\">\n      <div class=\"field-row\">\n        <div class=\"field-row-item\" *ngIf=\"tableService.filter.del\">\n          <span class=\"label\">Del</span>\n          <span *ngIf=\"tableService.filter.del == 1\"> Dia </span>\n          <span *ngIf=\"tableService.filter.del == 2\"> Dia Anterior </span>\n          <span *ngIf=\"tableService.filter.del == 3\"> Mes </span>\n          <span *ngIf=\"tableService.filter.del == 4\"> Mes Anterior </span>\n        </div>\n\n        <div class=\"field-row-item\" *ngIf=\"tableService.filter.since_date\">\n          <span class=\"label\">Desde</span>\n          <span>{{ tableService.filter.since_date }}</span>\n        </div>\n\n        <div class=\"field-row-item\" *ngIf=\"tableService.filter.until_date\">\n          <span class=\"label\">Hasta</span>\n          <span>{{ tableService.filter.until_date }}</span>\n        </div>\n      </div>\n    </div>\n    <!--/button title=\"Buscar\" type=\"button\">\n                    <ion-icon name=\"search\"></ion-icon>\n                </button>\n            <mat-expansion-panel-header-->\n\n    <form>\n      <fieldset class=\"fieldset\">\n        <div class=\"field-row\">\n          <div class=\"field-row-item\">\n            <label class=\"label\" for=\"name_plan\">Del</label>\n            <input\n              type=\"radio\"\n              value=\"1\"\n              (change)=\"dropBusqueda()\"\n              name=\"type\"\n            />\n          </div>\n          <div class=\"field-row-item\">\n            <label class=\"label\" for=\"name_plan\">Rango fecha</label>\n            <input\n              type=\"radio\"\n              value=\"2\"\n              (change)=\"rangoBusqueda()\"\n              name=\"type\"\n            />\n          </div>\n        </div>\n\n        <div class=\"field-row\" *ngIf=\"del\">\n          <div class=\"field-row-item\">\n            <mat-select\n              placeholder=\"Selecciona\"\n              [(value)]=\"filter.del\"\n              [compareWith]=\"compareFn\"\n            >\n              <mat-option *ngFor=\"let opt of types\" [value]=\"opt.value\">{{\n                opt.desc\n              }}</mat-option>\n            </mat-select>\n          </div>\n        </div>\n\n        <div *ngIf=\"rango\">\n          <div class=\"field-row-item\">\n            <label class=\"label\" for=\"name_plan\">Desde</label>\n            <input\n              type=\"date\"\n              name=\"since_date\"\n              placeholder=\"None\"\n              [(ngModel)]=\"filter.since_date\"\n            />\n          </div>\n\n          <div class=\"field-row-item\">\n            <label class=\"label\" for=\"name_plan\">Hasta</label>\n            <input\n              type=\"date\"\n              name=\"until_date\"\n              placeholder=\"None\"\n              [(ngModel)]=\"filter.until_date\"\n            />\n          </div>\n        </div>\n      </fieldset>\n      <div class=\"options\">\n        <button class=\"btn-text gray\" type=\"button\" (click)=\"reset()\">\n          <span>Limpiar</span>\n        </button>\n        <button class=\"btn-text blue\" type=\"button\" (click)=\"search()\">\n          <span>Buscar</span>\n        </button>\n      </div>\n    </form>\n  </div>\n  <!--/mat-expansion-panel>\n    </mat-accordion-->\n  <div>\n    <ion-list>\n      <ion-item *ngFor=\"let item of items\">\n        <ion-label text-wrap>\n          <ion-text>\n            <p><b>Compañia:</b> {{ item.compania }}</p>\n            <p><b>Servicio:</b> {{ item.servicio }}</p>\n            <p><b>Plan:</b> {{ item.plan }}</p>\n            <p><b>Total :</b> {{ item.total }}</p>\n\n            <br />\n          </ion-text>\n        </ion-label>\n      </ion-item>\n    </ion-list>\n  </div>\n</ion-content>\n"
 
 /***/ }),
 
@@ -195,7 +201,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".btn-text.gray {\n  background-color: #acacac;\n  border-color: #acacac;\n  color: #fff; }\n\n.btn-text.red {\n  background-color: #fb5f5f;\n  border-color: #fb5f5f;\n  color: #fff; }\n\noption {\n  padding-left: 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2JyYXlhbi9Fc2NyaXRvcmlvL0JpbGxjZW50cmljL3NyYy9hcHAvcmVwb3J0cy9yZXBvcnRzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHlCQUF5QjtFQUN6QixxQkFBcUI7RUFDckIsV0FBVyxFQUFBOztBQUViO0VBQ0UseUJBQXlCO0VBQ3pCLHFCQUFxQjtFQUNyQixXQUFXLEVBQUE7O0FBRWI7RUFDRSxpQkFBaUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydHMvcmVwb3J0cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYnRuLXRleHQuZ3JheXtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2FjYWNhYztcbiAgYm9yZGVyLWNvbG9yOiAjYWNhY2FjO1xuICBjb2xvcjogI2ZmZjtcbn1cbi5idG4tdGV4dC5yZWR7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmYjVmNWY7XG4gIGJvcmRlci1jb2xvcjogI2ZiNWY1ZjtcbiAgY29sb3I6ICNmZmY7XG59XG5vcHRpb257XG4gIHBhZGRpbmctbGVmdDogNXB4O1xufSJdfQ== */"
+module.exports = ".btn-text.gray {\n  background-color: #acacac;\n  border-color: #acacac;\n  color: #fff; }\n\n.btn-text.red {\n  background-color: #fb5f5f;\n  border-color: #fb5f5f;\n  color: #fff; }\n\noption {\n  padding-left: 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2JyYXlhbi9CaWxsY2VudHJpYy9zcmMvYXBwL3JlcG9ydHMvcmVwb3J0cy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUI7RUFDekIscUJBQXFCO0VBQ3JCLFdBQVcsRUFBQTs7QUFFYjtFQUNFLHlCQUF5QjtFQUN6QixxQkFBcUI7RUFDckIsV0FBVyxFQUFBOztBQUViO0VBQ0UsaUJBQWlCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9yZXBvcnRzL3JlcG9ydHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJ0bi10ZXh0LmdyYXl7XG4gIGJhY2tncm91bmQtY29sb3I6ICNhY2FjYWM7XG4gIGJvcmRlci1jb2xvcjogI2FjYWNhYztcbiAgY29sb3I6ICNmZmY7XG59XG4uYnRuLXRleHQucmVke1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmI1ZjVmO1xuICBib3JkZXItY29sb3I6ICNmYjVmNWY7XG4gIGNvbG9yOiAjZmZmO1xufVxub3B0aW9ue1xuICBwYWRkaW5nLWxlZnQ6IDVweDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -215,6 +221,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _report_filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./report.filter */ "./src/app/reports/report.filter.ts");
 /* harmony import */ var _report_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./report.service */ "./src/app/reports/report.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../providers/utils/alertas */ "./src/app/providers/utils/alertas.ts");
+
+
 
 
 
@@ -222,9 +232,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReportsPage = /** @class */ (function () {
-    function ReportsPage(tableService, reportService) {
+    function ReportsPage(tableService, reportService, toastController, alertas) {
         this.tableService = tableService;
         this.reportService = reportService;
+        this.toastController = toastController;
+        this.alertas = alertas;
+        this.displayedColumns = ['compania', 'servicio', 'plan', 'total'];
         this.isOpenSearchPanel = false;
         this.filter = new _report_filter__WEBPACK_IMPORTED_MODULE_4__["ReportFilter"](this.tableService.filter);
         this.confirmDelete = true;
@@ -232,35 +245,62 @@ var ReportsPage = /** @class */ (function () {
         this.rango = false;
         this.del = false;
         this.types = [];
+        this.activeScroll = false;
     }
     ReportsPage.prototype.ngOnInit = function () {
         this.types = [{ desc: 'Dia', value: 1 }, { desc: 'Dia anterior', value: 2 }, { desc: 'Mes', value: 3 }, { desc: 'Mes Anterior', value: 4 }];
+    };
+    ReportsPage.prototype.presentToast = function (text, color) {
+        if (color === void 0) { color = "primary"; }
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            message: text,
+                            duration: 2000,
+                            color: color
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     ReportsPage.prototype.list = function (event) {
         var _this = this;
         var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]();
         httpParams = this.filter.getHttpParams(httpParams);
         if (httpParams['updates'] != null) {
-            if (this.filter.since_date != null && this.filter.until_date == null) {
-                console.log('Debe ingresar el parametro de fecha : Hasta');
+            console.log("updates http params");
+            if ((this.filter.since_date != null && this.filter.since_date != "") && (this.filter.until_date == null || this.filter.until_date == "")) {
+                this.presentToast("Debe ingresar el parametro de fecha : Hasta", "primary");
                 return;
             }
-            if (this.filter.since_date == null && this.filter.until_date != null) {
-                console.log('Debe ingresar el parametro de fecha : Desde');
+            if ((this.filter.since_date == null || this.filter.since_date == "") && (this.filter.until_date != null && this.filter.until_date != "")) {
+                this.presentToast("Debe ingresar el parametro de fecha : Desde", "primary");
                 return;
             }
-            this.reportService.getReportInvoicesCharged(this.reportService.buildRequestOptionsFinder(this.tableService.sort, 'm', httpParams['updates'], { pageIndex: event ? event.pageIndex : this.tableService.pager.pageIndex,
-                pageSize: event ? event.pageSize : this.tableService.pager.pageSize }))
+            if (this.filter.since_date > this.filter.until_date) {
+                this.presentToast("Fecha final debe ser mayor a la fecha inicial", "warning");
+                return;
+            }
+            this.alertas.showLoader();
+            this.reportService.getReportInvoicesCharged(this.reportService.buildRequestOptionsFinder(this.tableService.sort, 'm', httpParams['updates'], {
+                pageIndex: event ? event.pageIndex : this.tableService.pager.pageIndex,
+                pageSize: event ? event.pageSize : this.tableService.pager.pageSize
+            }))
                 .subscribe(function (params) {
                 console.log(params['result']);
                 _this.items = params['result']; // items que mostrara la tabla
-                // this.dataSource = new MatTableDataSource<any>(this.items);
-                // this.tableService.pager = params['pager'];
-                // this.tableService.selection.clear();
                 if (_this.items.length === 0) {
-                    console.log('No se encontraron resultados');
-                    // this.notificationService.alert('No se encontraron resultados para la busqueda');
+                    _this.alertas.dismiss();
+                    _this.activeScroll = false;
+                    _this.presentToast('No se encontraron resultados', 'warning');
                 }
+                _this.alertas.dismiss();
             }, function (err) {
                 // this.notificationService.error(err);
                 console.log(err);
@@ -268,8 +308,7 @@ var ReportsPage = /** @class */ (function () {
         }
     };
     ReportsPage.prototype.reset = function () {
-        this.filter = new _report_filter__WEBPACK_IMPORTED_MODULE_4__["ReportFilter"]();
-        this.list();
+        this.items = [];
     };
     ReportsPage.prototype.search = function () {
         this.isOpenSearchPanel = false;
@@ -302,7 +341,9 @@ var ReportsPage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./reports.page.scss */ "./src/app/reports/reports.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_providers_utils_pager__WEBPACK_IMPORTED_MODULE_2__["TableService"],
-            _report_service__WEBPACK_IMPORTED_MODULE_5__["ReportService"]])
+            _report_service__WEBPACK_IMPORTED_MODULE_5__["ReportService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ToastController"],
+            _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_7__["AlertService"]])
     ], ReportsPage);
     return ReportsPage;
 }());

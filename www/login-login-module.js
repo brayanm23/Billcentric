@@ -69,7 +69,7 @@ module.exports = "\n<ion-content padding class=\"transparent-header\">\n  <img c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".error-messages {\n  font-size: 0.9em;\n  color: red;\n  text-align: left; }\n\n.logo {\n  padding-top: 150px;\n  margin: 0 auto;\n  padding-bottom: 20px; }\n\n/*page-login-one {\n    // Fullscreen centered image background\n    ion-content {\n      background-size: cover;\n      background-position: center;\n      background-repeat: no-repeat;\n      border-color: transparent;\n    }\n    .scroll-content {\n      background-image: radial-gradient(center center, ellipse cover, #ffeda3, #ffc800);\n      display: flex;\n      flex-direction: column;\n      overflow: hidden;\n    }\n\n    .no-border {\n      border-bottom: 0 !important;\n      box-shadow: none !important;\n    }\n    ion-row {\n      align-items: center;\n      text-align: center;\n    }\n    @media only screen and (min-width: 768px) {\n      ion-col.col {\n        margin: 0 auto;\n        max-width: 40%;\n      }\n    }\n    span {\n      color: white;\n    }\n    ion-item {\n      // border-radius: 30px !important;\n      padding-left: 10px !important;\n      margin-bottom: 10px;\n      background-color: #f6f6f6;\n      opacity: 0.7;\n      font-size: 0.9em;\n    }\n    ion-list {\n      margin: 0;\n    }\n    .login-button {\n      width: 100%;\n      // border-radius: 30px;\n      font-size: 0.9em;\n      // border: 1px solid #fff;\n      background-color: #39acdc;\n    }\n  }*/\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2JyYXlhbi9Fc2NyaXRvcmlvL0JpbGxjZW50cmljL3NyYy9hcHAvbG9naW4vbG9naW4ucGFnZS5zY3NzIiwic3JjL2FwcC9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsVUFBVTtFQUNWLGdCQUFnQixFQUFBOztBQUVsQjtFQUlFLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2Qsb0JBQW9CLEVBQUE7O0FBRXRCOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztJQytDSSIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvci1tZXNzYWdlcyB7XG4gIGZvbnQtc2l6ZTogMC45ZW07XG4gIGNvbG9yOiByZWQ7XG4gIHRleHQtYWxpZ246IGxlZnQ7XG59XG4ubG9nbyB7XG4gIC8vd2lkdGg6IDUwJTtcbiAgLy9oZWlnaHQ6IGF1dG87XG4gIC8vbWF4LXdpZHRoOiAxMmVtO1xuICBwYWRkaW5nLXRvcDogMTUwcHg7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBwYWRkaW5nLWJvdHRvbTogMjBweDtcbn1cbi8qcGFnZS1sb2dpbi1vbmUge1xuICAgIC8vIEZ1bGxzY3JlZW4gY2VudGVyZWQgaW1hZ2UgYmFja2dyb3VuZFxuICAgIGlvbi1jb250ZW50IHtcbiAgICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG4gICAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICAgICAgYm9yZGVyLWNvbG9yOiB0cmFuc3BhcmVudDtcbiAgICB9XG4gICAgLnNjcm9sbC1jb250ZW50IHtcbiAgICAgIGJhY2tncm91bmQtaW1hZ2U6IHJhZGlhbC1ncmFkaWVudChjZW50ZXIgY2VudGVyLCBlbGxpcHNlIGNvdmVyLCAjZmZlZGEzLCAjZmZjODAwKTtcbiAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICB9XG5cbiAgICAubm8tYm9yZGVyIHtcbiAgICAgIGJvcmRlci1ib3R0b206IDAgIWltcG9ydGFudDtcbiAgICAgIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcbiAgICB9XG4gICAgaW9uLXJvdyB7XG4gICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIH1cbiAgICBAbWVkaWEgb25seSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDc2OHB4KSB7XG4gICAgICBpb24tY29sLmNvbCB7XG4gICAgICAgIG1hcmdpbjogMCBhdXRvO1xuICAgICAgICBtYXgtd2lkdGg6IDQwJTtcbiAgICAgIH1cbiAgICB9XG4gICAgc3BhbiB7XG4gICAgICBjb2xvcjogd2hpdGU7XG4gICAgfVxuICAgIGlvbi1pdGVtIHtcbiAgICAgIC8vIGJvcmRlci1yYWRpdXM6IDMwcHggIWltcG9ydGFudDtcbiAgICAgIHBhZGRpbmctbGVmdDogMTBweCAhaW1wb3J0YW50O1xuICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICNmNmY2ZjY7XG4gICAgICBvcGFjaXR5OiAwLjc7XG4gICAgICBmb250LXNpemU6IDAuOWVtO1xuICAgIH1cbiAgICBpb24tbGlzdCB7XG4gICAgICBtYXJnaW46IDA7XG4gICAgfVxuICAgIC5sb2dpbi1idXR0b24ge1xuICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAvLyBib3JkZXItcmFkaXVzOiAzMHB4O1xuICAgICAgZm9udC1zaXplOiAwLjllbTtcbiAgICAgIC8vIGJvcmRlcjogMXB4IHNvbGlkICNmZmY7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzlhY2RjO1xuICAgIH1cbiAgfSovXG4gICIsIi5lcnJvci1tZXNzYWdlcyB7XG4gIGZvbnQtc2l6ZTogMC45ZW07XG4gIGNvbG9yOiByZWQ7XG4gIHRleHQtYWxpZ246IGxlZnQ7IH1cblxuLmxvZ28ge1xuICBwYWRkaW5nLXRvcDogMTUwcHg7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBwYWRkaW5nLWJvdHRvbTogMjBweDsgfVxuXG4vKnBhZ2UtbG9naW4tb25lIHtcbiAgICAvLyBGdWxsc2NyZWVuIGNlbnRlcmVkIGltYWdlIGJhY2tncm91bmRcbiAgICBpb24tY29udGVudCB7XG4gICAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgICAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xuICAgICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgICAgIGJvcmRlci1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gICAgfVxuICAgIC5zY3JvbGwtY29udGVudCB7XG4gICAgICBiYWNrZ3JvdW5kLWltYWdlOiByYWRpYWwtZ3JhZGllbnQoY2VudGVyIGNlbnRlciwgZWxsaXBzZSBjb3ZlciwgI2ZmZWRhMywgI2ZmYzgwMCk7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgfVxuXG4gICAgLm5vLWJvcmRlciB7XG4gICAgICBib3JkZXItYm90dG9tOiAwICFpbXBvcnRhbnQ7XG4gICAgICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XG4gICAgfVxuICAgIGlvbi1yb3cge1xuICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gICAgQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA3NjhweCkge1xuICAgICAgaW9uLWNvbC5jb2wge1xuICAgICAgICBtYXJnaW46IDAgYXV0bztcbiAgICAgICAgbWF4LXdpZHRoOiA0MCU7XG4gICAgICB9XG4gICAgfVxuICAgIHNwYW4ge1xuICAgICAgY29sb3I6IHdoaXRlO1xuICAgIH1cbiAgICBpb24taXRlbSB7XG4gICAgICAvLyBib3JkZXItcmFkaXVzOiAzMHB4ICFpbXBvcnRhbnQ7XG4gICAgICBwYWRkaW5nLWxlZnQ6IDEwcHggIWltcG9ydGFudDtcbiAgICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjZmNmY2O1xuICAgICAgb3BhY2l0eTogMC43O1xuICAgICAgZm9udC1zaXplOiAwLjllbTtcbiAgICB9XG4gICAgaW9uLWxpc3Qge1xuICAgICAgbWFyZ2luOiAwO1xuICAgIH1cbiAgICAubG9naW4tYnV0dG9uIHtcbiAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgLy8gYm9yZGVyLXJhZGl1czogMzBweDtcbiAgICAgIGZvbnQtc2l6ZTogMC45ZW07XG4gICAgICAvLyBib3JkZXI6IDFweCBzb2xpZCAjZmZmO1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzM5YWNkYztcbiAgICB9XG4gIH0qL1xuIl19 */"
+module.exports = ".error-messages {\n  font-size: 0.9em;\n  color: red;\n  text-align: left; }\n\n.logo {\n  padding-top: 150px;\n  margin: 0 auto;\n  padding-bottom: 20px; }\n\n/*page-login-one {\n    // Fullscreen centered image background\n    ion-content {\n      background-size: cover;\n      background-position: center;\n      background-repeat: no-repeat;\n      border-color: transparent;\n    }\n    .scroll-content {\n      background-image: radial-gradient(center center, ellipse cover, #ffeda3, #ffc800);\n      display: flex;\n      flex-direction: column;\n      overflow: hidden;\n    }\n\n    .no-border {\n      border-bottom: 0 !important;\n      box-shadow: none !important;\n    }\n    ion-row {\n      align-items: center;\n      text-align: center;\n    }\n    @media only screen and (min-width: 768px) {\n      ion-col.col {\n        margin: 0 auto;\n        max-width: 40%;\n      }\n    }\n    span {\n      color: white;\n    }\n    ion-item {\n      // border-radius: 30px !important;\n      padding-left: 10px !important;\n      margin-bottom: 10px;\n      background-color: #f6f6f6;\n      opacity: 0.7;\n      font-size: 0.9em;\n    }\n    ion-list {\n      margin: 0;\n    }\n    .login-button {\n      width: 100%;\n      // border-radius: 30px;\n      font-size: 0.9em;\n      // border: 1px solid #fff;\n      background-color: #39acdc;\n    }\n  }*/\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2JyYXlhbi9CaWxsY2VudHJpYy9zcmMvYXBwL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyIsInNyYy9hcHAvbG9naW4vbG9naW4ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFVBQVU7RUFDVixnQkFBZ0IsRUFBQTs7QUFFbEI7RUFJRSxrQkFBa0I7RUFDbEIsY0FBYztFQUNkLG9CQUFvQixFQUFBOztBQUV0Qjs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7SUMrQ0kiLCJmaWxlIjoic3JjL2FwcC9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZXJyb3ItbWVzc2FnZXMge1xuICBmb250LXNpemU6IDAuOWVtO1xuICBjb2xvcjogcmVkO1xuICB0ZXh0LWFsaWduOiBsZWZ0O1xufVxuLmxvZ28ge1xuICAvL3dpZHRoOiA1MCU7XG4gIC8vaGVpZ2h0OiBhdXRvO1xuICAvL21heC13aWR0aDogMTJlbTtcbiAgcGFkZGluZy10b3A6IDE1MHB4O1xuICBtYXJnaW46IDAgYXV0bztcbiAgcGFkZGluZy1ib3R0b206IDIwcHg7XG59XG4vKnBhZ2UtbG9naW4tb25lIHtcbiAgICAvLyBGdWxsc2NyZWVuIGNlbnRlcmVkIGltYWdlIGJhY2tncm91bmRcbiAgICBpb24tY29udGVudCB7XG4gICAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgICAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xuICAgICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgICAgIGJvcmRlci1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gICAgfVxuICAgIC5zY3JvbGwtY29udGVudCB7XG4gICAgICBiYWNrZ3JvdW5kLWltYWdlOiByYWRpYWwtZ3JhZGllbnQoY2VudGVyIGNlbnRlciwgZWxsaXBzZSBjb3ZlciwgI2ZmZWRhMywgI2ZmYzgwMCk7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgfVxuXG4gICAgLm5vLWJvcmRlciB7XG4gICAgICBib3JkZXItYm90dG9tOiAwICFpbXBvcnRhbnQ7XG4gICAgICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XG4gICAgfVxuICAgIGlvbi1yb3cge1xuICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gICAgQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA3NjhweCkge1xuICAgICAgaW9uLWNvbC5jb2wge1xuICAgICAgICBtYXJnaW46IDAgYXV0bztcbiAgICAgICAgbWF4LXdpZHRoOiA0MCU7XG4gICAgICB9XG4gICAgfVxuICAgIHNwYW4ge1xuICAgICAgY29sb3I6IHdoaXRlO1xuICAgIH1cbiAgICBpb24taXRlbSB7XG4gICAgICAvLyBib3JkZXItcmFkaXVzOiAzMHB4ICFpbXBvcnRhbnQ7XG4gICAgICBwYWRkaW5nLWxlZnQ6IDEwcHggIWltcG9ydGFudDtcbiAgICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjZmNmY2O1xuICAgICAgb3BhY2l0eTogMC43O1xuICAgICAgZm9udC1zaXplOiAwLjllbTtcbiAgICB9XG4gICAgaW9uLWxpc3Qge1xuICAgICAgbWFyZ2luOiAwO1xuICAgIH1cbiAgICAubG9naW4tYnV0dG9uIHtcbiAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgLy8gYm9yZGVyLXJhZGl1czogMzBweDtcbiAgICAgIGZvbnQtc2l6ZTogMC45ZW07XG4gICAgICAvLyBib3JkZXI6IDFweCBzb2xpZCAjZmZmO1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzM5YWNkYztcbiAgICB9XG4gIH0qL1xuICAiLCIuZXJyb3ItbWVzc2FnZXMge1xuICBmb250LXNpemU6IDAuOWVtO1xuICBjb2xvcjogcmVkO1xuICB0ZXh0LWFsaWduOiBsZWZ0OyB9XG5cbi5sb2dvIHtcbiAgcGFkZGluZy10b3A6IDE1MHB4O1xuICBtYXJnaW46IDAgYXV0bztcbiAgcGFkZGluZy1ib3R0b206IDIwcHg7IH1cblxuLypwYWdlLWxvZ2luLW9uZSB7XG4gICAgLy8gRnVsbHNjcmVlbiBjZW50ZXJlZCBpbWFnZSBiYWNrZ3JvdW5kXG4gICAgaW9uLWNvbnRlbnQge1xuICAgICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbiAgICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgICBib3JkZXItY29sb3I6IHRyYW5zcGFyZW50O1xuICAgIH1cbiAgICAuc2Nyb2xsLWNvbnRlbnQge1xuICAgICAgYmFja2dyb3VuZC1pbWFnZTogcmFkaWFsLWdyYWRpZW50KGNlbnRlciBjZW50ZXIsIGVsbGlwc2UgY292ZXIsICNmZmVkYTMsICNmZmM4MDApO1xuICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIH1cblxuICAgIC5uby1ib3JkZXIge1xuICAgICAgYm9yZGVyLWJvdHRvbTogMCAhaW1wb3J0YW50O1xuICAgICAgYm94LXNoYWRvdzogbm9uZSAhaW1wb3J0YW50O1xuICAgIH1cbiAgICBpb24tcm93IHtcbiAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgfVxuICAgIEBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNzY4cHgpIHtcbiAgICAgIGlvbi1jb2wuY29sIHtcbiAgICAgICAgbWFyZ2luOiAwIGF1dG87XG4gICAgICAgIG1heC13aWR0aDogNDAlO1xuICAgICAgfVxuICAgIH1cbiAgICBzcGFuIHtcbiAgICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB9XG4gICAgaW9uLWl0ZW0ge1xuICAgICAgLy8gYm9yZGVyLXJhZGl1czogMzBweCAhaW1wb3J0YW50O1xuICAgICAgcGFkZGluZy1sZWZ0OiAxMHB4ICFpbXBvcnRhbnQ7XG4gICAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2Y2ZjZmNjtcbiAgICAgIG9wYWNpdHk6IDAuNztcbiAgICAgIGZvbnQtc2l6ZTogMC45ZW07XG4gICAgfVxuICAgIGlvbi1saXN0IHtcbiAgICAgIG1hcmdpbjogMDtcbiAgICB9XG4gICAgLmxvZ2luLWJ1dHRvbiB7XG4gICAgICB3aWR0aDogMTAwJTtcbiAgICAgIC8vIGJvcmRlci1yYWRpdXM6IDMwcHg7XG4gICAgICBmb250LXNpemU6IDAuOWVtO1xuICAgICAgLy8gYm9yZGVyOiAxcHggc29saWQgI2ZmZjtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICMzOWFjZGM7XG4gICAgfVxuICB9Ki9cbiJdfQ== */"
 
 /***/ }),
 
@@ -92,6 +92,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _providers_user_user_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../providers/user/user.service */ "./src/app/providers/user/user.service.ts");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
 /* harmony import */ var _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../providers/utils/alertas */ "./src/app/providers/utils/alertas.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
@@ -102,13 +104,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(formBuilder, router, authService, userService, alertas, storage) {
+    function LoginPage(formBuilder, router, authService, userService, alertas, storage, toastController) {
         this.formBuilder = formBuilder;
         this.router = router;
         this.authService = authService;
         this.userService = userService;
         this.alertas = alertas;
         this.storage = storage;
+        this.toastController = toastController;
         this.error_messages = {
             'email': [
                 { type: 'required', message: 'Correo es requerido.' },
@@ -133,6 +136,25 @@ var LoginPage = /** @class */ (function () {
     LoginPage.prototype.isValid = function (parameter) {
         return !this.loginForm.get(parameter).invalid;
     };
+    LoginPage.prototype.presentToast = function (text, color) {
+        if (color === void 0) { color = "primary"; }
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            message: text,
+                            duration: 2000,
+                            color: color
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     LoginPage.prototype.ngOnInit = function () { };
     LoginPage.prototype.login = function () {
         var _this = this;
@@ -147,16 +169,23 @@ var LoginPage = /** @class */ (function () {
             authorizationRequest.client_id = '2';
             this.authService.login(authorizationRequest).subscribe(function (authorizationResponse) {
                 sessionStorage.setItem('token', authorizationResponse.access_token);
+                _this.storage.set('token', authorizationResponse.access_token); // asiganamos el token para mantener sesion persistente 
                 // sessionStorage.setItem('token', authorizationResponse.access_token);  viejo
                 // console.log(authorizationResponse);
                 _this.userService.getById(authorizationResponse.user_id).subscribe(function (user) {
                     localStorage.setItem('accessToken', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
                     localStorage.setItem('currentData', JSON.stringify({ user: user, token: authorizationResponse.access_token }));
+                    _this.alertas.dismiss();
                     _this.router.navigate(['/menu']);
                     _this.storage.set('isLoggedin', 'true');
+                }, function (error) {
+                    _this.alertas.dismiss();
+                    _this.presentToast("Error de conexión", "danger");
                 });
             }, function (error) {
-                console.log('esto es un error');
+                console.log(error);
+                _this.alertas.dismiss();
+                _this.presentToast(error, "danger");
             });
         }
     };
@@ -171,7 +200,8 @@ var LoginPage = /** @class */ (function () {
             _providers_auth_service_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
             _providers_user_user_service__WEBPACK_IMPORTED_MODULE_6__["UserService"],
             _providers_utils_alertas__WEBPACK_IMPORTED_MODULE_8__["AlertService"],
-            _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"]])
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_9__["ToastController"]])
     ], LoginPage);
     return LoginPage;
 }());
