@@ -1,4 +1,4 @@
-#Wed May 22 09:32:48 VET 2019
+#Mon Jun 03 10:08:39 VET 2019
 base.0=/home/brayan/Billcentric/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

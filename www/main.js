@@ -896,6 +896,10 @@ var map = {
 	"./menu/menu.module": [
 		"./src/app/menu/menu.module.ts",
 		"menu-menu-module"
+	],
+	"./splashscreen/splashscreen.module": [
+		"./src/app/splashscreen/splashscreen.module.ts",
+		"splashscreen-splashscreen-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -939,13 +943,15 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        redirectTo: 'menu',
+        //redirectTo: 'menu',
+        redirectTo: 'splashscreen',
         pathMatch: 'full'
     },
     { path: 'login', loadChildren: './login/login.module#LoginPageModule'
     },
     { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule'
     },
+    { path: 'splashscreen', loadChildren: './splashscreen/splashscreen.module#SplashscreenPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -998,6 +1004,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//import { timer } from 'rxjs/observable/timer';
 var AppComponent = /** @class */ (function () {
     function AppComponent(platform, splashScreen, storage, statusBar, router) {
         this.platform = platform;
@@ -1024,6 +1031,20 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         //Add 'implements OnInit' to the class.
+        /*timer(2300).subscribe(() => {
+          let sesion = null;
+    
+          this.storage.get('token').then((val) => {
+            sesion = val;
+            console.log(sesion);
+            if (sesion == null) {
+              this.router.navigate(['/login']);
+            } else {
+              this.router.navigate(['/menu']);
+              sessionStorage.setItem('token', sesion);
+            }
+          });
+        });*/
         var sesion = null;
         this.storage.get('token').then(function (val) {
             sesion = val;
@@ -1031,8 +1052,10 @@ var AppComponent = /** @class */ (function () {
             if (sesion == null) {
                 _this.router.navigate(['/login']);
             }
-            else
+            else {
+                _this.router.navigate(['/menu']);
                 sessionStorage.setItem('token', sesion);
+            }
         });
     };
     AppComponent.prototype.ionViewWillLeave = function () {

@@ -4,13 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'menu',
+    //redirectTo: 'menu',
+    redirectTo: 'splashscreen',
     pathMatch: 'full'
   },
   { path: 'login',   loadChildren: './login/login.module#LoginPageModule'
   },
     { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule'
     },
+  { path: 'splashscreen', loadChildren: './splashscreen/splashscreen.module#SplashscreenPageModule' },
   /*{ path: 'home',    loadChildren: './home/home.module#HomePageModule'
   },
   { path: 'partner', loadChildren: './partner/partner.module#PartnerPageModule'

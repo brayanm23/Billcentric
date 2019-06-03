@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+//import { timer } from 'rxjs/observable/timer';
 
 
 @Component({
@@ -62,6 +63,20 @@ export class AppComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    /*timer(2300).subscribe(() => {
+      let sesion = null;
+
+      this.storage.get('token').then((val) => {
+        sesion = val;
+        console.log(sesion);
+        if (sesion == null) {
+          this.router.navigate(['/login']);
+        } else {
+          this.router.navigate(['/menu']);
+          sessionStorage.setItem('token', sesion);
+        }
+      });
+    });*/
     let sesion = null;
 
     this.storage.get('token').then((val) => {
@@ -69,8 +84,10 @@ export class AppComponent {
       console.log(sesion);
       if (sesion == null) {
         this.router.navigate(['/login']);
-      } else
+      } else{
+        this.router.navigate(['/menu']);
         sessionStorage.setItem('token', sesion);
+      }
     });
 
 
