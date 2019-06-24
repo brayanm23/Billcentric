@@ -166,12 +166,16 @@ export class DetailPlanPage implements OnInit {
 
               console.log(params['result']);
               this.items1=params['result'];
-              this.statusData();
+              //this.statusData();
               let data=[];
               let labels=[];
               for(let item of this.items1){
                     data.push(item.porcentaje);
-                    labels.push(item.estatus);
+                    if(item.description!="Incobrable(Se hizo el maximo de rebilling)"){
+                      labels.push(item.description);
+                    } else {
+                      labels.push("Incobrable");
+                    }
                    
               }
              
@@ -351,7 +355,7 @@ export class DetailPlanPage implements OnInit {
   }
 
 
-  statusData(){
+  /*statusData(){
     for (const item of this.items1) {
     
       if (item.estatus === 0) {
@@ -376,7 +380,7 @@ export class DetailPlanPage implements OnInit {
         item.estatus = 'Incobrables';
       }
     }
-  }
+  }*/
 
   read(item: any) {
     // hacemos esto para no tener que consultar de nuevo la informacion del invoice en la siguiente pantalla

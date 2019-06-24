@@ -15,17 +15,25 @@
 </ion-header>
 
 <ion-content>
-    <!--<ion-card class="welcome-card">
-      <ion-img src="/assets/shapes.svg"></ion-img>
+    <ion-card class="welcome-card">
+      <!--<ion-img src="/assets/shapes.svg"></ion-img>
       <ion-card-header>
         <ion-card-title>Bienvenido a billcentric</ion-card-title>
       </ion-card-header>-->
       <!--ion-card-content>
         <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
       </ion-card-content-->
-    <!--</ion-card>-->
+      <div class="padding">
+        <ion-card-title>
+            {{ titleReport }}
+        </ion-card-title>
+      </div>
+      <div>
+        <canvas #barCanvas width="350" height="400"></canvas>
+      </div>
+    
+    </ion-card>
     <!--<div *ngIf="activeScroll">-->
-    <div>
-      <canvas #barCanvas width="350" height="400"></canvas>
-    </div>
+
+    
 </ion-content>

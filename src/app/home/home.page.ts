@@ -26,6 +26,8 @@ export class HomePage {
     @ViewChild('barCanvas') barCanvas;
     barChart: any;
     items1: any[] = [];
+    yesterday: any;
+    titleReport: any;
     constructor(
         private router: Router,
         private reportService: ReportService,
@@ -83,6 +85,7 @@ export class HomePage {
     }
 
     getChart(context, chartType, data, options?) {
+
         return new Chart(context, {
           data,
           options,
@@ -104,6 +107,12 @@ export class HomePage {
 
             console.log(params['result']);
             this.items1=params['result'];
+            this.yesterday=params['yesterday']
+            if(this.yesterday==true){
+              this.titleReport = "Reporte de facturas procesadas del dia anterior"
+            }else{
+              this.titleReport = "Reporte de facturas procesadas en el mes actual"
+            }
             //this.statusData();
             let data=[];
             let labels=[];
