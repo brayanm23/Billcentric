@@ -51,4 +51,13 @@ export class ReportService extends BaseService {
             );
     }
 
+    getReportHome(requestOptions: RequestOptions = new RequestOptions()): Observable<any[]> {
+        requestOptions.headers = ReportService.createAuthorizationHeader();
+        return this.http.get(this.BASE_URL + '/report/user/status', requestOptions)
+        .pipe(
+            map(ReportService.extractDataFull)
+            , catchError(ReportService.handleError)
+        );
+    }
+
 }
